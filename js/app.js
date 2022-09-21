@@ -1,3 +1,13 @@
+/**
+ * Cargando..
+ */
+
+window.onload = function() {
+    let contenedor = document.querySelector('.contenedor-carga')
+    contenedor.style.visibility = 'hidden'
+    contenedor.style.opacity = '0'
+    console.log(contenedor)
+}
 /*
  * Ver mas...
  */
