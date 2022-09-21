@@ -281,7 +281,7 @@ header {
     justify-content: space-evenly;
     flex-wrap: wrap;
     align-items: center;
-    box-shadow: 0px 2px 2px 1px rgba(64,134,158,1);
+    box-shadow: 0px 3px 2px 1px rgba(64,134,158,1);
 }
 .img-clientes {
     width: 70px;
@@ -410,6 +410,34 @@ footer {
         transform: translateY(0);
     }
 }
+/* Cargando... */
+.contenedor-carga {
+    background-color: rgba(250, 240, 245, 0.9);
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    transition: all 1s ease;
+    z-index: 10000;
+}
+.carga {
+    border: 15px solid var(--second-color-alt);
+    border-top-color: var(--second-color);
+    border-top-style: groove;
+    height: 80px;
+    width: 80px;
+    border-radius: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    animation: girar 1.5s linear infinite;
+}
+@keyframes girar {
+    from {transform: rotate(0deg);}
+    to {transform: rotate(360deg);}
+}
 @media screen and (max-width:800px) {
     .menu-nav {
         width: 50vh;
@@ -468,7 +496,7 @@ footer {
 
 @media screen and (max-width:500px) {
     .menu-nav {
-        width: 65vh;
+        width: 90%;
     }
     .add-img {
         width: 95%;
@@ -479,6 +507,7 @@ footer {
     }
     .titulo {
         font-size: 30px;
+        margin-top: 10px;
     }
     .subtitulo {
         font-size: 25px;
