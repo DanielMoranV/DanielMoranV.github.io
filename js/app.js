@@ -45,7 +45,7 @@ function showScroll(){
     let scrollTop = document.documentElement.scrollTop
     scrollShow.forEach(element => {
         let alturaScroll = element.offsetTop
-        if(alturaScroll - 500 < scrollTop){
+        if(alturaScroll - 600 < scrollTop){
             element.style.opacity = 1
             element.classList.add("mostrarArriba")
         }
