@@ -1,188 +1,104 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CONERI Energías Renovables | Paneles Solares Perú | Panel Solar</title>
-    <link rel="shortcut icon" href="/iconos/logoConeri.png">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Open+Sans:wght@300;400;700&display=swap" rel="stylesheet">
-    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-    <script defer src="js/galeria.js"></script>
-    <script defer src="js/menu.js"></script>
-    <script defer src="js/app.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Daniel Morán Vílchez — Djasoft</title>
+<meta name="description" content="Desarrollador full stack. Creador de AlmaZen, MozaicoPro y EasyPay.">
+<style>
+  :root {
+    --bg: #ffffff;
+    --fg: #16181d;
+    --muted: #5b6270;
+    --line: #e4e7ec;
+    --accent: #1c6feb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1115;
+      --fg: #e8eaed;
+      --muted: #9aa2b1;
+      --line: #262a33;
+      --accent: #6ea8ff;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--fg);
+    font: 16px/1.65 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  main {
+    max-width: 44rem;
+    margin: 0 auto;
+    padding: 5rem 1.5rem 4rem;
+  }
+  h1 {
+    font-size: clamp(1.9rem, 5vw, 2.6rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 0 0 .4rem;
+  }
+  .role { color: var(--muted); margin: 0 0 2.5rem; font-size: 1.05rem; }
+  h2 {
+    font-size: .78rem;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    color: var(--muted);
+    font-weight: 600;
+    margin: 2.75rem 0 1rem;
+  }
+  ul { list-style: none; margin: 0; padding: 0; }
+  li { border-top: 1px solid var(--line); }
+  li:last-child { border-bottom: 1px solid var(--line); }
+  a.row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: .6rem;
+    padding: .85rem .25rem;
+    text-decoration: none;
+    color: inherit;
+  }
+  a.row:hover { background: color-mix(in srgb, var(--accent) 8%, transparent); }
+  .name { font-weight: 600; }
+  .desc { color: var(--muted); font-size: .92rem; }
+  footer {
+    margin-top: 3.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--line);
+    color: var(--muted);
+    font-size: .9rem;
+  }
+  footer a { color: var(--accent); }
+</style>
 </head>
-
 <body>
-    <div class="contenedor-carga">
-        <div class="loader" id="loader">Loading...</div>
-    </div>
-    <header class="header" id="home">
-        <div class="encabezado">
-            <img src="/iconos/logoConeri.png" class="logo">
-            <div class="texto-logo">
-                <h1>CONERI</h1>
-                <p>CONSULTORIA ENERGIAS RENOVABLES E INGENIERIA</p></div>
-        </div>
-        <img src="/iconos/bx-menu-alt-right.svg" class="icon-menu">
-        <nav class="menu-nav">
-            <a href="#home">Inicio</a>
-            <a href="#servicio">Nuestro Equipo</a>
-            <a href="#portafolio">Portafolio</a>
-            <a href="#expertos">Expertos</a>
-            <a href="#noticias">Noticias</a>
-            <a href="#clientes">Clientes</a>
-        </nav>
-        <div class="contenedor head">
-            <h1 class="titulo">Energia Renovable amigable con el PLANETA</h1>
-            <p class="copy">Dimensionamiento, Suministro e Instalación de Proyectos y Equipos de Energía con
-                Sistemas Energéticos Renovables</p>
-        </div>
-    </header>
-    <main>
-        <section class="contenedor" id="servicio">
-            <h2 class="subtitulo">Nuestro Equipo</h2>
-            <div class="contenedor-servicio">
-                <img src="/iconos/Checklist_Isometric.svg" alt="">
-                <div class="checklist-servicios">
-                    <div class="services scroll-show">
-                        <h3 class="n-service"><span class="number">1</span>¿QUIENES SOMOS?</h3>
-                        <p><b>CONERI E.I.R.L.</b>, es una empresa Regional, conformada por profesionales capacitados y
-                            experimentados en el planteamiento y desarrollo de Proyectos de Sistemas de Energías
-                            Renovables con mayor énfasis en la Energía Solar y sus aplicaciones.</p>
-                    </div>
-                    <div class="services box scroll-show">
-                        <h3 class="n-service"><span class="number">2</span>MISIÓN</h3>
-                        <p>Ofrecer los servicios integrados: comercialización, instalación y asistencia técnica de
-                            los proyectos de Energía Renovable (Energía Solar) desarrollados en nuestra
-                            Región aplicando estándares de calidad y sistemas de gestión, asegurando la
-                            sostenibilidad del proyecto. Comprometiendo a nuestros clientes con la protección,
-                            conservación del medio ambiente.</p>
-                    </div>
-                    <div class="service box scroll-show">
-                        <h3 class="n-service"><span class="number">3</span>VISIÓN</h3>
-                        <p>Ser una de empresa líder a nivel nacional en el desarrollo de proyectos de sistemas
-                            de energías renovables e ingeniería, brindando servicios integrados comercialización,
-                            instalación y asistencia técnica de los proyectos de Energía Renovable
-                            (Energía Solar) para la satisfacción de nuestros clientes. Brindar un servicio técnico
-                            de calidad que aseguren la sostenibilidad de los proyectos.
-                            </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <section class="gallery" id="portafolio">
-            <div class="contenedor">
-                <h2 class="subtitulo">Galeria</h2>
-                <div class="contenedor-galeria">
-                    <img src="/img/1.jpg" class="img-galeria">
-                    <img src="/img/2.jpg" class="img-galeria">
-                    <img src="/img/3.jpg" class="img-galeria">
-                    <img src="/img/4.jpg" class="img-galeria">
-                    <img src="/img/5.jpg" class="img-galeria">
-                    <img src="/img/6.jpg" class="img-galeria">
-                </div>
-            </div>
-        </section>
-        <section class="image-light">-
-            <img src="/iconos/bx-x.svg" class="img-close">
-            <img src="/img/1.jpg" class="add-img">
-        </section>
-        <section class="contenedor" id="expertos">
-            <h2 class="subtitulo">Expertos en: </h2>
-            <section class="experts">
-                <div class="cont-experts scroll-show">
-                    <img src="iconos/dimensionamiento.svg" alt="" srcset="">
-                    <h3 class="n-expert">Suministro</h3>
-                </div>
-                <div class="cont-experts scroll-show">
-                    <img src="iconos/asistenciaTecnica.svg" alt="" srcset="">
-                    <h3 class="n-expert">Dimensionamiento</h3>
-                </div>
-                <div class="cont-experts scroll-show">
-                    <img src="iconos/instalacion.svg" alt="" srcset="">
-                    <h3 class="n-expert">Instalación</h3>
-                </div>
-            </section>
-        </section>
-        <div class="noticias">
-            <section class="contenedor noticias" id="noticias">
-                <h2 class="subtitulo">Noticias </h2>
-                <div class="cont-noticias">
-                    <article class="articulo-noticia scroll-show">
-                        <div class="noticia-encabezado">
-                            <h5>Sistema de Bombeo Solar Palo Blanco</h5>
-                            <p class="fecha-noticias">17 de septiembre del 2022</p>
-                        </div>
-                        <p class="parrafo-noticias">Sistema de Bombeo Solar(Paneles Solares) Directo caudal 180 l/min.</p>
-                        <span class="parrafo-noticias noticia-hide" id="textHide1">Eleva el agua a 100 metros, Bomba Sumergible Pedrollo de 5 HP Trifásica . Localidad Palo Blanco Chulucanas</span>
-                        <a id="textHide1_link">Ver mas...</a>
-                        <img src="/noticias/coneri palo blanco.webp">
-                    </article>
-                    <article class="articulo-noticia scroll-show">
-                        <div class="noticia-encabezado">
-                            <h5>Sistema Fotovoltaico en Hospital Chulucanas </h5>
-                            <p class="fecha-noticias">17 de septiembre del 2022</p>
-                        </div>
-                        <p class="parrafo-noticias">Sistema Fotovoltaico(Paneles Solares) ON Grid Hospital de Chulucanas.</p>
-                        <img src="/noticias/chulucanas.webp">
-                    </article>
-                    <article class="articulo-noticia scroll-show">
-                        <div class="noticia-encabezado">
-                            <h5>Sistema de Bombeo Solar TRIFASICO en La Huaca</h5>
-                            <p class="fecha-noticias">17 de septiembre del 2022</p>
-                        </div>
-                        <p class="parrafo-noticias">Sistema de Bombeo Solar(Paneles Solares) TRIFASICO en La Localidad de la Huaca en el Distrito </p>
-                        <span class="parrafo-noticias noticia-hide" id="textHide2">de San Miguel de el Faique, caudal 200 lt/min, el sistema es hibrido funcion con energia solar y con energia MONOFASICA   de la Red, en caso sea necesario su uso en horas de la noche cuando no haya radiacion solar.... Bomba Instalada Pedrollo 3 Hp con descarga de 2", Trifasica 220 Vac...</span>
-                        <a id="textHide2_link">Ver mas...</a>
-                        <img src="/noticias/La Huaca.webp">
-                    </article>
-                </div>
-            </section>
-        </div>
-        <section class="contenedor" id="clientes">
-            <h2 class="subtitulo">Nuestros Clientes :</h2>
-            <div class="cont-clientes scroll-show">
-                <img src="/iconos/Adinelsa-LogoPNG.png" alt="" class="img-clientes icono-largo">
-                <img src="/iconos/Chulucanas.png" alt="" class="img-clientes">
-                <img src="/iconos/Electroperú.png" alt="" class="img-clientes icono-largo">
-                <img src="/iconos/energia sin fronteras.png" alt="" class="img-clientes icono-largo">
-                <img src="/iconos/ergon.png" alt="" class="img-clientes icono-largo">
-                <img src="/iconos/Escudo_La_matanza.png" alt="" class="img-clientes">
-                <img src="/iconos/lancones.png" alt="" class="img-clientes">
-                <img src="/iconos/ong progreso.png" alt="" class="img-clientes">
-                <img src="/iconos/norandino.png" alt="" class="img-clientes">
-                <img src="/iconos/lancones.png" alt="" class="img-clientes">
-            </div>
-        </section>
-    </main>
-    <footer id="contacto">
-        <div class="contenedor footer-content">
-            <div class="contact-us">
-                <h2 class="brand">CONERI E.I.R.L.</h2>
-                <p><b>DOMICILIO LEGAL:</b>
-                    Calle Canta N° 109 Urb. San Felipe - Comas - Lima
-                </p>
-                <p><b>SUCURSAL PIURA:</b>
-                    Av. Grau N° 3161 Santa Rosa - Distrito Veintiséis de
-                    Octubre
-                </p>
-                <p><b>Telf.:</b> 941 830 829</p>
-                <p><b>Email:</b> jilmerparrilla@hotmail.com</p>
-            </div>
-            <div class="social-media">
-                <a href="https://www.facebook.com/Coneripiura" class="social-media-icon" target="_blank"><i class='bx bxl-facebook-circle'></i></a>
-                <a href="https://www.tiktok.com/@jilmer941830829" class="social-media-icon" target="_blank"><i class='bx bxl-tiktok' ></i></a>
-                <a href="https://api.whatsapp.com/send?phone=51941830829&text=Hola%20requiero%20informaci%C3%B3n%20de%20sus%20servicios%20en%20sistemas%20fotovoltaicos" class="social-media-icon" target="_blank"><i class='bx bxl-whatsapp' ></i></a>
-            </div>
-        </div>
-        <div class="line"></div>
-        <p class="by">Made with ♥ by. <a href="https://www.facebook.com/Dyland.DanielMV" target="_blank">Daniel Moran</a></p>
-    </footer>
-</body>
+<main>
+  <h1>Daniel Morán Vílchez</h1>
+  <p class="role">Desarrollador full stack · Piura, Perú · <strong>Djasoft</strong></p>
 
+  <h2>Productos en producción</h2>
+  <ul>
+    <li><a class="row" href="https://almazen.djasoft.net.pe/"><span class="name">AlmaZen</span> <span class="desc">ERP de inventario, ventas y punto de venta</span></a></li>
+    <li><a class="row" href="https://mozaicopro.djasoft.net.pe/"><span class="name">MozaicoPro</span> <span class="desc">Gestión para restaurantes, multi-tenant en Go</span></a></li>
+    <li><a class="row" href="https://easypay.djasoft.net.pe/"><span class="name">EasyPay</span> <span class="desc">Gestión de planillas</span></a></li>
+  </ul>
+
+  <h2>Código abierto</h2>
+  <ul>
+    <li><a class="row" href="https://github.com/DanielMoranV/sunat-comprobantes"><span class="name">sunat-comprobantes</span> <span class="desc">Cálculo de IGV y QR para comprobantes SUNAT · PHP</span></a></li>
+    <li><a class="row" href="https://github.com/DanielMoranV/almazen-lite"><span class="name">AlmaZen Lite</span> <span class="desc">Edición gratuita de escritorio · C# / .NET 8</span></a></li>
+    <li><a class="row" href="https://github.com/DanielMoranV/almazen-api"><span class="name">almazen-api</span> <span class="desc">API de inventario multi-empresa · Laravel</span></a></li>
+    <li><a class="row" href="https://github.com/DanielMoranV/almazen_frontend"><span class="name">almazen_frontend</span> <span class="desc">Cliente del ERP · Vue 3</span></a></li>
+  </ul>
+
+  <footer>
+    <a href="https://github.com/DanielMoranV">GitHub</a> ·
+    <a href="https://djasoft.net.pe">djasoft.net.pe</a>
+  </footer>
+</main>
+</body>
 </html>
