@@ -30,11 +30,14 @@ export interface Caso {
   };
   /** Enlace a la prueba: repo publico o producto en vivo. */
   prueba?: { texto: string; url: string };
+  /** Slug del case study, si esta escrito. Ver src/data/estudios.ts. */
+  estudio?: string;
 }
 
 export const casos: Caso[] = [
   {
     id: 'dbf',
+    estudio: 'foxpro-dbf',
     destacado: true,
     sello: { en: 'Living systems', es: 'Sistemas vivos' },
     titulo: {
@@ -100,6 +103,7 @@ export const casos: Caso[] = [
   },
   {
     id: 'mozaico',
+    estudio: 'tiempo-real-sin-orm',
     sello: { en: 'Go · real time', es: 'Go · tiempo real' },
     titulo: {
       en: 'A restaurant backend without an ORM',
@@ -127,6 +131,7 @@ export const casos: Caso[] = [
   },
   {
     id: 'ia',
+    estudio: 'ia-en-producto',
     sello: { en: 'Applied AI', es: 'IA aplicada' },
     titulo: {
       en: 'Two AI designs, deliberately opposite',

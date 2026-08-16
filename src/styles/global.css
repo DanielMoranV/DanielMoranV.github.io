@@ -525,6 +525,220 @@ a {
   border-bottom: 1px solid var(--borde);
 }
 
+/* ------------------------------------------------------- case studies */
+
+.estudio {
+  padding-block: 1.75rem 3rem;
+}
+
+.estudio .volver {
+  display: inline-block;
+  margin-bottom: 1.75rem;
+}
+
+.estudio .volver:last-child {
+  margin: 2.5rem 0 0;
+}
+
+.estudio h1 {
+  margin: 0.5rem 0 0.875rem;
+  font-weight: 300;
+  font-size: clamp(1.875rem, 1.1rem + 3.2vw, 2.75rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  max-width: 22ch;
+}
+
+.estudio .resumen {
+  margin: 0 0 1.75rem;
+  max-width: var(--container-entrada);
+  font-size: var(--text-entrada);
+  line-height: 1.68;
+  color: var(--texto-suave);
+}
+
+/* Ficha tecnica de cabecera: periodo, rol, stack y prueba de un vistazo. */
+.ficha-tecnica {
+  display: grid;
+  gap: 1rem;
+  margin: 0 0 2.5rem;
+  padding: 1.125rem 0;
+  border-block: 1px solid var(--borde);
+}
+
+.ficha-tecnica dd {
+  margin: 0.25rem 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
+@media (min-width: 640px) {
+  .ficha-tecnica {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+.apartado {
+  margin-bottom: 2.25rem;
+}
+
+.apartado h2 {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin: 0 0 0.875rem;
+  font-size: var(--text-t3);
+  line-height: 1.15;
+}
+
+.apartado p {
+  margin: 0;
+  max-width: var(--container-prosa);
+  line-height: 1.7;
+  color: var(--texto-suave);
+}
+
+/* Listas con guion en mono: las vinetas redondas no pegan con esta pagina. */
+.lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-width: var(--container-prosa);
+}
+
+.lista li {
+  position: relative;
+  padding-left: 1.25rem;
+  margin-bottom: 0.625rem;
+  line-height: 1.7;
+  color: var(--texto-suave);
+}
+
+.lista li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--enlace);
+  font-family: var(--font-mono);
+  font-size: var(--text-sello);
+}
+
+.decisiones {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.decision {
+  display: grid;
+  grid-template-columns: 2rem 1fr;
+  gap: 0.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--borde);
+}
+
+.decision:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.decision h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.125rem;
+  line-height: 1.25;
+}
+
+.decision > p {
+  margin: 0;
+  padding-top: 0.125rem;
+  color: var(--texto-suave);
+}
+
+/*
+  La alternativa descartada. Va en el fondo hondo y con filete de acento
+  porque es la parte que de verdad se lee: una decision sin alternativa
+  descartada no es una decision, es una preferencia.
+*/
+.descartado {
+  margin: 0.875rem 0 0 !important;
+  padding: 0.75rem 0.875rem;
+  background: var(--fondo-hondo);
+  border-left: 2px solid var(--enlace);
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
+.descartado .sello {
+  display: block;
+  margin-bottom: 0.25rem;
+  color: var(--enlace);
+  font-weight: 500;
+}
+
+/* ---------------------------------------------------------- diagramas */
+
+.diagrama {
+  margin: 0 0 2.25rem;
+  padding: 1rem;
+  border: 1px solid var(--borde);
+}
+
+.diagrama figcaption {
+  margin-bottom: 0.875rem;
+}
+
+.diagrama ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.diagrama li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.diagrama .caja {
+  flex: 1;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid var(--borde);
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+}
+
+.diagrama .nombre {
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+}
+
+/* La flecha gira con la direccion del flujo, que cambia con el ancho. */
+.diagrama .flecha {
+  color: var(--enlace);
+  transform: rotate(90deg);
+  flex: none;
+  width: 1rem;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .diagrama ol {
+    flex-direction: row;
+    align-items: stretch;
+  }
+  .diagrama li {
+    flex: 1;
+  }
+  .diagrama .flecha {
+    transform: none;
+  }
+}
+
 /* -------------------------------------------------- conmutador de tema */
 
 .tema {

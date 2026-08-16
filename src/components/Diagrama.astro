@@ -1,0 +1,90 @@
+---
+import { t, type Idioma } from '../i18n/ui';
+
+interface Props {
+  tipo: 'dbf' | 'ia' | 'tiempo-real';
+  idioma: Idioma;
+}
+const { tipo, idioma } = Astro.props;
+const s = t[idioma];
+
+/**
+ * Diagramas de mecanismo, no de decoracion: cada uno ensena la pieza de la que
+ * cuelga la decision del case study.
+ *
+ * Se dibujan con las CAJAS Y LOS TOKENS de la pagina, no como imagen. Un SVG
+ * con colores fijos se ve perfecto en el tema en que se dibujo e ilegible en
+ * el otro, y no lo detecta nadie hasta que un visitante lo abre. Aqui todo
+ * hereda `currentColor` y las variables, asi que cambia de tema solo.
+ *
+ * Y al ser texto: se puede seleccionar, lo lee un lector de pantalla y no
+ * pesa nada.
+ */
+const flujos = {
+  dbf: {
+    en: [
+      ['1990s app', 'file open all day'],
+      ['DBF engine', 'byte-range lock'],
+      ['FastAPI', 'jobs · scheduler'],
+      ['PostgreSQL', 'reporting · analytics'],
+    ],
+    es: [
+      ['App de los noventa', 'fichero abierto todo el día'],
+      ['Motor DBF', 'bloqueo por rangos'],
+      ['FastAPI', 'jobs · planificador'],
+      ['PostgreSQL', 'reportes · análisis'],
+    ],
+  },
+  ia: {
+    en: [
+      ['Question', 'from an authenticated user'],
+      ['RBAC', 'decides which tools exist'],
+      ['Toolset', 'only the permitted ones'],
+      ['Model', 'has nothing else to call'],
+    ],
+    es: [
+      ['Pregunta', 'de un usuario autenticado'],
+      ['RBAC', 'decide qué herramientas existen'],
+      ['Herramientas', 'solo las permitidas'],
+      ['Modelo', 'no tiene nada más que llamar'],
+    ],
+  },
+  'tiempo-real': {
+    en: [
+      ['Order changes', 'floor tablet'],
+      ['Go · sqlx', 'hand-written SQL'],
+      ['PL/pgSQL', 'atomic, next to the data'],
+      ['WebSocket', 'kitchen sees it, no poll'],
+    ],
+    es: [
+      ['Cambia la comanda', 'tableta de salón'],
+      ['Go · sqlx', 'SQL escrito a mano'],
+      ['PL/pgSQL', 'atómico, junto al dato'],
+      ['WebSocket', 'cocina lo ve, sin sondeo'],
+    ],
+  },
+};
+
+const pasos = flujos[tipo][idioma];
+---
+
+<figure class="diagrama" role="group" aria-label={s.diagramaAlt}>
+  <figcaption class="sello">{s.diagramaAlt}</figcaption>
+  <ol>
+    {
+      pasos.map(([titulo, pie], i) => (
+        <li>
+          <div class="caja">
+            <span class="nombre">{titulo}</span>
+            <span class="sello">{pie}</span>
+          </div>
+          {i < pasos.length - 1 && (
+            <span class="flecha" aria-hidden="true">
+              →
+            </span>
+          )}
+        </li>
+      ))
+    }
+  </ol>
+</figure>

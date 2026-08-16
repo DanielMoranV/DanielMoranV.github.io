@@ -5,12 +5,48 @@ import { t, MARCA_URL, type Idioma } from '../i18n/ui';
 
 interface Props {
   idioma: Idioma;
+  /** Sobrescriben los de la portada en las paginas interiores. */
+  titulo?: string;
+  descripcion?: string;
+  /**
+   * Ruta dentro de cada idioma, sin barra inicial ni final. La portada es ''.
+   * Se declara en los DOS idiomas porque de ahi salen la canonica y los
+   * hreflang: una pagina interior que solo sabe su propia URL no puede
+   * declarar su alternativa, y sin eso el sitio bilingue no lo es para Google.
+   */
+  ruta?: { en: string; es: string };
+  /** `article` en los case studies; `profile` en la portada. */
+  tipo?: 'profile' | 'article';
 }
 
-const { idioma } = Astro.props;
+const {
+  idioma,
+  ruta = { en: '', es: '' },
+  tipo = 'profile',
+  titulo,
+  descripcion,
+} = Astro.props;
 const s = t[idioma];
 
-const canonica = new URL(idioma === 'en' ? '/' : '/es/', Astro.site);
+const tituloPagina = titulo ?? s.titulo;
+const descripcionPagina = descripcion ?? s.descripcion;
+
+const url = (i: Idioma) => {
+  const camino = ruta[i];
+  const base = i === 'en' ? '/' : '/es/';
+  return new URL(camino ? `${base}${camino}/` : base, Astro.site);
+};
+
+const canonica = url(idioma);
+
+/**
+ * La barra tiene que saber donde esta. En una pagina interior los anclajes
+ * (#notas, #trabajo) no apuntan a nada, y el conmutador de idioma debe llevar
+ * a la MISMA pagina en el otro idioma, no a la portada.
+ */
+const raizIdioma = idioma === 'en' ? '/' : '/es/';
+const enPortada = ruta[idioma] === '';
+const otraUrl = url(idioma === 'en' ? 'es' : 'en').pathname;
 
 /**
  * Tarjeta de enlace. Una por idioma, generada a mano y commiteada en public/:
@@ -63,13 +99,13 @@ const persona = {
       if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t;
     </script>
 
-    <title>{s.titulo}</title>
-    <meta name="description" content={s.descripcion} />
+    <title>{tituloPagina}</title>
+    <meta name="description" content={descripcionPagina} />
     <link rel="canonical" href={canonica} />
 
-    <link rel="alternate" hreflang="en" href={new URL('/', Astro.site)} />
-    <link rel="alternate" hreflang="es" href={new URL('/es/', Astro.site)} />
-    <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site)} />
+    <link rel="alternate" hreflang="en" href={url('en')} />
+    <link rel="alternate" hreflang="es" href={url('es')} />
+    <link rel="alternate" hreflang="x-default" href={url('en')} />
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -95,10 +131,10 @@ const persona = {
       crossorigin
     />
 
-    <meta property="og:type" content="profile" />
+    <meta property="og:type" content={tipo} />
     <meta property="og:site_name" content="Daniel Morán Vílchez" />
-    <meta property="og:title" content={s.titulo} />
-    <meta property="og:description" content={s.descripcion} />
+    <meta property="og:title" content={tituloPagina} />
+    <meta property="og:description" content={descripcionPagina} />
     <meta property="og:url" content={canonica} />
     <meta property="og:locale" content={idioma === 'en' ? 'en_US' : 'es_PE'} />
     <meta property="og:image" content={tarjeta} />
@@ -124,7 +160,7 @@ const persona = {
       {idioma === 'en' ? 'Skip to content' : 'Saltar al contenido'}
     </a>
 
-    <Nav idioma={idioma} />
+    <Nav idioma={idioma} raiz={raizIdioma} otra={otraUrl} enPortada={enPortada} />
     <main id="contenido"><slot /></main>
 
     <footer style="border-color: var(--borde); background: var(--fondo-hondo);" class="border-t">

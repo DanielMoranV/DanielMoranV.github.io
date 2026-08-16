@@ -1,0 +1,122 @@
+---
+import Diagrama from './Diagrama.astro';
+import type { Estudio } from '../data/estudios';
+import { t, type Idioma } from '../i18n/ui';
+
+interface Props {
+  estudio: Estudio;
+  idioma: Idioma;
+  /** Portada del idioma, para el enlace de vuelta. */
+  raiz: string;
+}
+const { estudio: e, idioma, raiz } = Astro.props;
+const s = t[idioma];
+
+/**
+ * Los seis apartados van SIEMPRE en el mismo orden y con el mismo aspecto en
+ * los tres estudios. Quien compara candidatos lee en diagonal, y un formato
+ * constante se lee en diagonal; uno distinto cada vez, no.
+ */
+---
+
+<article class="pagina estudio">
+  <a class="vinculo volver" href={`${raiz}#notas`}>← {s.volver}</a>
+
+  <p class="sello">{e.sello[idioma]}</p>
+  <h1>{e.titulo[idioma]}</h1>
+  <p class="resumen">{e.resumen[idioma]}</p>
+
+  <dl class="ficha-tecnica">
+    <div>
+      <dt class="sello">{s.fichaPeriodo}</dt>
+      <dd class="num">{e.periodo}</dd>
+    </div>
+    <div>
+      <dt class="sello">{s.fichaRol}</dt>
+      <dd>{e.rol[idioma]}</dd>
+    </div>
+    <div>
+      <dt class="sello">{s.fichaStack}</dt>
+      <dd>{e.stack.join(' · ')}</dd>
+    </div>
+    {
+      e.prueba && (
+        <div>
+          <dt class="sello">{s.fichaPrueba}</dt>
+          <dd>
+            <a class="vinculo" href={e.prueba.url} target="_blank" rel="noopener noreferrer">
+              {e.prueba.texto} ↗
+            </a>
+          </dd>
+        </div>
+      )
+    }
+  </dl>
+
+  <section class="apartado">
+    <h2><span class="sello sello-acento">01</span> {s.apContexto}</h2>
+    <p>{e.contexto[idioma]}</p>
+  </section>
+
+  <section class="apartado">
+    <h2><span class="sello sello-acento">02</span> {s.apProblema}</h2>
+    <p>{e.problema[idioma]}</p>
+  </section>
+
+  <section class="apartado">
+    <h2><span class="sello sello-acento">03</span> {s.apRestricciones}</h2>
+    <ul class="lista">
+      {e.restricciones.map((r) => <li>{r[idioma]}</li>)}
+    </ul>
+  </section>
+
+  <section class="apartado">
+    <h2><span class="sello sello-acento">04</span> {s.apDecisiones}</h2>
+    <div class="decisiones">
+      {
+        e.decisiones.map((d, i) => (
+          <div class="decision">
+            <p class="sello num">{String(i + 1).padStart(2, '0')}</p>
+            <div>
+              <h3>{d.titulo[idioma]}</h3>
+              <p>{d.cuerpo[idioma]}</p>
+              {d.descartado && (
+                <p class="descartado">
+                  <span class="sello">{s.descartado}</span>
+                  {d.descartado[idioma]}
+                </p>
+              )}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  {e.diagrama && <Diagrama tipo={e.diagrama} idioma={idioma} />}
+
+  <section class="apartado">
+    <h2><span class="sello sello-acento">05</span> {s.apResultado}</h2>
+    <ul class="lista">
+      {e.resultado.map((r) => <li>{r[idioma]}</li>)}
+    </ul>
+  </section>
+
+  {
+    e.prueba && (
+      <section class="apartado">
+        <h2>
+          <span class="sello sello-acento">06</span> {s.apPrueba}
+        </h2>
+        <p>
+          {s.pruebaEntrada}{' '}
+          <a class="vinculo" href={e.prueba.url} target="_blank" rel="noopener noreferrer">
+            {e.prueba.texto} ↗
+          </a>
+        </p>
+      </section>
+    )
+  }
+
+  <a class="vinculo volver" href={`${raiz}#notas`}>← {s.volver}</a>
+</article>

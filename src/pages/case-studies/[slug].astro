@@ -1,0 +1,27 @@
+---
+import Base from '../../layouts/Base.astro';
+import EstudioVista from '../../components/Estudio.astro';
+import { estudios } from '../../data/estudios';
+import { SEGMENTO } from '../../i18n/ui';
+
+/**
+ * Una pagina por caso. El gemelo en castellano vive en
+ * src/pages/es/casos/[slug].astro con el MISMO slug: cambia el segmento de la
+ * ruta, no el identificador, para que los hreflang se emparejen solos.
+ */
+export function getStaticPaths() {
+  return estudios.map((estudio) => ({ params: { slug: estudio.slug }, props: { estudio } }));
+}
+
+const { estudio } = Astro.props;
+---
+
+<Base
+  idioma="en"
+  tipo="article"
+  titulo={`${estudio.titulo.en} — Daniel Morán Vílchez`}
+  descripcion={estudio.resumen.en}
+  ruta={{ en: `${SEGMENTO.en}/${estudio.slug}`, es: `${SEGMENTO.es}/${estudio.slug}` }}
+>
+  <EstudioVista estudio={estudio} idioma="en" raiz="/" />
+</Base>

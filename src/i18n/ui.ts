@@ -6,6 +6,9 @@ export type Idioma = keyof typeof idiomas;
 /** La marca vendedora. Publico distinto, dominio distinto. */
 export const MARCA_URL = 'https://djasoft.net.pe';
 
+/** Segmento de las paginas de caso. La URL tambien se traduce. */
+export const SEGMENTO = { en: 'case-studies', es: 'casos' } as const;
+
 export const CORREO = 'skaan.dmv@gmail.com';
 export const GITHUB = 'https://github.com/DanielMoranV';
 export const LINKEDIN = 'https://linkedin.com/in/danielmoranv';
@@ -60,6 +63,22 @@ export const t = {
 
     notasTitulo: 'Engineering notes',
     notasEtiqueta: 'Four problems',
+    leerCaso: 'Read the case study',
+
+    volver: 'Back to the profile',
+    fichaPeriodo: 'Period',
+    fichaRol: 'Role',
+    fichaStack: 'Stack',
+    fichaPrueba: 'Proof',
+    apContexto: 'Context',
+    apProblema: 'Problem',
+    apRestricciones: 'Constraints',
+    apDecisiones: 'Decisions',
+    apResultado: 'Result',
+    apPrueba: 'Proof',
+    descartado: 'Discarded',
+    pruebaEntrada: 'Everything above is visible here:',
+    diagramaAlt: 'How it works',
     destacada: 'Featured',
     antes: 'Before',
     ahora: 'Now',
@@ -135,6 +154,22 @@ export const t = {
 
     notasTitulo: 'Notas de ingeniería',
     notasEtiqueta: 'Cuatro problemas',
+    leerCaso: 'Leer el caso completo',
+
+    volver: 'Volver al perfil',
+    fichaPeriodo: 'Periodo',
+    fichaRol: 'Rol',
+    fichaStack: 'Stack',
+    fichaPrueba: 'Prueba',
+    apContexto: 'Contexto',
+    apProblema: 'Problema',
+    apRestricciones: 'Restricciones',
+    apDecisiones: 'Decisiones',
+    apResultado: 'Resultado',
+    apPrueba: 'Prueba',
+    descartado: 'Descartado',
+    pruebaEntrada: 'Todo lo anterior se puede ver aquí:',
+    diagramaAlt: 'Cómo funciona',
     destacada: 'Destacada',
     antes: 'Antes',
     ahora: 'Ahora',

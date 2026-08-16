@@ -4,7 +4,17 @@ import { cifras } from '../data/cifras';
 import { trabajos } from '../data/trabajo';
 import { ANIOS, puesto, sistemas } from '../data/trayectoria';
 import { piezas } from '../data/opensource';
-import { t, stack, CORREO, GITHUB, LINKEDIN, HAY_CV, FOTO, type Idioma } from '../i18n/ui';
+import {
+  t,
+  stack,
+  CORREO,
+  GITHUB,
+  LINKEDIN,
+  HAY_CV,
+  FOTO,
+  SEGMENTO,
+  type Idioma,
+} from '../i18n/ui';
 
 interface Props {
   idioma: Idioma;
@@ -19,6 +29,10 @@ const propios = trabajos.filter((w) => w.modelo === 'propio');
 const clientes = trabajos.filter((w) => w.modelo === 'cliente');
 
 const separador = 'padding-bottom:1.5rem;border-bottom:1px solid var(--borde)';
+
+/** URL del case study de una nota, en el idioma de la pagina. */
+const caso = (slug: string) =>
+  idioma === 'en' ? `/${SEGMENTO.en}/${slug}/` : `/es/${SEGMENTO.es}/${slug}/`;
 ---
 
 <!-- 01 · Perfil -->
@@ -82,6 +96,11 @@ const separador = 'padding-bottom:1.5rem;border-bottom:1px solid var(--borde)';
               {destacada.prueba.texto} ↗
             </a>
           )}
+          {destacada.estudio && (
+            <a class="vinculo" href={caso(destacada.estudio)}>
+              {s.leerCaso} →
+            </a>
+          )}
         </div>
 
         <div>
@@ -109,19 +128,24 @@ const separador = 'padding-bottom:1.5rem;border-bottom:1px solid var(--borde)';
 
   <div class="flex flex-col gap-6">
     {
-      resto.map((caso, i) => (
+      resto.map((nota, i) => (
         <article class="ficha" style={i < resto.length - 1 ? separador : undefined}>
           <div class="meta">
-            <span class="sello">{caso.sello[idioma]}</span>
-            {caso.prueba && (
-              <a class="vinculo" href={caso.prueba.url} target="_blank" rel="noopener noreferrer">
-                {caso.prueba.texto} ↗
+            <span class="sello">{nota.sello[idioma]}</span>
+            {nota.prueba && (
+              <a class="vinculo" href={nota.prueba.url} target="_blank" rel="noopener noreferrer">
+                {nota.prueba.texto} ↗
+              </a>
+            )}
+            {nota.estudio && (
+              <a class="vinculo" href={caso(nota.estudio)}>
+                {s.leerCaso} →
               </a>
             )}
           </div>
           <div>
-            <h3>{caso.titulo[idioma]}</h3>
-            {caso.cuerpo[idioma].map((parrafo) => (
+            <h3>{nota.titulo[idioma]}</h3>
+            {nota.cuerpo[idioma].map((parrafo) => (
               <p>{parrafo}</p>
             ))}
           </div>

@@ -3,17 +3,28 @@ import { t, type Idioma } from '../i18n/ui';
 
 interface Props {
   idioma: Idioma;
+  /** Portada del idioma actual. */
+  raiz: string;
+  /** La MISMA pagina en el otro idioma, no su portada. */
+  otra: string;
+  enPortada: boolean;
 }
-const { idioma } = Astro.props;
+const { idioma, raiz, otra, enPortada } = Astro.props;
 const s = t[idioma];
-const raiz = idioma === 'en' ? '/' : '/es/';
-const otra = idioma === 'en' ? '/es/' : '/';
+
+/**
+ * Fuera de la portada, un `#notas` a secas no apunta a nada: hay que volver a
+ * la portada del idioma y bajar alli. Es el fallo silencioso clasico al
+ * anadir la primera pagina interior a un sitio de una sola pagina.
+ */
+const ancla = (id: string) => (enPortada ? `#${id}` : `${raiz}#${id}`);
 
 const enlaces = [
-  { href: '#notas', texto: s.navNotas },
-  { href: '#trabajo', texto: s.navTrabajo },
-  { href: '#trayectoria', texto: s.navTrayectoria },
-  { href: '#codigo', texto: s.navCodigo },
+  { href: ancla('notas'), texto: s.navNotas },
+  { href: ancla('trabajo'), texto: s.navTrabajo },
+  { href: ancla('trayectoria'), texto: s.navTrayectoria },
+  { href: ancla('codigo'), texto: s.navCodigo },
+  { href: ancla('contacto'), texto: s.navContacto },
 ];
 ---
 

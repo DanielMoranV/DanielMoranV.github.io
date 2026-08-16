@@ -22,6 +22,7 @@ están tomadas para no volver a discutirlas.
 | Fuentes | 3 familias autoalojadas, 116 KB |
 | Peso de `dist/` | ~387 KB con todas las imágenes |
 | Secciones | 7 · perfil, notas, producción, trayectoria, código abierto, stack, contacto |
+| Páginas | 8 · portada y 3 case studies, en los dos idiomas |
 | Despliegue | GitHub Actions en cada push a `main` |
 
 ---
@@ -66,6 +67,23 @@ están tomadas para no volver a discutirlas.
   mono y un solo acento sin que se la comieran. Además salva en tema oscuro a los que llevan
   texto blanco o línea fina.
 
+### Case studies (`—`)
+
+- **Tres páginas interiores por idioma**, con la misma estructura fija en las seis:
+  contexto → problema → **restricciones** → decisiones *y la alternativa descartada* →
+  resultado → prueba. Un formato constante se lee en diagonal, y quien compara candidatos
+  lee en diagonal.
+- **La alternativa descartada tiene tratamiento visual propio.** Una decisión sin
+  alternativa descartada no es una decisión, es una preferencia.
+- **URLs traducidas**: `/case-studies/<slug>/` y `/es/casos/<slug>/`, con el mismo slug para
+  que los `hreflang` se emparejen entre traducciones y no contra la portada.
+- **Diagramas de mecanismo** dibujados con las cajas y los tokens de la página, no como
+  imagen: cambian de tema solos, se pueden seleccionar, los lee un lector de pantalla y no
+  pesan nada.
+- El layout se generalizó para admitir páginas interiores: título, descripción, `og:type` y
+  rutas por idioma. Y la barra ahora sabe dónde está — fuera de la portada, un `#notas` a
+  secas no apunta a nada.
+
 ### Trayectoria (`7865d9e`, `cfaede5`)
 
 - Sección propia con el puesto y **cuatro sistemas**: plataforma de datos y migración,
@@ -88,12 +106,9 @@ están tomadas para no volver a discutirlas.
 
 ### P1 — el salto de mid a senior
 
-- [ ] **Case studies con página propia**, no anclas. Tres bastan: motor FoxPro, ERP
-      multiempresa y la plataforma de restaurantes. Estructura fija: contexto → problema →
-      **restricciones** → decisiones tomadas *y descartadas* → resultado medible → prueba.
-      Requiere plantilla de página interior, que hoy no existe: el sitio es una sola página.
-- [ ] **Capturas** para esos case studies, en huecos de 16:10. Solo de producto propio; de
-      sistemas de cliente se cuenta la ingeniería, no se enseñan los datos.
+- [ ] **Capturas** para los case studies. Solo de producto propio; de sistemas de cliente se
+      cuenta la ingeniería, no se enseñan los datos. Hoy cada estudio lleva un diagrama de
+      mecanismo dibujado con los tokens, que era lo que se podía hacer sin material.
 - [ ] **«Cómo trabajo».** El método de entrega en cuatro o cinco pasos numerados. No
       Scrum/Kanban —eso lo escribe todo el mundo— sino el método real: auditar antes de
       publicar, respaldar antes de borrar, un cambio por vez con verificación después.
@@ -167,6 +182,7 @@ Ficheros que no cambian no justifican una dependencia de build.
 | Ruta | Qué contiene |
 |---|---|
 | `src/data/casos.ts` | Notas de ingeniería: el trabajo por su parte difícil |
+| `src/data/estudios.ts` | Los case studies, con sus decisiones y descartes |
 | `src/data/trabajo.ts` | Lo que está en producción, con su stack y su enlace vivo |
 | `src/data/trayectoria.ts` | El puesto y los sistemas del sector salud |
 | `src/data/cifras.ts` | Las cuatro cifras de la banda |

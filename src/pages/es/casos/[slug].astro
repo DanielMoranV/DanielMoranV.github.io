@@ -1,0 +1,23 @@
+---
+import Base from '../../../layouts/Base.astro';
+import EstudioVista from '../../../components/Estudio.astro';
+import { estudios } from '../../../data/estudios';
+import { SEGMENTO } from '../../../i18n/ui';
+
+/** Gemelo en castellano de src/pages/case-studies/[slug].astro. Mismo slug. */
+export function getStaticPaths() {
+  return estudios.map((estudio) => ({ params: { slug: estudio.slug }, props: { estudio } }));
+}
+
+const { estudio } = Astro.props;
+---
+
+<Base
+  idioma="es"
+  tipo="article"
+  titulo={`${estudio.titulo.es} — Daniel Morán Vílchez`}
+  descripcion={estudio.resumen.es}
+  ruta={{ en: `${SEGMENTO.en}/${estudio.slug}`, es: `${SEGMENTO.es}/${estudio.slug}` }}
+>
+  <EstudioVista estudio={estudio} idioma="es" raiz="/es/" />
+</Base>
