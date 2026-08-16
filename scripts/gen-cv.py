@@ -206,10 +206,15 @@ T = {
         "os_t": "Código abierto",
         "stack_t": "Stack",
         "edu_t": "Formación",
+        # El titulo que SE TIENE es el de tecnico. La ingenieria esta en curso y
+        # se dice asi: un CV que da por obtenido un grado que no lo esta se cae
+        # en la primera verificacion, y no hace falta — tecnico titulado mas
+        # bootcamp mas tres anos de produccion ya sostiene el perfil.
         "edu": [
-            ("Universidad César Vallejo", "Ingeniería de Sistemas", "2026"),
-            ("Silabuz", "Desarrollo backend", "2022 – 2023"),
-            ("I.E.S.T.P. Juan José Farfán Céspedes", "Técnico en Computación e Informática", "2013 – 2015"),
+            ("Universidad César Vallejo", "Ingeniería de Sistemas", "en curso"),
+            ("Silabuz", "Bootcamp de desarrollo backend", "2022 – 2023"),
+            ("I.E.S.T.P. Juan José Farfán Céspedes",
+             "Técnico titulado en Computación e Informática", "2013 – 2015"),
         ],
         "cert_t": "Certificaciones e idiomas",
         "cert": "Laravel · Vue.js · Node.js — verificadas por Talently",
@@ -247,9 +252,10 @@ T = {
         "stack_t": "Stack",
         "edu_t": "Education",
         "edu": [
-            ("Universidad César Vallejo", "BSc Systems Engineering", "2026"),
-            ("Silabuz", "Backend development", "2022 – 2023"),
-            ("I.E.S.T.P. Juan José Farfán Céspedes", "Technician in Computing and IT", "2013 – 2015"),
+            ("Universidad César Vallejo", "BSc Systems Engineering", "in progress"),
+            ("Silabuz", "Backend development bootcamp", "2022 – 2023"),
+            ("I.E.S.T.P. Juan José Farfán Céspedes",
+             "Higher Technician in Computing and IT — qualified", "2013 – 2015"),
         ],
         "cert_t": "Certifications and languages",
         "cert": "Laravel · Vue.js · Node.js — verified by Talently",
@@ -381,7 +387,7 @@ li {{ margin-bottom:.8mm; }}
          color:#545b62; width:26mm; }}
 .ed-c {{ font-weight:600; width:58mm; }}
 .ed-a {{ font-family:'Martian Mono',monospace; font-size:6.4pt; color:#545b62;
-         width:22mm; text-align:right; }}
+         width:26mm; text-align:right; }}
 .pie {{ font-family:'Martian Mono',monospace; font-size:6pt; color:#545b62; }}
 </style></head>
 <body>
