@@ -42,6 +42,7 @@ export const t = {
     navNotas: 'Notes',
     navTrayectoria: 'Track record',
     navCodigo: 'Code',
+    navMetodo: 'Method',
     navContacto: 'Contact',
 
     temaLeyenda: 'Colour theme',
@@ -101,6 +102,14 @@ export const t = {
       'The products stay private because they are sold. These are the pieces that carry the ' +
       'engineering and none of the business rules, published in full.',
 
+    metodoTitulo: 'How I work',
+    metodoEtiqueta: 'Five steps',
+    metodoEntrada:
+      'Not Scrum or Kanban — everyone writes that. This is what the work actually looks like ' +
+      'when the systems you touch cannot be switched off.',
+    metodoCierre: 'And the decisions get written down, the ones that turned out wrong included:',
+    metodoEnlace: 'this site keeps its own record',
+
     stackTitulo: 'Stack',
     stackEtiqueta: 'What I ship with',
 
@@ -133,6 +142,7 @@ export const t = {
     navNotas: 'Notas',
     navTrayectoria: 'Trayectoria',
     navCodigo: 'Código',
+    navMetodo: 'Método',
     navContacto: 'Contacto',
 
     temaLeyenda: 'Tema de color',
@@ -191,6 +201,14 @@ export const t = {
     codigoEntrada:
       'Los productos son privados porque se venden. Estas son las piezas que llevan la ' +
       'ingeniería y ninguna regla de negocio, publicadas enteras.',
+
+    metodoTitulo: 'Cómo trabajo',
+    metodoEtiqueta: 'Cinco pasos',
+    metodoEntrada:
+      'No Scrum ni Kanban — eso lo escribe todo el mundo. Esto es a lo que se parece el ' +
+      'trabajo de verdad cuando los sistemas que tocas no se pueden apagar.',
+    metodoCierre: 'Y las decisiones se escriben, incluidas las que salieron mal:',
+    metodoEnlace: 'este sitio lleva su propio registro',
 
     stackTitulo: 'Stack',
     stackEtiqueta: 'Con lo que trabajo',

@@ -4,6 +4,7 @@ import { cifras } from '../data/cifras';
 import { trabajos } from '../data/trabajo';
 import { ANIOS, puesto, sistemas } from '../data/trayectoria';
 import { piezas } from '../data/opensource';
+import { pasos, REGISTRO_URL } from '../data/metodo';
 import {
   t,
   stack,
@@ -302,10 +303,51 @@ const caso = (slug: string) =>
   </div>
 </section>
 
-<!-- 06 · Stack -->
-<section class="pagina seccion">
+<!-- 06 · Como trabajo -->
+<section id="metodo" class="pagina seccion scroll-mt-20">
   <div class="titular">
     <span class="sello sello-acento">06</span>
+    <h2>{s.metodoTitulo}</h2>
+    <span class="regla"></span>
+    <span class="sello etiqueta">{s.metodoEtiqueta}</span>
+  </div>
+
+  <p style="margin:0 0 1.75rem;max-width:var(--container-prosa);line-height:1.68;color:var(--texto-suave)">
+    {s.metodoEntrada}
+  </p>
+
+  <!--
+    Se reutiliza la rejilla de decisiones de los case studies en vez de
+    inventar un componente: numero en mono a la izquierda, paso a la derecha.
+    En dos columnas desde 1024px, porque cinco pasos en fila dejarian
+    parrafos de veinticinco caracteres por linea.
+  -->
+  <div class="decisiones metodo">
+    {
+      pasos.map((paso, i) => (
+        <div class="decision">
+          <p class="sello num">{String(i + 1).padStart(2, '0')}</p>
+          <div>
+            <h3>{paso.titulo[idioma]}</h3>
+            <p>{paso.cuerpo[idioma]}</p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <p class="sello" style="margin:1.5rem 0 0">
+    {s.metodoCierre}{' '}
+    <a class="vinculo" href={REGISTRO_URL} target="_blank" rel="noopener noreferrer">
+      {s.metodoEnlace} ↗
+    </a>
+  </p>
+</section>
+
+<!-- 07 · Stack -->
+<section class="pagina seccion">
+  <div class="titular">
+    <span class="sello sello-acento">07</span>
     <h2>{s.stackTitulo}</h2>
     <span class="regla"></span>
     <span class="sello etiqueta">{s.stackEtiqueta}</span>
@@ -325,10 +367,10 @@ const caso = (slug: string) =>
   </dl>
 </section>
 
-<!-- 07 · Contacto -->
+<!-- 08 · Contacto -->
 <section id="contacto" class="pagina seccion scroll-mt-20" style="padding-bottom:3rem">
   <div class="titular">
-    <span class="sello sello-acento">07</span>
+    <span class="sello sello-acento">08</span>
     <h2>{s.contactoTitulo}</h2>
     <span class="regla"></span>
     <span class="sello etiqueta">{s.contactoEtiqueta}</span>

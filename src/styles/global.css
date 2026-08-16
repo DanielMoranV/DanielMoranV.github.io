@@ -643,6 +643,24 @@ a {
   padding-bottom: 0;
 }
 
+/*
+  Los cinco pasos del metodo, en dos columnas desde 1024px. El boceto los
+  pedia en fila; cinco columnas dejarian parrafos de veinticinco caracteres
+  por linea, que es ilegible. Se conserva la idea —pasos numerados en mono,
+  sin componente nuevo— y se corrige el ancho.
+*/
+@media (min-width: 1024px) {
+  .decisiones.metodo {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 2.5rem;
+  }
+  .decisiones.metodo .decision:nth-last-child(-n + 2) {
+    border-bottom: 0;
+    padding-bottom: 0;
+  }
+}
+
 .decision h3 {
   margin: 0 0 0.5rem;
   font-size: 1.125rem;

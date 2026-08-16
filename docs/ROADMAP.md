@@ -21,7 +21,7 @@ están tomadas para no volver a discutirlas.
 | Peticiones a terceros | **Cero** |
 | Fuentes | 3 familias autoalojadas, 116 KB |
 | Peso de `dist/` | ~387 KB con todas las imágenes |
-| Secciones | 7 · perfil, notas, producción, trayectoria, código abierto, stack, contacto |
+| Secciones | 8 · perfil, notas, producción, trayectoria, código abierto, método, stack, contacto |
 | Páginas | 8 · portada y 3 case studies, en los dos idiomas |
 | Despliegue | GitHub Actions en cada push a `main` |
 
@@ -84,6 +84,20 @@ están tomadas para no volver a discutirlas.
   rutas por idioma. Y la barra ahora sabe dónde está — fuera de la portada, un `#notas` a
   secas no apunta a nada.
 
+### Cómo trabajo
+
+- **Cinco pasos**, ninguno de ellos Scrum ni Kanban. El hilo común es la restricción que
+  define este trabajo: los sistemas que se tocan **no se pueden apagar**.
+- Cada paso describe algo comprobable en este sitio o en los repositorios públicos, no una
+  aspiración: abrir los binarios y no solo listarlos, escribir las restricciones antes que
+  las funcionalidades, un cambio por vez verificado después, respaldar y **verificar el
+  respaldo** antes de lo irreversible, y extraer la mitad reutilizable.
+- El cierre enlaza a este mismo roadmap. Es la prueba del método en vez de su enunciado: las
+  decisiones están escritas, y las correcciones también.
+- Se reutiliza la rejilla de decisiones de los case studies en lugar de inventar un
+  componente. El boceto pedía los cinco pasos en fila; a cinco columnas los párrafos caían a
+  veinticinco caracteres por línea, así que van en dos columnas desde 1024 px.
+
 ### Trayectoria (`7865d9e`, `cfaede5`)
 
 - Sección propia con el puesto y **cuatro sistemas**: plataforma de datos y migración,
@@ -109,9 +123,6 @@ están tomadas para no volver a discutirlas.
 - [ ] **Capturas** para los case studies. Solo de producto propio; de sistemas de cliente se
       cuenta la ingeniería, no se enseñan los datos. Hoy cada estudio lleva un diagrama de
       mecanismo dibujado con los tokens, que era lo que se podía hacer sin material.
-- [ ] **«Cómo trabajo».** El método de entrega en cuatro o cinco pasos numerados. No
-      Scrum/Kanban —eso lo escribe todo el mundo— sino el método real: auditar antes de
-      publicar, respaldar antes de borrar, un cambio por vez con verificación después.
 
 ### P2 — mantenimiento
 
@@ -183,6 +194,7 @@ Ficheros que no cambian no justifican una dependencia de build.
 |---|---|
 | `src/data/casos.ts` | Notas de ingeniería: el trabajo por su parte difícil |
 | `src/data/estudios.ts` | Los case studies, con sus decisiones y descartes |
+| `src/data/metodo.ts` | Los cinco pasos de «cómo trabajo» |
 | `src/data/trabajo.ts` | Lo que está en producción, con su stack y su enlace vivo |
 | `src/data/trayectoria.ts` | El puesto y los sistemas del sector salud |
 | `src/data/cifras.ts` | Las cuatro cifras de la banda |
