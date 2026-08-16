@@ -22,14 +22,19 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      # Mayores fijadas a proposito. Las anteriores (checkout@v4, setup-node@v4,
+      # upload-pages-artifact@v3) apuntaban a Node 20, ya deprecado, y GitHub
+      # las estaba forzando a Node 24 con un aviso en cada ejecucion. Al
+      # comprobar los cambios de estas versiones no hay ninguno de ruptura para
+      # este workflow: son subidas del runtime y de dependencias.
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
         with:
           node-version: 22
           cache: npm
       - run: npm ci
       - run: npm run build
-      - uses: actions/upload-pages-artifact@v3
+      - uses: actions/upload-pages-artifact@v5
         with:
           path: ./dist
 
@@ -41,4 +46,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5

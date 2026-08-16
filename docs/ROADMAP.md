@@ -20,7 +20,8 @@ están tomadas para no volver a discutirlas.
 | JavaScript en el cliente | Solo el conmutador de tema (~25 líneas) |
 | Peticiones a terceros | **Cero** |
 | Fuentes | 3 familias autoalojadas, 116 KB |
-| Peso de `dist/` | ~387 KB con todas las imágenes |
+| Peso de una visita | 169 KB en 15 peticiones |
+| Lighthouse | 100 / 100 / 100 / 100, medido |
 | Secciones | 8 · perfil, notas, producción, trayectoria, código abierto, método, stack, contacto |
 | Páginas | 8 · portada y 3 case studies, en los dos idiomas |
 | Despliegue | GitHub Actions en cada push a `main` |
@@ -84,6 +85,24 @@ están tomadas para no volver a discutirlas.
   rutas por idioma. Y la barra ahora sabe dónde está — fuera de la portada, un `#notas` a
   secas no apunta a nada.
 
+### Mantenimiento y auditoría
+
+- **Actions al día.** `checkout@v7`, `setup-node@v7`, `upload-pages-artifact@v5` y
+  `deploy-pages@v5`. Las anteriores apuntaban a Node 20, ya deprecado, y GitHub las forzaba
+  a Node 24 con un aviso en cada ejecución. Se revisaron los cambios de cada versión antes
+  de subirlas: ninguno de ruptura para este workflow.
+- **Lighthouse: 100 en las cuatro categorías**, en la portada y en un case study. Medido, no
+  supuesto. FCP 0,3 s · LCP 0,4 s · TBT 0 ms · CLS 0.
+- **Dos mejoras que salieron de la medición:** los logotipos estaban a 3,4× de su tamaño de
+  pantalla y bajaron a ~2,3× (49 KB → 32 KB), y la hoja de estilos se incrusta, con lo que
+  desaparece la única petición que bloqueaba el pintado.
+
+> **Lo que Lighthouse sigue marcando y no se va a corregir:** audita con
+> `deviceScaleFactor: 1`, así que da por «demasiado grande» cualquier imagen preparada para
+> pantallas de doble densidad. Bajar de 2× ahorraría 20 KB y dejaría el retrato y los
+> logotipos borrosos en la mayoría de pantallas actuales. Una métrica al 100 no es motivo
+> para empeorar lo que se ve.
+
 ### Cómo trabajo
 
 - **Cinco pasos**, ninguno de ellos Scrum ni Kanban. El hilo común es la restricción que
@@ -126,15 +145,9 @@ están tomadas para no volver a discutirlas.
 
 ### P2 — mantenimiento
 
-- [ ] **Subir las actions a `@v5`.** `actions/checkout`, `setup-node` y `upload-artifact`
-      apuntan a Node 20, ya deprecado; GitHub las está forzando a Node 24. Pasa igual, pero
-      conviene antes de que deje de forzarlo.
 - [ ] **Enriquecer el chatbot** cuando avance. Hoy está descrito de forma deliberadamente
       conservadora porque es reciente: dice qué es y con qué está hecho, sin prometer
       alcance.
-- [ ] **Auditoría de rendimiento y accesibilidad** con Lighthouse, ahora que hay fuentes e
-      imágenes. La base es buena —cero terceros, casi nada de JavaScript— pero conviene
-      medirlo en vez de suponerlo.
 
 ---
 

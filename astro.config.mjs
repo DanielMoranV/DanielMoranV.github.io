@@ -29,6 +29,13 @@ export default defineConfig({
     }),
   ],
 
+  // La hoja pesa ~5 KB, justo por encima del umbral con el que Astro decide
+  // solo. Servida aparte era la unica peticion que bloqueaba el pintado;
+  // incrustada desaparece ese viaje de ida y vuelta. Se paga con no poder
+  // cachearla entre paginas, que en un perfil —donde la mayoria de visitas
+  // son de una sola pagina— sale a cuenta.
+  build: { inlineStylesheets: 'always' },
+
   vite: {
     plugins: [tailwindcss()],
   },
