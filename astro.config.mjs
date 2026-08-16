@@ -26,6 +26,10 @@ export default defineConfig({
   integrations: [
     sitemap({
       i18n: { defaultLocale: 'en', locales: { en: 'en', es: 'es-PE' } },
+      // `lastmod` con la fecha del build. Es lo unico honesto que hay: el
+      // sitio no guarda fecha de publicacion por pagina, y una fecha
+      // inventada por URL es peor que ninguna.
+      serialize: (item) => ({ ...item, lastmod: new Date().toISOString() }),
     }),
   ],
 

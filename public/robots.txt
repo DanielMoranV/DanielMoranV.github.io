@@ -1,4 +1,31 @@
+# Este sitio existe para que lo encuentren. Todo abierto, a todo el mundo.
+
 User-agent: *
 Allow: /
 
+# Rastreadores de buscadores con IA, declarados uno a uno.
+#
+# El `*` de arriba ya los permite: esto no cambia el comportamiento de hoy,
+# deja la INTENCION por escrito. Muchos sitios los bloquean por defecto o los
+# heredan bloqueados de una plantilla, y aqui el objetivo es el contrario —
+# que un modelo pueda leer los case studies y citarlos.
+User-agent: GPTBot
+User-agent: OAI-SearchBot
+User-agent: ChatGPT-User
+User-agent: ClaudeBot
+User-agent: Claude-User
+User-agent: Claude-SearchBot
+User-agent: PerplexityBot
+User-agent: Perplexity-User
+User-agent: Google-Extended
+User-agent: Applebot-Extended
+User-agent: Bingbot
+User-agent: CCBot
+User-agent: meta-externalagent
+Allow: /
+
 Sitemap: https://danielmoranv.github.io/sitemap-index.xml
+
+# Resumen del sitio para lectores automaticos: quien es, que hay y donde.
+# Convencion propuesta (llmstxt.org), todavia no un estandar.
+# https://danielmoranv.github.io/llms.txt

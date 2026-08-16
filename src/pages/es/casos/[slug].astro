@@ -18,6 +18,7 @@ const { estudio } = Astro.props;
   titulo={`${estudio.titulo.es} — Daniel Morán Vílchez`}
   descripcion={estudio.resumen.es}
   ruta={{ en: `${SEGMENTO.en}/${estudio.slug}`, es: `${SEGMENTO.es}/${estudio.slug}` }}
+  articulo={{ seccion: estudio.sello.es, palabras: estudio.stack }}
 >
   <EstudioVista estudio={estudio} idioma="es" raiz="/es/" />
 </Base>

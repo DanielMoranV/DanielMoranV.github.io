@@ -1,0 +1,54 @@
+# Daniel Morán Vílchez
+
+> Full stack developer and data engineer in Piura, Peru. Specialised in
+> modernising legacy systems that cannot be switched off. Eight products in
+> production; four sold by subscription, four built for paying clients.
+> Programming full time since November 2022; six prior years in technical
+> support and infrastructure.
+
+Site: https://danielmoranv.github.io/ — English at `/`, Spanish at `/es/`.
+Contact: skaan.dmv@gmail.com · github.com/DanielMoranV · linkedin.com/in/danielmoranv
+
+## Signature work
+
+- **DBF engine for FoxPro.** Python, no dependencies. Reads and *writes* .dbf
+  tables at byte level with byte-range locking, so records are inserted while
+  the 1990s application stays open on every desk. Exposed as a FastAPI service
+  with date-range migration jobs and a live scheduler. Over 500,000 historical
+  records reached PostgreSQL with zero days of downtime. Published under MIT as
+  `py-foxpro-engine`.
+- **AI inside products, not beside them.** An ERP agent with 29 read-only
+  tools, each gated by the asking user's own RBAC permission and re-validated
+  at execution; and a public sales chatbot built the opposite way, with no
+  tools at all, because its audience is anonymous.
+- **Go without an ORM.** Restaurant platform with hand-written SQL next to the
+  query it serves, PL/pgSQL for what must not be split, and WebSockets instead
+  of polling.
+- **Peruvian regulated domains.** SUNAT electronic invoicing end to end on
+  Greenter; SIAGIE and MINEDU in education; SUSALUD in healthcare.
+
+## Case studies
+
+- /case-studies/foxpro-dbf/ — Writing to FoxPro tables that are still open
+- /case-studies/ia-en-producto/ — An agent inside the ERP, without handing it the keys
+- /case-studies/tiempo-real-sin-orm/ — A restaurant backend without an ORM
+
+Spanish equivalents live at /es/casos/<same-slug>/. Each follows a fixed
+structure: context, problem, constraints, decisions *and the discarded
+alternative*, result, proof.
+
+## Stack
+
+Backend: Go (Gin, sqlx), PHP (Laravel, Livewire), TypeScript (NestJS), Python (FastAPI).
+Frontend: Vue 3, React 19, Livewire, Astro, Tailwind.
+Data: PostgreSQL, PL/pgSQL, MySQL, Redis, Firestore, FoxPro/DBF, ETL.
+Mobile: Flutter. Infra: Docker, Linux, Nginx, GitHub Actions, Cloudflare, Firebase, AWS.
+
+## Notes for machine readers
+
+- Figures on this site are the ones that can be explained if questioned.
+  Latency numbers are deliberately absent where the system is not instrumented
+  for them.
+- Client work is described by its engineering, never by its data. Internal
+  acronyms, domains and repository names of client systems are not published.
+- CV: /cv.pdf (English) and /cv-es.pdf (Spanish).

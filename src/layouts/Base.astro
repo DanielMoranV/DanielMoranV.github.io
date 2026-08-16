@@ -17,6 +17,13 @@ interface Props {
   ruta?: { en: string; es: string };
   /** `article` en los case studies; `profile` en la portada. */
   tipo?: 'profile' | 'article';
+  /**
+   * Solo en las paginas de caso. Sin esto, una pagina interior declaraba
+   * ser una `Person` con SU propia URL: ocho direcciones distintas
+   * diciendo ser la misma persona, que es justo lo contrario de reforzar
+   * la entidad. Con esto declara ser lo que es, un articulo tecnico.
+   */
+  articulo?: { seccion: string; palabras: readonly string[] };
 }
 
 const {
@@ -25,6 +32,7 @@ const {
   tipo = 'profile',
   titulo,
   descripcion,
+  articulo,
 } = Astro.props;
 const s = t[idioma];
 
@@ -58,17 +66,29 @@ const otraUrl = url(idioma === 'en' ? 'es' : 'en').pathname;
 const tarjeta = new URL(idioma === 'en' ? '/og.png' : '/og-es.png', Astro.site);
 
 /**
- * Datos estructurados. Su unico trabajo es que buscar el nombre devuelva este
- * sitio y no un homonimo. Todo lo de aqui esta tambien visible en la pagina:
- * marcar lo que no se muestra es justo lo que Google penaliza.
+ * Datos estructurados, como un @graph con identificadores estables.
+ *
+ * La PERSONA tiene un @id fijo y su `url` es siempre la portada, no la de la
+ * pagina que se este pintando. Los articulos la referencian por ese @id en
+ * vez de repetirla, que es lo que convierte varias paginas sueltas en una
+ * sola entidad a ojos de un buscador.
+ *
+ * Todo lo declarado esta tambien visible en la pagina: marcar lo que no se
+ * muestra es justo lo que Google penaliza.
  */
+const SITIO = new URL('/', Astro.site).href;
+const ID_PERSONA = `${SITIO}#daniel`;
+
 const persona = {
-  '@context': 'https://schema.org',
   '@type': 'Person',
+  '@id': ID_PERSONA,
   name: 'Daniel Morán Vílchez',
-  url: canonica.href,
-  image: tarjeta.href,
-  jobTitle: idioma === 'en' ? 'Full Stack Developer & Data Engineer' : 'Desarrollador full stack e ingeniero de datos',
+  url: SITIO,
+  image: new URL('/og.png', Astro.site).href,
+  jobTitle:
+    idioma === 'en'
+      ? 'Full Stack Developer & Data Engineer'
+      : 'Desarrollador full stack e ingeniero de datos',
   description: s.descripcion,
   email: 'mailto:skaan.dmv@gmail.com',
   address: { '@type': 'PostalAddress', addressLocality: 'Piura', addressCountry: 'PE' },
@@ -80,6 +100,54 @@ const persona = {
     'SUNAT electronic invoicing', 'Docker', 'Flutter',
   ],
 };
+
+const sitioWeb = {
+  '@type': 'WebSite',
+  '@id': `${SITIO}#sitio`,
+  url: SITIO,
+  name: 'Daniel Morán Vílchez',
+  inLanguage: idioma === 'en' ? 'en' : 'es-PE',
+  publisher: { '@id': ID_PERSONA },
+};
+
+/** Fecha del build. Es lo unico honesto: no hay fecha de publicacion real. */
+const revisado = new Date().toISOString().slice(0, 10);
+
+const grafo = articulo
+  ? [
+      {
+        '@type': 'TechArticle',
+        '@id': `${canonica.href}#articulo`,
+        headline: tituloPagina,
+        description: descripcionPagina,
+        url: canonica.href,
+        inLanguage: idioma === 'en' ? 'en' : 'es-PE',
+        dateModified: revisado,
+        articleSection: articulo.seccion,
+        keywords: articulo.palabras.join(', '),
+        image: tarjeta.href,
+        author: { '@id': ID_PERSONA },
+        publisher: { '@id': ID_PERSONA },
+        isPartOf: { '@id': `${SITIO}#sitio` },
+      },
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: [
+          {
+            '@type': 'ListItem',
+            position: 1,
+            name: s.marca,
+            item: new URL(raizIdioma, Astro.site).href,
+          },
+          { '@type': 'ListItem', position: 2, name: tituloPagina },
+        ],
+      },
+      persona,
+      sitioWeb,
+    ]
+  : [persona, sitioWeb];
+
+const datos = { '@context': 'https://schema.org', '@graph': grafo };
 ---
 
 <!doctype html>
@@ -148,7 +216,7 @@ const persona = {
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0d0f10" media="(prefers-color-scheme: dark)" />
 
-    <script type="application/ld+json" set:html={JSON.stringify(persona)} is:inline />
+    <script type="application/ld+json" set:html={JSON.stringify(datos)} is:inline />
   </head>
 
   <body>

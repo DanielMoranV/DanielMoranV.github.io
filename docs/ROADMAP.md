@@ -116,6 +116,26 @@ están tomadas para no volver a discutirlas.
   destinada a enviarse en una candidatura, el script lo dice en su cabecera — y esa copia se
   guarda fuera del repositorio.
 
+### SEO y lectores automáticos
+
+- **Corregido un fallo de datos estructurados.** El JSON-LD `Person` se emitía en las ocho
+  páginas con la URL de cada una: ocho direcciones distintas declarando ser la misma
+  persona. Ahora hay un `@graph` con identificadores estables — la persona tiene un `@id`
+  fijo y su `url` es siempre la portada; los artículos la referencian en vez de repetirla.
+- **Las páginas de caso declaran ser lo que son:** `TechArticle` con sección, palabras clave,
+  autor y `isPartOf`, más un `BreadcrumbList`. Antes decían ser una persona.
+- `WebSite` en todas, y `lastmod` en el sitemap con la fecha del build — que es lo único
+  honesto, porque el sitio no guarda fecha de publicación por página.
+- **`llms.txt`** con el resumen del sitio para lectores automáticos, y `robots.txt` que
+  declara uno a uno los rastreadores de buscadores con IA. El `*` ya los permitía: esto no
+  cambia el comportamiento, deja la intención por escrito para que nadie los bloquee por
+  inercia.
+
+> **Expectativa realista:** `llms.txt` es una convención propuesta, no un estándar, y su
+> adopción es baja. Lo que de verdad pesa para que un modelo cite este sitio es lo que ya
+> estaba bien — HTML semántico, hechos verificables y la estructura fija de los case
+> studies, que es excelente para extracción.
+
 ### Cómo trabajo
 
 - **Cinco pasos**, ninguno de ellos Scrum ni Kanban. El hilo común es la restricción que
