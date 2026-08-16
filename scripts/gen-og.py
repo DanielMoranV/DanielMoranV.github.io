@@ -145,6 +145,41 @@ for slug, sello, titulo, lema, stack, url in PRODUCTOS:
     tarjeta(SALIDA / "og" / f"{slug}.png", sello, titulo, lema, stack, url,
             serif_titulo=SERIF_M, tam=80)
 
+def banner(destino, sello, titular, stack, url):
+    """
+    Portada de LinkedIn, 1584x396.
+
+    ZONA SEGURA. LinkedIn superpone la foto de perfil abajo a la izquierda y
+    recorta los lados en pantallas estrechas, asi que todo el texto vive a
+    partir de x=470 y por encima de y=330. Y NO repite el nombre: LinkedIn ya
+    lo pinta justo debajo. Una portada que repite el nombre desaprovecha el
+    unico sitio del perfil donde cabe un argumento.
+    """
+    img = Image.new("RGB", (1584, 396), FONDO)
+    d = ImageDraw.Draw(img)
+
+    d.rectangle([0, 0, 1584, 5], fill=ACENTO_SOLIDO)
+    # Filete vertical que separa la zona de la foto del mensaje.
+    d.line([430, 70, 430, 326], fill=BORDE, width=1)
+
+    d.text((470, 96), sello.upper(), font=f(MONO, 15), fill=ACENTO)
+    d.text((470, 140), titular, font=f(SERIF, 50), fill=TEXTO)
+    d.text((470, 246), stack, font=f(MONO, 16), fill=SUAVE)
+    d.text((470, 288), url, font=f(MONO, 16), fill=ACENTO)
+
+    img.save(destino, "PNG", optimize=True)
+    print(f"  {destino.relative_to(SALIDA)!s:26s} {destino.stat().st_size // 1024:3d} KB")
+
+
+print("Portada de LinkedIn:")
+banner(
+    SALIDA / "linkedin-portada.png",
+    "Piura, Perú · UTC−5 · remoto",
+    "Modernizo sistemas que no se pueden apagar.",
+    "Go · Laravel · Python/FastAPI · 8 productos en producción",
+    "danielmoranv.github.io",
+)
+
 # Icono tactil de iOS: PNG opaco de 180x180. iOS rellena la transparencia de
 # negro, asi que el fondo va solido.
 print("Iconos:")
