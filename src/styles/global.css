@@ -392,7 +392,7 @@ a {
     gap: 2.5rem;
   }
   .hero.con-foto {
-    grid-template-columns: 1fr 12.5rem;
+    grid-template-columns: 1fr 11.25rem;
     align-items: start;
   }
 }
@@ -468,6 +468,46 @@ a {
   .cifras .que {
     margin-top: 0.5rem;
   }
+}
+
+/* ------------------------------------------------------------- imagenes */
+
+/*
+  Retrato. Cuadrado, no 3:4 como el boceto: el original es 400x400 y recortarlo
+  a vertical costaba una cuarta parte del encuadre. A 180 px, el original entra
+  justo al doble de densidad.
+*/
+.retrato {
+  width: 100%;
+  max-width: 11.25rem;
+  aspect-ratio: 1;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  border: 1px solid var(--borde);
+}
+
+/*
+  Placa del logotipo. Los logos son marcas a todo color —escudos, degradados,
+  ilustraciones— hechas para fondo claro, y esta pagina es serif, mono y un
+  solo acento. Van pequenos y dentro de una placa de fondo claro FIJO, igual
+  en los dos temas: asi se leen como una celda de datos y no como decoracion,
+  y no se pierden en oscuro los que llevan texto blanco o linea fina.
+*/
+.logotipo {
+  width: 1.75rem;
+  height: 1.75rem;
+  flex: none;
+  padding: 3px;
+  object-fit: contain;
+  background: var(--color-lienzo-hondo);
+  border: 1px solid var(--borde);
+}
+
+.con-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
 }
 
 /* -------------------------------------------------- conmutador de tema */

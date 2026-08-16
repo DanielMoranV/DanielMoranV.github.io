@@ -11,15 +11,14 @@ export const GITHUB = 'https://github.com/DanielMoranV';
 export const LINKEDIN = 'https://linkedin.com/in/danielmoranv';
 
 /**
- * El hueco de la foto y el del CV existen en el diseno, pero no se pintan
- * hasta que haya fichero: un retrato de relleno o un CV.pdf que devuelve 404
- * dicen «sitio a medias» mas alto de lo que dicen cualquier otra cosa, y el
- * enlace muerto es justo el fallo que este sitio vino a corregir.
- *
- * Para encenderlos: deja public/foto.jpg (3:4) o public/cv.pdf y pon true.
+ * El CV no se pinta hasta que exista el fichero: un enlace que devuelve 404 es
+ * justo el fallo que este sitio vino a corregir. Para encenderlo, deja
+ * public/cv.pdf y pon true.
  */
-export const HAY_FOTO = false;
 export const HAY_CV = false;
+
+/** Retrato real, cuadrado. Se convirtio de profile.jfif a webp: 11 KB. */
+export const FOTO = '/foto.webp';
 
 export const t = {
   en: {

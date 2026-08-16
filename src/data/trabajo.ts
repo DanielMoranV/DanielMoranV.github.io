@@ -15,11 +15,19 @@ export interface Trabajo {
   modelo: 'propio' | 'cliente';
   stack: string[];
   que: { en: string; es: string };
+  /**
+   * Marca del producto o del cliente, en public/projects/. Se pinta pequena y
+   * dentro de una placa clara: son logos a todo color —escudos, degradados,
+   * ilustraciones— y esta pagina es serif, mono y un solo acento. Contenerlos
+   * en una celda propia es lo que evita que se coman la direccion visual.
+   */
+  logo: string;
 }
 
 export const trabajos: Trabajo[] = [
   {
     nombre: 'AlmaZen',
+    logo: '/projects/almazen.webp',
     url: 'https://almazenapp.djasoft.net.pe/',
     modelo: 'propio',
     stack: ['Laravel', 'Livewire', 'PostgreSQL', 'Gemini'],
@@ -30,6 +38,7 @@ export const trabajos: Trabajo[] = [
   },
   {
     nombre: 'Mozaico',
+    logo: '/projects/mozaicopro.webp',
     url: 'https://mozaicopro.djasoft.net.pe/',
     modelo: 'propio',
     stack: ['Go', 'Gin', 'sqlx', 'React 19', 'PostgreSQL'],
@@ -40,6 +49,7 @@ export const trabajos: Trabajo[] = [
   },
   {
     nombre: 'EasyPay',
+    logo: '/projects/easypay.webp',
     url: 'https://easypay.djasoft.net.pe/',
     modelo: 'propio',
     stack: ['TypeScript', 'NestJS'],
@@ -50,6 +60,7 @@ export const trabajos: Trabajo[] = [
   },
   {
     nombre: 'Agenda EH',
+    logo: '/projects/agenda-eh.svg',
     url: 'https://agenda-eh.web.app/',
     modelo: 'propio',
     stack: ['Vue 3', 'Firestore', 'OAuth 2.0'],
@@ -60,6 +71,7 @@ export const trabajos: Trabajo[] = [
   },
   {
     nombre: 'Master Color',
+    logo: '/projects/master-color.webp',
     url: 'https://www.mastercolor.net.pe/',
     modelo: 'cliente',
     stack: ['Laravel', 'Vue 3', 'Flutter', 'AWS S3'],
@@ -70,6 +82,7 @@ export const trabajos: Trabajo[] = [
   },
   {
     nombre: 'Otto Tonsmann',
+    logo: '/projects/otto-tonsmann.webp',
     url: 'https://otto-tonsmann.web.app/',
     modelo: 'cliente',
     stack: ['Vue 3', 'Firebase'],
@@ -80,6 +93,7 @@ export const trabajos: Trabajo[] = [
   },
   {
     nombre: 'CONERI',
+    logo: '/projects/coneri.webp',
     url: 'https://coneri.pe/',
     modelo: 'cliente',
     stack: ['Firebase', 'Cloud Functions', 'Cloudflare Pages'],
@@ -90,6 +104,7 @@ export const trabajos: Trabajo[] = [
   },
   {
     nombre: 'SURGIMED',
+    logo: '/projects/surgimed.webp',
     url: 'https://surgimed-pe.web.app/',
     modelo: 'cliente',
     stack: ['Firebase Hosting', 'GitHub Actions'],

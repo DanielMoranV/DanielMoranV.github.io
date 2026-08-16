@@ -3,16 +3,7 @@ import { casos } from '../data/casos';
 import { cifras } from '../data/cifras';
 import { trabajos } from '../data/trabajo';
 import { piezas } from '../data/opensource';
-import {
-  t,
-  stack,
-  CORREO,
-  GITHUB,
-  LINKEDIN,
-  HAY_CV,
-  HAY_FOTO,
-  type Idioma,
-} from '../i18n/ui';
+import { t, stack, CORREO, GITHUB, LINKEDIN, HAY_CV, FOTO, type Idioma } from '../i18n/ui';
 
 interface Props {
   idioma: Idioma;
@@ -30,7 +21,7 @@ const separador = 'padding-bottom:1.5rem;border-bottom:1px solid var(--borde)';
 ---
 
 <!-- 01 · Perfil -->
-<section class={`pagina hero${HAY_FOTO ? ' con-foto' : ''}`}>
+<section class="pagina hero con-foto">
   <div>
     <p class="sello meta">{s.heroMeta}</p>
     <h1>{s.heroTitulo}</h1>
@@ -45,17 +36,7 @@ const separador = 'padding-bottom:1.5rem;border-bottom:1px solid var(--borde)';
     </div>
   </div>
 
-  {
-    HAY_FOTO && (
-      <img
-        src="/foto.jpg"
-        alt={s.fotoAlt}
-        width="400"
-        height="533"
-        style="width:100%;height:auto;display:block;border:1px solid var(--borde)"
-      />
-    )
-  }
+  <img class="retrato" src={FOTO} alt={s.fotoAlt} width="400" height="400" fetchpriority="high" />
 </section>
 
 <!-- Cifras: la unica banda a sangre, porque es lo que resuelve los 40 segundos -->
@@ -163,14 +144,17 @@ const separador = 'padding-bottom:1.5rem;border-bottom:1px solid var(--borde)';
     {
       propios.map((w) => (
         <div>
-          <a
-            href={w.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            style="font-family:var(--font-serif);font-size:1.25rem;line-height:1.2;color:var(--enlace);text-decoration:none"
-          >
-            {w.nombre} ↗
-          </a>
+          <div class="con-logo">
+            <img class="logotipo" src={w.logo} alt="" width="96" height="96" loading="lazy" />
+            <a
+              href={w.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style="font-family:var(--font-serif);font-size:1.25rem;line-height:1.2;color:var(--enlace);text-decoration:none"
+            >
+              {w.nombre} ↗
+            </a>
+          </div>
           <span style="font-size:0.8125rem;line-height:1.55">{w.que[idioma]}</span>
           <span class="sello">{w.stack.join(' · ')}</span>
         </div>
@@ -183,14 +167,17 @@ const separador = 'padding-bottom:1.5rem;border-bottom:1px solid var(--borde)';
     {
       clientes.map((w) => (
         <div class="fila">
-          <a
-            href={w.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            style="font-weight:600;font-size:0.844rem;color:var(--enlace);text-decoration:none"
-          >
-            {w.nombre} ↗
-          </a>
+          <div class="con-logo">
+            <img class="logotipo" src={w.logo} alt="" width="96" height="96" loading="lazy" />
+            <a
+              href={w.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style="font-weight:600;font-size:0.844rem;color:var(--enlace);text-decoration:none"
+            >
+              {w.nombre} ↗
+            </a>
+          </div>
           <span style="font-size:0.8125rem;line-height:1.55;color:var(--texto-suave)">
             {w.que[idioma]}
           </span>
