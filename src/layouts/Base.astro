@@ -51,6 +51,18 @@ const persona = {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!--
+      Antes que cualquier estilo o marcado: la preferencia guardada se escribe
+      en la raiz antes del primer pintado. Sin esto, quien haya elegido oscuro
+      ve un destello blanco en cada carga, y un portafolio que parpadea se ve
+      peor que uno sin conmutador.
+    -->
+    <script is:inline>
+      const t = localStorage.getItem('tema');
+      if (t === 'dark' || t === 'light') document.documentElement.dataset.theme = t;
+    </script>
+
     <title>{s.titulo}</title>
     <meta name="description" content={s.descripcion} />
     <link rel="canonical" href={canonica} />
@@ -61,6 +73,27 @@ const persona = {
 
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!--
+      Las tres familias se sirven desde el propio dominio: el sitio no hace ni
+      una peticion a terceros. Se precargan las dos que pintan texto visible
+      antes del scroll; Newsreader ademas es la del titular, que es lo primero
+      que se lee.
+    -->
+    <link
+      rel="preload"
+      href="/fonts/newsreader.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/public-sans.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
 
     <meta property="og:type" content="profile" />
     <meta property="og:site_name" content="Daniel Morán Vílchez" />
@@ -77,7 +110,7 @@ const persona = {
 
     <meta name="author" content="Daniel Morán Vílchez" />
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#0d0f10" media="(prefers-color-scheme: dark)" />
 
     <script type="application/ld+json" set:html={JSON.stringify(persona)} is:inline />
   </head>
@@ -94,18 +127,17 @@ const persona = {
     <Nav idioma={idioma} />
     <main id="contenido"><slot /></main>
 
-    <footer style="border-color: var(--borde);" class="border-t">
+    <footer style="border-color: var(--borde); background: var(--fondo-hondo);" class="border-t">
       <div
-        class="mx-auto flex max-w-3xl flex-col gap-3 px-6 py-10 text-sm sm:flex-row sm:items-center sm:justify-between"
-        style="color: var(--texto-suave);"
+        class="pagina flex flex-col gap-3 py-7 sm:flex-row sm:items-center sm:justify-between"
       >
-        <p>© {new Date().getFullYear()} {s.pieDerechos}</p>
+        <p class="sello" style="margin:0">© {new Date().getFullYear()} {s.pieDerechos}</p>
         <nav class="flex flex-wrap gap-x-5 gap-y-2">
-          <a class="hover:underline" href={MARCA_URL} target="_blank" rel="noopener noreferrer">
+          <a class="sello hover:underline" href={MARCA_URL} target="_blank" rel="noopener noreferrer">
             {s.pieMarca}
           </a>
           <a
-            class="hover:underline"
+            class="sello hover:underline"
             href="https://github.com/DanielMoranV"
             target="_blank"
             rel="noopener noreferrer">GitHub</a
@@ -113,5 +145,50 @@ const persona = {
         </nav>
       </div>
     </footer>
+
+    <!--
+      El conmutador. Tres estados reales; «sistema» es la AUSENCIA de atributo
+      en la raiz y de clave en localStorage, asi que sigue al sistema en vivo
+      sin escuchar nada. Elegir claro gana sobre un sistema en oscuro gracias
+      al :not([data-theme='light']) del CSS.
+
+      Es el unico JavaScript del sitio, y no necesita framework.
+    -->
+    <script is:inline>
+      (() => {
+        const raiz = document.documentElement;
+        const grupo = document.querySelector('.tema');
+        if (!grupo) return;
+        const metas = document.querySelectorAll('meta[name="theme-color"]');
+
+        const aplicar = (v) => {
+          // Unico punto donde se toca la raiz. Atributo de la raiz: data-theme.
+          // Atributo de los botones: data-tema. No se mezclan.
+          if (v === 'system') {
+            raiz.removeAttribute('data-theme');
+            localStorage.removeItem('tema');
+          } else {
+            raiz.dataset.theme = v;
+            localStorage.setItem('tema', v);
+          }
+          const oscuro =
+            v === 'dark' ||
+            (v === 'system' && matchMedia('(prefers-color-scheme: dark)').matches);
+          metas.forEach((m) => {
+            m.removeAttribute('media');
+            m.content = oscuro ? '#0d0f10' : '#ffffff';
+          });
+          grupo
+            .querySelectorAll('button')
+            .forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.tema === v)));
+        };
+
+        aplicar(localStorage.getItem('tema') ?? 'system');
+        grupo.addEventListener('click', (e) => {
+          const b = e.target.closest('button[data-tema]');
+          if (b) aplicar(b.dataset.tema);
+        });
+      })();
+    </script>
   </body>
 </html>

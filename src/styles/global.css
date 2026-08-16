@@ -1,72 +1,505 @@
 @import 'tailwindcss';
+@import './_fuentes.css';
 
 /*
+  Direccion visual «Ficha tecnica» (1b).
+
+  La identidad sale de la VOZ tipografica, no del rayado: titulares en
+  Newsreader —una serif de texto, no decorativa— contra sellos y cifras en
+  Martian Mono, ancha y a caja alta. El cuerpo, en Public Sans.
+
   Paleta deliberadamente distinta de la de djasoft.net.pe: aquella es calida y
-  de marca, esta es neutra y de herramienta. Si alguien abre los dos sitios
+  de marca, esta es fria y de herramienta. Si alguien abre los dos sitios
   seguidos tiene que notar que son dos cosas, no dos idiomas de una.
 
   Se define entera en claro y se redefine en oscuro, para que ningun color
-  exista solo dentro de una media query.
+  exista solo dentro de una media query. Contrastes comprobados (WCAG 2.1):
+  claro, suave sobre hondo 6,2:1 y acento sobre lienzo 6,2:1; oscuro, suave
+  sobre hondo 6,8:1 y acento sobre lienzo 8,9:1. Todo AA, la mayoria AAA.
 */
+
 @theme {
-  --color-tinta: #16181d;
-  --color-tinta-suave: #5b6270;
+  --font-sans: 'Public Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+  --font-mono: 'Martian Mono', ui-monospace, 'Cascadia Mono', monospace;
+
+  /* Escala tipografica: pasos declarados, no text-sm por todas partes. */
+  --text-sello: 0.594rem;
+  --text-meta: 0.6875rem;
+  --text-menu: 0.78rem;
+  --text-cuerpo: 0.875rem;
+  --text-entrada: 0.969rem;
+  --text-t3: 1.375rem;
+  --text-t2: 1.875rem;
+  --text-t1: 3.25rem;
+  --text-cifra: 2.125rem;
+
+  /* Medidas: un ancho por tipo de contenido, no max-w-3xl para todo. */
+  --container-pagina: 62.5rem;
+  --container-prosa: 62ch;
+  --container-entrada: 60ch;
+
+  /* Claro */
   --color-lienzo: #ffffff;
-  --color-lienzo-hondo: #f7f8fa;
-  --color-linea: #e4e7ec;
-  --color-enlace: #1c6feb;
+  --color-lienzo-hondo: #f2f4f3;
+  --color-tinta: #14171a;
+  --color-tinta-suave: #545b62;
+  --color-linea: #dfe3e2;
+  --color-acento: #2f6b58;
+
+  /* Oscuro */
+  --color-lienzo-n: #0d0f10;
+  --color-lienzo-hondo-n: #131717;
+  --color-tinta-n: #eceeed;
+  --color-tinta-suave-n: #98a0a0;
+  --color-linea-n: #23292a;
+  --color-acento-n: #6fc0a4;
 }
 
+/* (1) Claro, por defecto. */
 :root {
   --fondo: var(--color-lienzo);
   --fondo-hondo: var(--color-lienzo-hondo);
   --texto: var(--color-tinta);
   --texto-suave: var(--color-tinta-suave);
   --borde: var(--color-linea);
-  --enlace: var(--color-enlace);
+  --enlace: var(--color-acento);
+  color-scheme: light;
 }
 
+/* (2) Oscuro del sistema — acotado: no gana sobre un claro elegido a mano. */
 @media (prefers-color-scheme: dark) {
-  :root {
-    --fondo: #0f1115;
-    --fondo-hondo: #14171d;
-    --texto: #e8eaed;
-    --texto-suave: #9aa2b1;
-    --borde: #262a33;
-    --enlace: #6ea8ff;
+  :root:not([data-theme='light']) {
+    --fondo: var(--color-lienzo-n);
+    --fondo-hondo: var(--color-lienzo-hondo-n);
+    --texto: var(--color-tinta-n);
+    --texto-suave: var(--color-tinta-suave-n);
+    --borde: var(--color-linea-n);
+    --enlace: var(--color-acento-n);
+    color-scheme: dark;
   }
+}
+
+/* (3) Oscuro elegido a mano. */
+:root[data-theme='dark'] {
+  --fondo: var(--color-lienzo-n);
+  --fondo-hondo: var(--color-lienzo-hondo-n);
+  --texto: var(--color-tinta-n);
+  --texto-suave: var(--color-tinta-suave-n);
+  --borde: var(--color-linea-n);
+  --enlace: var(--color-acento-n);
+  color-scheme: dark;
 }
 
 html {
   scroll-behavior: smooth;
-  /* Que el ancla no quede pegada bajo la barra fija. */
   scroll-padding-top: 5rem;
 }
 
 body {
   background: var(--fondo);
   color: var(--texto);
-  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-family: var(--font-sans);
+  font-size: var(--text-cuerpo);
   -webkit-font-smoothing: antialiased;
   text-wrap: pretty;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.015em;
   text-wrap: balance;
-  letter-spacing: -0.02em;
+}
+
+a {
+  color: inherit;
 }
 
 /* Foco visible de verdad: se navega con teclado. */
 :focus-visible {
   outline: 2px solid var(--enlace);
   outline-offset: 3px;
-  border-radius: 2px;
+  border-radius: 1px;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
+}
+
+/* ---------------------------------------------------------------- piezas */
+
+/* Sello: metadato en mono, caja alta. La firma de esta direccion. */
+.sello {
+  font-family: var(--font-mono);
+  font-size: var(--text-sello);
+  font-weight: 400;
+  line-height: 1.7;
+  color: var(--texto-suave);
+  text-transform: uppercase;
+}
+
+.sello-acento {
+  color: var(--enlace);
+  font-weight: 500;
+}
+
+/* Enlace en mono con subrayado real, no text-decoration. */
+.vinculo {
+  font-family: var(--font-mono);
+  font-size: var(--text-sello);
+  color: var(--enlace);
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+  text-transform: uppercase;
+  align-self: flex-start;
+}
+
+.vinculo:hover {
+  color: var(--texto);
+}
+
+.num {
+  font-variant-numeric: tabular-nums;
+}
+
+.pagina {
+  max-width: var(--container-pagina);
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 640px) {
+  .pagina {
+    padding-inline: 2rem;
+  }
+}
+
+/* Cabecera de seccion: numero, titulo, regla que rellena, etiqueta. */
+.titular {
+  display: flex;
+  align-items: baseline;
+  gap: 0.625rem;
+  margin-bottom: 1.25rem;
+}
+
+.titular h2 {
+  margin: 0;
+  font-size: var(--text-t3);
+  line-height: 1.1;
+}
+
+.titular .regla {
+  flex: 1;
+  height: 1px;
+  background: var(--borde);
+}
+
+/* La etiqueta de la derecha se cae en movil: es contexto, no contenido. */
+.titular .etiqueta {
+  display: none;
+}
+
+@media (min-width: 640px) {
+  .titular {
+    gap: 1rem;
+    margin-bottom: 1.875rem;
+  }
+  .titular h2 {
+    font-size: var(--text-t2);
+  }
+  .titular .etiqueta {
+    display: inline;
+  }
+}
+
+/*
+  Ficha: la unidad de esta direccion. Columna de metadatos a la izquierda,
+  contenido a la derecha. Por debajo de 768px colapsa a una columna y la barra
+  izquierda se queda como filete, para no estrangular el ancho del texto.
+*/
+.ficha {
+  display: grid;
+  gap: 1rem;
+}
+
+.ficha > .meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  border-left: 1px solid var(--borde);
+  padding-left: 0.875rem;
+}
+
+.ficha.destacada > .meta {
+  border-left-width: 2px;
+  border-left-color: var(--enlace);
+  gap: 0.875rem;
+}
+
+@media (min-width: 768px) {
+  .ficha {
+    grid-template-columns: 12.25rem 1fr;
+    gap: 2.25rem;
+  }
+}
+
+.ficha h3 {
+  margin: 0 0 0.625rem;
+  font-size: var(--text-t3);
+  line-height: 1.2;
+}
+
+.ficha.destacada h3 {
+  font-size: var(--text-t2);
+  line-height: 1.15;
+  margin-bottom: 1rem;
+  max-width: 24ch;
+}
+
+.ficha p {
+  margin: 0;
+  max-width: var(--container-prosa);
+  line-height: 1.68;
+  color: var(--texto-suave);
+}
+
+.ficha p + p {
+  margin-top: 0.875rem;
+}
+
+/* Primer parrafo de la nota destacada: mismo peso, mas tinta. */
+.ficha .guia {
+  color: var(--texto);
+  font-size: var(--text-entrada);
+  line-height: 1.7;
+}
+
+.ficha dl {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: var(--text-meta);
+  line-height: 1.5;
+}
+
+.ficha dt {
+  color: var(--texto-suave);
+  font-size: 0.625rem;
+}
+
+.ficha dd {
+  margin: 0;
+}
+
+/* Antes / ahora: dos celdas separadas por la propia linea de borde. */
+.contraste {
+  display: grid;
+  gap: 1px;
+  background: var(--borde);
+  border: 1px solid var(--borde);
+  margin-top: 1.375rem;
+}
+
+.contraste > div {
+  background: var(--fondo);
+  padding: 1rem;
+}
+
+.contraste p {
+  margin: 0.625rem 0 0;
+  font-size: 0.8125rem;
+  line-height: 1.6;
+}
+
+@media (min-width: 640px) {
+  .contraste {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Rejilla de celdas separadas por la linea, sin bordes dobles. */
+.celdas {
+  display: grid;
+  gap: 1px;
+  background: var(--borde);
+  border: 1px solid var(--borde);
+}
+
+.celdas > * {
+  background: var(--fondo);
+  padding: 1rem 1.125rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (min-width: 640px) {
+  .celdas {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Filas de tres columnas que se apilan en movil. */
+.fila {
+  display: grid;
+  gap: 0.375rem;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--borde);
+}
+
+@media (min-width: 768px) {
+  .fila {
+    grid-template-columns: 10.625rem 1fr 14.375rem;
+    gap: 1.25rem;
+    align-items: baseline;
+  }
+}
+
+/* ------------------------------------------------------------- secciones */
+
+.seccion {
+  padding-block: 2rem;
+}
+
+@media (min-width: 640px) {
+  .seccion {
+    padding-block: 2.75rem;
+  }
+}
+
+.hero {
+  display: grid;
+  gap: 1.75rem;
+  padding-block: 2.25rem 2rem;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    padding-block: 3.5rem 2.5rem;
+    gap: 2.5rem;
+  }
+  .hero.con-foto {
+    grid-template-columns: 1fr 12.5rem;
+    align-items: start;
+  }
+}
+
+.hero h1 {
+  margin: 0 0 1.125rem;
+  /* La serif a 300 es el gesto de la direccion: se ve fina y ancha. */
+  font-weight: 300;
+  font-size: clamp(2.0625rem, 1.1rem + 4.2vw, 3.25rem);
+  line-height: 1.06;
+  letter-spacing: -0.02em;
+  max-width: 20ch;
+}
+
+.hero .entrada {
+  margin: 0 0 1.5rem;
+  max-width: var(--container-entrada);
+  font-size: var(--text-entrada);
+  line-height: 1.68;
+  color: var(--texto-suave);
+}
+
+.hero .meta {
+  margin: 0 0 1.375rem;
+}
+
+.hero .acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.375rem;
+  align-items: baseline;
+}
+
+/*
+  Banda de cifras: la unica seccion a sangre. Es lo que resuelve el escaneo de
+  40 segundos, asi que corta la pagina de lado a lado en vez de respetar el
+  ancho de lectura.
+*/
+.cifras {
+  background: var(--fondo-hondo);
+  border-block: 1px solid var(--borde);
+}
+
+.cifras > .pagina {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.125rem;
+  padding-block: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  .cifras > .pagina {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    padding-block: 1.625rem;
+  }
+}
+
+.cifras .valor {
+  font-family: var(--font-serif);
+  font-size: clamp(1.6875rem, 1.2rem + 2vw, var(--text-cifra));
+  line-height: 1;
+  color: var(--enlace);
+  font-variant-numeric: tabular-nums;
+}
+
+.cifras .que {
+  margin-top: 0.375rem;
+  line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+  .cifras .que {
+    margin-top: 0.5rem;
+  }
+}
+
+/* -------------------------------------------------- conmutador de tema */
+
+.tema {
+  display: flex;
+  gap: 2px;
+  padding: 2px;
+  margin: 0;
+  border: 0;
+  background: var(--fondo-hondo);
+}
+
+.tema button {
+  border: 0;
+  background: transparent;
+  color: var(--texto-suave);
+  font-family: var(--font-mono);
+  font-size: 0.531rem;
+  padding: 0.375rem;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+@media (min-width: 640px) {
+  .tema button {
+    font-size: var(--text-sello);
+    padding: 0.375rem 0.5rem;
+  }
+}
+
+.tema button[aria-pressed='true'] {
+  background: var(--texto);
+  color: var(--fondo);
 }

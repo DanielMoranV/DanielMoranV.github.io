@@ -6,6 +6,21 @@ export type Idioma = keyof typeof idiomas;
 /** La marca vendedora. Publico distinto, dominio distinto. */
 export const MARCA_URL = 'https://djasoft.net.pe';
 
+export const CORREO = 'skaan.dmv@gmail.com';
+export const GITHUB = 'https://github.com/DanielMoranV';
+export const LINKEDIN = 'https://linkedin.com/in/danielmoranv';
+
+/**
+ * El hueco de la foto y el del CV existen en el diseno, pero no se pintan
+ * hasta que haya fichero: un retrato de relleno o un CV.pdf que devuelve 404
+ * dicen «sitio a medias» mas alto de lo que dicen cualquier otra cosa, y el
+ * enlace muerto es justo el fallo que este sitio vino a corregir.
+ *
+ * Para encenderlos: deja public/foto.jpg (3:4) o public/cv.pdf y pon true.
+ */
+export const HAY_FOTO = false;
+export const HAY_CV = false;
+
 export const t = {
   en: {
     htmlLang: 'en',
@@ -18,42 +33,57 @@ export const t = {
       'Daniel Morán Vílchez — Full Stack Developer & Data Engineer. Go, Laravel, Python, ' +
       'TypeScript, PostgreSQL.',
 
+    marca: 'Daniel Morán Vílchez',
+    marcaCorta: 'D. Morán V.',
+
     navTrabajo: 'Work',
-    navNotas: 'Engineering notes',
-    navCodigo: 'Open source',
+    navNotas: 'Notes',
+    navCodigo: 'Code',
     navContacto: 'Contact',
 
+    temaLeyenda: 'Colour theme',
+    temaClaro: 'Light',
+    temaOscuro: 'Dark',
+    temaSistema: 'System',
+
+    heroMeta: 'Piura, Peru · full stack + data · 2016—',
     heroTitulo: 'I build the software companies run on.',
     heroEntrada:
       'Full stack developer and data engineer in Piura, Peru. Eight products in production — ' +
       'ERPs, payroll, e-commerce, electronic invoicing — four of them mine and sold by ' +
       'subscription, four built for clients who paid for them. Everything below has a live ' +
       'URL or a public repository.',
+    heroCorreo: 'Email',
+    heroGithub: 'GitHub',
+    heroCv: 'CV.pdf ↓',
+    fotoAlt: 'Daniel Morán Vílchez',
 
     notasTitulo: 'Engineering notes',
-    notasEntrada:
-      'Four problems worth writing about. Each one links to the code or to the running system.',
-    pruebaEtiqueta: 'Proof',
+    notasEtiqueta: 'Four problems',
+    destacada: 'Featured',
+    antes: 'Before',
+    ahora: 'Now',
 
     trabajoTitulo: 'In production',
-    trabajoEntrada:
-      'Every link opens the real system. The business case for each of these lives on the ' +
-      'product site; here is the stack.',
-    modeloPropio: 'own product',
-    modeloCliente: 'client work',
+    trabajoEtiqueta: 'Eight systems',
+    trabajoPropio: 'Own product · subscription',
+    trabajoCliente: 'Client work · commissioned',
 
     codigoTitulo: 'Open source',
+    codigoEtiqueta: 'Published in full',
     codigoEntrada:
       'The products stay private because they are sold. These are the pieces that carry the ' +
       'engineering and none of the business rules, published in full.',
 
     stackTitulo: 'Stack',
-    stackEntrada: 'What I actually ship with, not what I have read about.',
+    stackEtiqueta: 'What I ship with',
 
     contactoTitulo: 'Contact',
+    contactoEtiqueta: 'Open to work',
     contactoEntrada:
       'Open to engineering roles and to consulting on legacy integration, Peruvian tax and ' +
       'regulatory domains, or putting an LLM inside a product without handing it the keys.',
+    contactoLugar: 'Piura, Peru · UTC−5',
 
     pieMarca: 'Djasoft — my product brand',
     pieDerechos: 'Daniel Morán Vílchez',
@@ -70,43 +100,58 @@ export const t = {
       'Daniel Morán Vílchez — Desarrollador full stack e ingeniero de datos. Go, Laravel, ' +
       'Python, TypeScript, PostgreSQL.',
 
+    marca: 'Daniel Morán Vílchez',
+    marcaCorta: 'D. Morán V.',
+
     navTrabajo: 'Trabajo',
-    navNotas: 'Notas de ingeniería',
-    navCodigo: 'Código abierto',
+    navNotas: 'Notas',
+    navCodigo: 'Código',
     navContacto: 'Contacto',
 
+    temaLeyenda: 'Tema de color',
+    temaClaro: 'Claro',
+    temaOscuro: 'Oscuro',
+    temaSistema: 'Sistema',
+
+    heroMeta: 'Piura, Perú · full stack + datos · 2016—',
     heroTitulo: 'Construyo el software sobre el que funcionan las empresas.',
     heroEntrada:
       'Desarrollador full stack e ingeniero de datos en Piura, Perú. Ocho productos en ' +
       'producción —ERPs, planillas, comercio electrónico, facturación electrónica—, cuatro ' +
       'míos y vendidos por suscripción, cuatro construidos para clientes que pagaron por ' +
       'ellos. Todo lo de abajo tiene URL viva o repositorio público.',
+    heroCorreo: 'Correo',
+    heroGithub: 'GitHub',
+    heroCv: 'CV.pdf ↓',
+    fotoAlt: 'Daniel Morán Vílchez',
 
     notasTitulo: 'Notas de ingeniería',
-    notasEntrada:
-      'Cuatro problemas que merecen contarse. Cada uno enlaza al código o al sistema en marcha.',
-    pruebaEtiqueta: 'Prueba',
+    notasEtiqueta: 'Cuatro problemas',
+    destacada: 'Destacada',
+    antes: 'Antes',
+    ahora: 'Ahora',
 
     trabajoTitulo: 'En producción',
-    trabajoEntrada:
-      'Cada enlace abre el sistema real. El argumento comercial de cada uno vive en el sitio ' +
-      'de producto; aquí está el stack.',
-    modeloPropio: 'producto propio',
-    modeloCliente: 'por encargo',
+    trabajoEtiqueta: 'Ocho sistemas',
+    trabajoPropio: 'Producto propio · suscripción',
+    trabajoCliente: 'Por encargo · cliente',
 
     codigoTitulo: 'Código abierto',
+    codigoEtiqueta: 'Publicado entero',
     codigoEntrada:
       'Los productos son privados porque se venden. Estas son las piezas que llevan la ' +
       'ingeniería y ninguna regla de negocio, publicadas enteras.',
 
     stackTitulo: 'Stack',
-    stackEntrada: 'Con lo que trabajo de verdad, no lo que he leído.',
+    stackEtiqueta: 'Con lo que trabajo',
 
     contactoTitulo: 'Contacto',
+    contactoEtiqueta: 'Disponible',
     contactoEntrada:
       'Abierto a puestos de ingeniería y a consultoría sobre integración con sistemas ' +
       'heredados, dominios regulados peruanos, o meter un LLM dentro de un producto sin ' +
       'entregarle las llaves.',
+    contactoLugar: 'Piura, Perú · UTC−5',
 
     pieMarca: 'Djasoft — mi marca de producto',
     pieDerechos: 'Daniel Morán Vílchez',
@@ -115,9 +160,21 @@ export const t = {
 
 /** Agrupado por lo que se usa, no por popularidad. */
 export const stack = [
-  { grupo: { en: 'Backend', es: 'Backend' }, items: ['Go · Gin · sqlx', 'PHP · Laravel', 'TypeScript · NestJS', 'Python · FastAPI'] },
-  { grupo: { en: 'Frontend', es: 'Frontend' }, items: ['React 19', 'Vue 3', 'Livewire', 'Astro', 'Tailwind'] },
-  { grupo: { en: 'Data', es: 'Datos' }, items: ['PostgreSQL · PL/pgSQL', 'Firestore', 'FoxPro · DBF', 'ETL'] },
+  {
+    grupo: { en: 'Backend', es: 'Backend' },
+    items: ['Go · Gin · sqlx', 'PHP · Laravel', 'TypeScript · NestJS', 'Python · FastAPI'],
+  },
+  {
+    grupo: { en: 'Frontend', es: 'Frontend' },
+    items: ['React 19', 'Vue 3', 'Livewire', 'Astro', 'Tailwind'],
+  },
+  {
+    grupo: { en: 'Data', es: 'Datos' },
+    items: ['PostgreSQL · PL/pgSQL', 'Firestore', 'FoxPro · DBF', 'ETL'],
+  },
   { grupo: { en: 'Mobile', es: 'Móvil' }, items: ['Flutter'] },
-  { grupo: { en: 'Infrastructure', es: 'Infraestructura' }, items: ['Firebase', 'Cloudflare Pages', 'AWS S3', 'GitHub Actions', 'WebSockets'] },
+  {
+    grupo: { en: 'Infrastructure', es: 'Infraestructura' },
+    items: ['Firebase', 'Cloudflare Pages', 'AWS S3', 'GitHub Actions', 'WebSockets'],
+  },
 ];

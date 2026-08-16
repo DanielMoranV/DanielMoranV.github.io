@@ -18,42 +18,43 @@ const enlaces = [
 
 <header
   class="sticky top-0 z-40 border-b backdrop-blur"
-  style="border-color: var(--borde); background: color-mix(in srgb, var(--fondo) 88%, transparent);"
+  style="border-color: var(--borde); background: color-mix(in srgb, var(--fondo) 90%, transparent);"
 >
   <!--
-    Dos filas en movil, una en escritorio, con `order` y sin duplicar el marcado
-    ni encender JavaScript por un menu de tres enlaces.
+    Dos filas en movil, una en escritorio, con `order` y sin JavaScript.
 
-    Antes los enlaces de seccion eran `hidden sm:inline`, asi que en el telefono
-    solo se veian el nombre, el idioma y Contacto — y el telefono es justo donde
-    se abre un enlace que llega por LinkedIn.
+    El diseno deja el movil solo con el nombre y el conmutador; aqui se
+    conservan ademas los enlaces de seccion, en una segunda fila. El telefono
+    es donde se abre un enlace que llega por LinkedIn, y quedarse sin
+    navegacion justo ahi ya fue un fallo de la version anterior.
   -->
-  <nav class="mx-auto flex max-w-3xl flex-wrap items-center gap-x-5 gap-y-2 px-6 py-3">
-    <a href={raiz} class="order-1 mr-auto font-semibold tracking-tight">Daniel Morán Vílchez</a>
+  <nav class="pagina flex flex-wrap items-center gap-x-5 gap-y-2 py-2.5 sm:h-14 sm:flex-nowrap sm:py-0">
+    <a href={raiz} class="order-1 mr-auto" style="font-family: var(--font-mono);">
+      <span class="hidden text-[0.6875rem] font-medium tracking-[0.02em] sm:inline">{s.marca}</span>
+      <span class="text-[0.594rem] font-medium tracking-[0.02em] sm:hidden">{s.marcaCorta}</span>
+    </a>
 
     <div
-      class="order-3 flex w-full flex-wrap gap-x-4 gap-y-1 text-xs sm:order-2 sm:w-auto sm:gap-x-5 sm:text-sm"
+      class="order-3 flex w-full flex-wrap gap-x-4 gap-y-1 sm:order-2 sm:w-auto sm:gap-x-[1.125rem]"
+      style="font-size: var(--text-menu); color: var(--texto-suave);"
     >
-      {
-        enlaces.map((e) => (
-          <a href={e.href} class="hover:underline" style="color: var(--texto-suave);">
-            {e.texto}
-          </a>
-        ))
-      }
+      {enlaces.map((e) => <a href={e.href} class="hover:underline">{e.texto}</a>)}
     </div>
 
-    <div class="order-2 flex items-center gap-x-4 text-sm sm:order-3 sm:gap-x-5">
-      <a
-        href={otra}
-        class="rounded border px-2 py-0.5 text-xs font-medium"
-        style="border-color: var(--borde); color: var(--texto-suave);"
-      >
-        {s.otroIdioma}
-      </a>
-      <a href="#contacto" class="font-medium hover:underline" style="color: var(--enlace);">
-        {s.navContacto}
-      </a>
+    <div class="order-2 flex items-center gap-x-3 sm:order-3 sm:gap-x-4">
+      <a href={otra} class="sello hover:underline">{s.otroIdioma}</a>
+
+      <!--
+        Tres estados reales: claro, oscuro y sistema. «Sistema» no es la
+        ausencia de eleccion, es una eleccion. La logica vive en Base.astro,
+        junto al script que evita el destello.
+      -->
+      <fieldset class="tema">
+        <legend class="sr-only">{s.temaLeyenda}</legend>
+        <button type="button" data-tema="light" aria-pressed="false">{s.temaClaro}</button>
+        <button type="button" data-tema="dark" aria-pressed="false">{s.temaOscuro}</button>
+        <button type="button" data-tema="system" aria-pressed="true">{s.temaSistema}</button>
+      </fieldset>
     </div>
   </nav>
 </header>

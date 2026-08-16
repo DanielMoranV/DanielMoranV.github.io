@@ -1,188 +1,277 @@
 ---
 import { casos } from '../data/casos';
+import { cifras } from '../data/cifras';
 import { trabajos } from '../data/trabajo';
 import { piezas } from '../data/opensource';
-import { t, stack, type Idioma } from '../i18n/ui';
+import {
+  t,
+  stack,
+  CORREO,
+  GITHUB,
+  LINKEDIN,
+  HAY_CV,
+  HAY_FOTO,
+  type Idioma,
+} from '../i18n/ui';
 
 interface Props {
   idioma: Idioma;
 }
 const { idioma } = Astro.props;
 const s = t[idioma];
+
+const destacada = casos.find((c) => c.destacado);
+const resto = casos.filter((c) => !c.destacado);
+
+const propios = trabajos.filter((w) => w.modelo === 'propio');
+const clientes = trabajos.filter((w) => w.modelo === 'cliente');
+
+const separador = 'padding-bottom:1.5rem;border-bottom:1px solid var(--borde)';
 ---
 
-<!-- Hero -->
-<section class="mx-auto max-w-3xl px-6 pb-14 pt-20 sm:pt-24">
-  <h1 class="text-3xl font-bold leading-[1.15] sm:text-4xl">{s.heroTitulo}</h1>
-  <p class="mt-6 leading-relaxed" style="color: var(--texto-suave);">{s.heroEntrada}</p>
-</section>
-
-<!-- Notas de ingenieria -->
-<section id="notas" class="scroll-mt-20 border-t" style="border-color: var(--borde);">
-  <div class="mx-auto max-w-3xl px-6 py-14">
-    <h2 class="text-xl font-bold sm:text-2xl">{s.notasTitulo}</h2>
-    <p class="mt-3 text-sm" style="color: var(--texto-suave);">{s.notasEntrada}</p>
-
-    <div class="mt-10 space-y-12">
-      {
-        casos.map((caso) => (
-          <article>
-            <p
-              class="text-[0.7rem] font-semibold uppercase tracking-[0.09em]"
-              style="color: var(--texto-suave);"
-            >
-              {caso.sello[idioma]}
-            </p>
-            <h3 class="mt-1 text-lg font-semibold">{caso.titulo[idioma]}</h3>
-            <p class="mt-3 leading-relaxed" style="color: var(--texto-suave);">
-              {caso.cuerpo[idioma]}
-            </p>
-            {caso.prueba && (
-              <p class="mt-3 text-sm">
-                <span style="color: var(--texto-suave);">{s.pruebaEtiqueta}: </span>
-                <a
-                  href={caso.prueba.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="font-mono hover:underline"
-                  style="color: var(--enlace);"
-                >
-                  {caso.prueba.texto}
-                </a>
-              </p>
-            )}
-          </article>
-        ))
-      }
-    </div>
-  </div>
-</section>
-
-<!-- En produccion -->
-<section
-  id="trabajo"
-  class="scroll-mt-20 border-t"
-  style="border-color: var(--borde); background: var(--fondo-hondo);"
->
-  <div class="mx-auto max-w-3xl px-6 py-14">
-    <h2 class="text-xl font-bold sm:text-2xl">{s.trabajoTitulo}</h2>
-    <p class="mt-3 text-sm" style="color: var(--texto-suave);">{s.trabajoEntrada}</p>
-
-    <ul class="mt-8">
-      {
-        trabajos.map((w) => (
-          <li class="border-t last:border-b" style="border-color: var(--borde);">
-            <a
-              href={w.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              class="flex flex-col gap-1 py-4 hover:opacity-80"
-            >
-              <span class="flex flex-wrap items-baseline gap-x-3">
-                <span class="font-semibold">{w.nombre}</span>
-                <span class="text-[0.7rem]" style="color: var(--texto-suave);">
-                  {w.modelo === 'propio' ? s.modeloPropio : s.modeloCliente}
-                </span>
-              </span>
-              <span class="text-sm" style="color: var(--texto-suave);">
-                {w.que[idioma]}
-              </span>
-              <span class="font-mono text-[0.7rem]" style="color: var(--texto-suave);">
-                {w.stack.join(' · ')}
-              </span>
-            </a>
-          </li>
-        ))
-      }
-    </ul>
-  </div>
-</section>
-
-<!-- Codigo abierto -->
-<section id="codigo" class="scroll-mt-20 border-t" style="border-color: var(--borde);">
-  <div class="mx-auto max-w-3xl px-6 py-14">
-    <h2 class="text-xl font-bold sm:text-2xl">{s.codigoTitulo}</h2>
-    <p class="mt-3 text-sm" style="color: var(--texto-suave);">{s.codigoEntrada}</p>
-
-    <ul class="mt-8 space-y-6">
-      {
-        piezas.map((pieza) => (
-          <li>
-            <div class="flex flex-wrap items-baseline justify-between gap-2">
-              <a
-                href={pieza.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="font-mono text-sm font-semibold hover:underline"
-                style="color: var(--enlace);"
-              >
-                {pieza.nombre}
-              </a>
-              <span class="text-[0.7rem]" style="color: var(--texto-suave);">
-                {pieza.sello}
-              </span>
-            </div>
-            <p class="mt-1.5 text-sm leading-relaxed" style="color: var(--texto-suave);">
-              {pieza.que[idioma]}
-            </p>
-          </li>
-        ))
-      }
-    </ul>
-  </div>
-</section>
-
-<!-- Stack -->
-<section
-  class="border-t"
-  style="border-color: var(--borde); background: var(--fondo-hondo);"
->
-  <div class="mx-auto max-w-3xl px-6 py-14">
-    <h2 class="text-xl font-bold sm:text-2xl">{s.stackTitulo}</h2>
-    <p class="mt-3 text-sm" style="color: var(--texto-suave);">{s.stackEntrada}</p>
-
-    <dl class="mt-8 space-y-4">
-      {
-        stack.map((g) => (
-          <div class="grid gap-1 sm:grid-cols-[9rem_1fr]">
-            <dt class="text-sm font-semibold">{g.grupo[idioma]}</dt>
-            <dd class="font-mono text-sm" style="color: var(--texto-suave);">
-              {g.items.join(' · ')}
-            </dd>
-          </div>
-        ))
-      }
-    </dl>
-  </div>
-</section>
-
-<!-- Contacto -->
-<section id="contacto" class="scroll-mt-20 border-t" style="border-color: var(--borde);">
-  <div class="mx-auto max-w-3xl px-6 py-16">
-    <h2 class="text-xl font-bold sm:text-2xl">{s.contactoTitulo}</h2>
-    <p class="mt-3 max-w-xl leading-relaxed" style="color: var(--texto-suave);">
-      {s.contactoEntrada}
-    </p>
-
-    <div class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
-      <a href="mailto:skaan.dmv@gmail.com" class="font-medium hover:underline" style="color: var(--enlace);">
-        skaan.dmv@gmail.com
+<!-- 01 · Perfil -->
+<section class={`pagina hero${HAY_FOTO ? ' con-foto' : ''}`}>
+  <div>
+    <p class="sello meta">{s.heroMeta}</p>
+    <h1>{s.heroTitulo}</h1>
+    <p class="entrada">{s.heroEntrada}</p>
+    <div class="acciones">
+      {HAY_CV && <a class="vinculo" href="/cv.pdf">{s.heroCv}</a>}
+      <a class="vinculo" href={`mailto:${CORREO}`}>{s.heroCorreo}</a>
+      <a class="vinculo" href={GITHUB} target="_blank" rel="noopener noreferrer">
+        {s.heroGithub}
       </a>
-      <a
-        href="https://linkedin.com/in/danielmoranv"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="hover:underline"
-        style="color: var(--texto-suave);">LinkedIn</a
-      >
-      <a
-        href="https://github.com/DanielMoranV"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="hover:underline"
-        style="color: var(--texto-suave);">GitHub</a
-      >
-      <span style="color: var(--texto-suave);">Piura, Perú</span>
+      <a class="vinculo" href={LINKEDIN} target="_blank" rel="noopener noreferrer">LinkedIn</a>
     </div>
+  </div>
+
+  {
+    HAY_FOTO && (
+      <img
+        src="/foto.jpg"
+        alt={s.fotoAlt}
+        width="400"
+        height="533"
+        style="width:100%;height:auto;display:block;border:1px solid var(--borde)"
+      />
+    )
+  }
+</section>
+
+<!-- Cifras: la unica banda a sangre, porque es lo que resuelve los 40 segundos -->
+<div class="cifras">
+  <div class="pagina">
+    {
+      cifras.map((c) => (
+        <div>
+          <div class="valor">{c.valor[idioma]}</div>
+          <div class="sello que">{c.que[idioma]}</div>
+        </div>
+      ))
+    }
+  </div>
+</div>
+
+<!-- 02 · Notas de ingenieria -->
+<section id="notas" class="pagina seccion scroll-mt-20">
+  <div class="titular">
+    <span class="sello sello-acento">02</span>
+    <h2>{s.notasTitulo}</h2>
+    <span class="regla"></span>
+    <span class="sello etiqueta">{s.notasEtiqueta}</span>
+  </div>
+
+  {
+    destacada && (
+      <article class="ficha destacada" style="padding-bottom:1.75rem;margin-bottom:1.75rem;border-bottom:1px solid var(--borde)">
+        <div class="meta">
+          <span class="sello sello-acento">{s.destacada}</span>
+          <span class="sello">{destacada.sello[idioma]}</span>
+          <dl>
+            {destacada.ficha?.map((f) => (
+              <div>
+                <dt>{f.etiqueta[idioma]}</dt>
+                <dd class="num">{f.valor[idioma]}</dd>
+              </div>
+            ))}
+          </dl>
+          {destacada.prueba && (
+            <a class="vinculo" href={destacada.prueba.url} target="_blank" rel="noopener noreferrer">
+              {destacada.prueba.texto} ↗
+            </a>
+          )}
+        </div>
+
+        <div>
+          <h3>{destacada.titulo[idioma]}</h3>
+          {destacada.cuerpo[idioma].map((parrafo, i) => (
+            <p class={i === 0 ? 'guia' : undefined}>{parrafo}</p>
+          ))}
+
+          {destacada.contraste && (
+            <div class="contraste">
+              <div>
+                <span class="sello">{s.antes}</span>
+                <p>{destacada.contraste.antes[idioma]}</p>
+              </div>
+              <div>
+                <span class="sello sello-acento">{s.ahora}</span>
+                <p style="color: var(--texto)">{destacada.contraste.ahora[idioma]}</p>
+              </div>
+            </div>
+          )}
+        </div>
+      </article>
+    )
+  }
+
+  <div class="flex flex-col gap-6">
+    {
+      resto.map((caso, i) => (
+        <article class="ficha" style={i < resto.length - 1 ? separador : undefined}>
+          <div class="meta">
+            <span class="sello">{caso.sello[idioma]}</span>
+            {caso.prueba && (
+              <a class="vinculo" href={caso.prueba.url} target="_blank" rel="noopener noreferrer">
+                {caso.prueba.texto} ↗
+              </a>
+            )}
+          </div>
+          <div>
+            <h3>{caso.titulo[idioma]}</h3>
+            {caso.cuerpo[idioma].map((parrafo) => (
+              <p>{parrafo}</p>
+            ))}
+          </div>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<!-- 03 · En produccion -->
+<section id="trabajo" class="pagina seccion scroll-mt-20">
+  <div class="titular">
+    <span class="sello sello-acento">03</span>
+    <h2>{s.trabajoTitulo}</h2>
+    <span class="regla"></span>
+    <span class="sello etiqueta">{s.trabajoEtiqueta}</span>
+  </div>
+
+  <p class="sello" style="margin:0 0 0.875rem">{s.trabajoPropio}</p>
+  <div class="celdas">
+    {
+      propios.map((w) => (
+        <div>
+          <a
+            href={w.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            style="font-family:var(--font-serif);font-size:1.25rem;line-height:1.2;color:var(--enlace);text-decoration:none"
+          >
+            {w.nombre} ↗
+          </a>
+          <span style="font-size:0.8125rem;line-height:1.55">{w.que[idioma]}</span>
+          <span class="sello">{w.stack.join(' · ')}</span>
+        </div>
+      ))
+    }
+  </div>
+
+  <p class="sello" style="margin:1.5rem 0 0.5rem">{s.trabajoCliente}</p>
+  <div style="border-top:1px solid var(--borde)">
+    {
+      clientes.map((w) => (
+        <div class="fila">
+          <a
+            href={w.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            style="font-weight:600;font-size:0.844rem;color:var(--enlace);text-decoration:none"
+          >
+            {w.nombre} ↗
+          </a>
+          <span style="font-size:0.8125rem;line-height:1.55;color:var(--texto-suave)">
+            {w.que[idioma]}
+          </span>
+          <span class="sello">{w.stack.join(' · ')}</span>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<!-- 04 · Codigo abierto -->
+<section id="codigo" class="pagina seccion scroll-mt-20">
+  <div class="titular">
+    <span class="sello sello-acento">04</span>
+    <h2>{s.codigoTitulo}</h2>
+    <span class="regla"></span>
+    <span class="sello etiqueta">{s.codigoEtiqueta}</span>
+  </div>
+
+  <p style="margin:0 0 1.75rem;max-width:var(--container-prosa);line-height:1.68;color:var(--texto-suave)">
+    {s.codigoEntrada}
+  </p>
+
+  <div class="flex flex-col gap-6">
+    {
+      piezas.map((pieza, i) => (
+        <article class="ficha" style={i < piezas.length - 1 ? separador : undefined}>
+          <div class="meta">
+            <span class="sello">{pieza.sello}</span>
+            <a class="vinculo" href={pieza.url} target="_blank" rel="noopener noreferrer">
+              {pieza.nombre} ↗
+            </a>
+          </div>
+          <p>{pieza.que[idioma]}</p>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<!-- 05 · Stack -->
+<section class="pagina seccion">
+  <div class="titular">
+    <span class="sello sello-acento">05</span>
+    <h2>{s.stackTitulo}</h2>
+    <span class="regla"></span>
+    <span class="sello etiqueta">{s.stackEtiqueta}</span>
+  </div>
+
+  <dl class="grid gap-x-9 gap-y-4 sm:grid-cols-2">
+    {
+      stack.map((g) => (
+        <div>
+          <dt class="sello">{g.grupo[idioma]}</dt>
+          <dd style="margin:0.25rem 0 0;font-size:0.8125rem;line-height:1.7">
+            {g.items.join(' · ')}
+          </dd>
+        </div>
+      ))
+    }
+  </dl>
+</section>
+
+<!-- 06 · Contacto -->
+<section id="contacto" class="pagina seccion scroll-mt-20" style="padding-bottom:3rem">
+  <div class="titular">
+    <span class="sello sello-acento">06</span>
+    <h2>{s.contactoTitulo}</h2>
+    <span class="regla"></span>
+    <span class="sello etiqueta">{s.contactoEtiqueta}</span>
+  </div>
+
+  <p style="margin:0 0 1.5rem;max-width:var(--container-prosa);line-height:1.68;color:var(--texto-suave)">
+    {s.contactoEntrada}
+  </p>
+
+  <div class="flex flex-wrap items-baseline gap-x-6 gap-y-3">
+    {HAY_CV && <a class="vinculo" href="/cv.pdf">{s.heroCv}</a>}
+    <a class="vinculo" href={`mailto:${CORREO}`}>{CORREO}</a>
+    <a class="vinculo" href={LINKEDIN} target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    <a class="vinculo" href={GITHUB} target="_blank" rel="noopener noreferrer">GitHub</a>
+    <span class="sello">{s.contactoLugar}</span>
   </div>
 </section>
