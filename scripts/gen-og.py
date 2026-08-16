@@ -1,91 +1,162 @@
 # -*- coding: utf-8 -*-
 """
-Genera los recursos de imagen del perfil tecnico.
+Genera las tarjetas Open Graph y los iconos.
 
-Se ejecuta UNA VEZ y sus salidas se commitean en public/. No es parte del
-build: un PNG estatico que no cambia no merece una dependencia de build.
+    python scripts/gen-og.py
 
-Paleta: la del sitio en oscuro (src/styles/global.css), para que la tarjeta
-que se ve al compartir el enlace sea reconociblemente el mismo sitio.
+Se ejecuta a mano y sus salidas se commitean en public/: un PNG que no cambia
+no merece una dependencia de build.
+
+QUE PRODUCE
+- public/og.png y og-es.png       -> el perfil, una por idioma
+- public/og/<producto>.png        -> una por producto propio
+- public/favicon.svg, apple-touch-icon.png
+
+POR QUE LOS PRODUCTOS TAMBIEN. almazenapp, mozaicopro y easypay no tienen
+ninguna etiqueta og:, asi que compartir sus enlaces —en LinkedIn, WhatsApp,
+Slack o un correo— da una tarjeta vacia. Las imagenes se sirven desde este
+sitio, que ya es estatico y publico, para que cada producto solo tenga que
+anadir cuatro lineas de <meta> y ningun despliegue de assets.
+
+TIPOGRAFIA. Las mismas familias que el sitio, descargadas en TTF porque
+Pillow no lee woff2. Se cachean fuera del repositorio: son un detalle de
+generacion, no una dependencia del sitio.
 """
-from PIL import Image, ImageDraw, ImageFont
+import re
+import urllib.request
 from pathlib import Path
 
-SALIDA = Path(r"C:\Code\perfil-tecnico\public")
-SALIDA.mkdir(parents=True, exist_ok=True)
+from PIL import Image, ImageDraw, ImageFont
 
-FONDO = "#0f1115"
-TEXTO = "#e8eaed"
-SUAVE = "#9aa2b1"
-ENLACE = "#6ea8ff"
-BORDE = "#262a33"
-ACENTO_SOLIDO = "#1c6feb"
+RAIZ = Path(__file__).resolve().parent.parent
+SALIDA = RAIZ / "public"
+(SALIDA / "og").mkdir(parents=True, exist_ok=True)
+CACHE = Path.home() / ".cache" / "djasoft-fuentes-ttf"
+CACHE.mkdir(parents=True, exist_ok=True)
 
-F = r"C:\Windows\Fonts"
-BOLD = f"{F}\\segoeuib.ttf"
-SEMI = f"{F}\\seguisb.ttf"
-REG = f"{F}\\segoeui.ttf"
-MONO = f"{F}\\consola.ttf"
-
-
-def fuente(ruta, tam):
-    try:
-        return ImageFont.truetype(ruta, tam)
-    except OSError:
-        return ImageFont.truetype(REG, tam)
+# Paleta oscura ACTUAL del sitio (src/styles/global.css). La version anterior
+# de este script llevaba la paleta azul del diseno viejo: una tarjeta que no
+# se parece al sitio al que lleva es peor que no tener tarjeta.
+FONDO = "#0d0f10"
+TEXTO = "#eceeed"
+SUAVE = "#98a0a0"
+ACENTO = "#6fc0a4"
+BORDE = "#23292a"
+ACENTO_SOLIDO = "#2f6b58"
 
 
-def tarjeta(destino, rol, lema, stack):
-    """Tarjeta Open Graph, 1200x630 (la proporcion que piden LinkedIn y X)."""
+def ttf(familia, peso):
+    """Descarga (y cachea) el TTF de una familia. Pillow no lee woff2."""
+    destino = CACHE / f"{familia.replace(' ', '-').lower()}-{peso}.ttf"
+    if not destino.exists():
+        url = f"https://fonts.googleapis.com/css2?family={familia.replace(' ', '+')}:wght@{peso}"
+        # Sin User-Agent moderno, Google devuelve TTF en vez de woff2.
+        css = urllib.request.urlopen(url, timeout=60).read().decode()
+        enlace = re.search(r"url\((https://[^)]+\.ttf)\)", css).group(1)
+        destino.write_bytes(urllib.request.urlopen(enlace, timeout=60).read())
+    return destino
+
+
+SERIF = ttf("Newsreader", 300)
+SERIF_M = ttf("Newsreader", 400)
+SANS = ttf("Public Sans", 400)
+MONO = ttf("Martian Mono", 400)
+
+
+def f(ruta, tam):
+    return ImageFont.truetype(str(ruta), tam)
+
+
+def tarjeta(destino, sello, titulo, lema, stack, url, serif_titulo=SERIF, tam=76):
+    """
+    Tarjeta Open Graph, 1200x630 — la proporcion que piden LinkedIn y X.
+
+    Misma reticula en todas: filo de acento arriba, sello en mono, titulo en
+    serif, lema, y el pie con stack a la izquierda y dominio a la derecha.
+    Puestas juntas se ven como una familia, que es el punto.
+    """
     img = Image.new("RGB", (1200, 630), FONDO)
     d = ImageDraw.Draw(img)
 
-    # Filo superior de acento: identifica la tarjeta de un vistazo.
     d.rectangle([0, 0, 1200, 6], fill=ACENTO_SOLIDO)
-    # Linea del pie, del mismo gris que los bordes del sitio.
-    d.line([80, 520, 1120, 520], fill=BORDE, width=1)
+    d.line([80, 516, 1120, 516], fill=BORDE, width=1)
 
-    d.text((80, 168), "Daniel Morán Vílchez", font=fuente(BOLD, 74), fill=TEXTO)
-    d.text((80, 272), rol, font=fuente(SEMI, 36), fill=ENLACE)
-    d.text((80, 352), lema, font=fuente(REG, 34), fill=SUAVE)
+    d.text((80, 150), sello.upper(), font=f(MONO, 17), fill=ACENTO)
+    d.text((80, 208), titulo, font=f(serif_titulo, tam), fill=TEXTO)
+    d.text((80, 330), lema, font=f(SANS, 31), fill=SUAVE)
 
-    d.text((80, 552), stack, font=fuente(MONO, 23), fill=SUAVE)
-    url = "danielmoranv.github.io"
-    ancho = d.textlength(url, font=fuente(MONO, 23))
-    d.text((1120 - ancho, 552), url, font=fuente(MONO, 23), fill=SUAVE)
+    d.text((80, 550), stack, font=f(MONO, 17), fill=SUAVE)
+    ancho = d.textlength(url, font=f(MONO, 17))
+    d.text((1120 - ancho, 550), url, font=f(MONO, 17), fill=SUAVE)
 
     img.save(destino, "PNG", optimize=True)
-    print(f"  {destino.name}  {destino.stat().st_size // 1024} KB")
+    print(f"  {destino.relative_to(SALIDA)!s:26s} {destino.stat().st_size // 1024:3d} KB")
 
 
-STACK = "Go  ·  Laravel  ·  Python  ·  TypeScript  ·  PostgreSQL"
-
-print("Tarjetas Open Graph:")
+print("Perfil:")
 tarjeta(
     SALIDA / "og.png",
-    "Full Stack Developer & Data Engineer",
+    "Piura, Peru · full stack + data",
+    "Daniel Morán Vílchez",
     "I build the software companies run on.",
-    STACK,
+    "Go · Laravel · Python · TypeScript · PostgreSQL",
+    "danielmoranv.github.io",
 )
 tarjeta(
     SALIDA / "og-es.png",
-    "Desarrollador full stack e ingeniero de datos",
+    "Piura, Perú · full stack + datos",
+    "Daniel Morán Vílchez",
     "Construyo el software sobre el que funcionan las empresas.",
-    STACK,
+    "Go · Laravel · Python · TypeScript · PostgreSQL",
+    "danielmoranv.github.io",
 )
 
-# Icono tactil de iOS: PNG opaco de 180x180, sin transparencia (iOS la
-# rellena de negro y el monograma se pierde).
-print("Icono tactil:")
+# El titulo de producto va en serif de 400: a 76 px el peso 300 se afina
+# demasiado en una palabra corta.
+PRODUCTOS = [
+    (
+        "almazen",
+        "ERP multiempresa · facturación SUNAT",
+        "AlmaZen",
+        "Inventario, ventas, POS y facturación electrónica.",
+        "Laravel · Livewire · PostgreSQL · Gemini",
+        "almazenapp.djasoft.net.pe",
+    ),
+    (
+        "mozaico",
+        "Gestión de restaurantes · tiempo real",
+        "MozaicoPro",
+        "Salón y cocina sobre el mismo estado de comanda.",
+        "Go · Gin · PostgreSQL · React 19",
+        "mozaicopro.djasoft.net.pe",
+    ),
+    (
+        "easypay",
+        "Personal, asistencia y planillas",
+        "EasyPay",
+        "Asistencia, horarios y cálculo de planillas.",
+        "TypeScript · NestJS · PostgreSQL",
+        "easypay.djasoft.net.pe",
+    ),
+]
+
+print("Productos:")
+for slug, sello, titulo, lema, stack, url in PRODUCTOS:
+    tarjeta(SALIDA / "og" / f"{slug}.png", sello, titulo, lema, stack, url,
+            serif_titulo=SERIF_M, tam=80)
+
+# Icono tactil de iOS: PNG opaco de 180x180. iOS rellena la transparencia de
+# negro, asi que el fondo va solido.
+print("Iconos:")
 ico = Image.new("RGB", (180, 180), ACENTO_SOLIDO)
 d = ImageDraw.Draw(ico)
-f = fuente(BOLD, 112)
-caja = d.textbbox((0, 0), "D", font=f)
+fuente = f(SERIF_M, 118)
+caja = d.textbbox((0, 0), "D", font=fuente)
 d.text(
     ((180 - (caja[2] - caja[0])) / 2 - caja[0], (180 - (caja[3] - caja[1])) / 2 - caja[1]),
     "D",
-    font=f,
+    font=fuente,
     fill="#ffffff",
 )
 ico.save(SALIDA / "apple-touch-icon.png", "PNG", optimize=True)
-print(f"  apple-touch-icon.png  {(SALIDA / 'apple-touch-icon.png').stat().st_size // 1024} KB")
+print(f"  {'apple-touch-icon.png':26s} {(SALIDA / 'apple-touch-icon.png').stat().st_size // 1024:3d} KB")

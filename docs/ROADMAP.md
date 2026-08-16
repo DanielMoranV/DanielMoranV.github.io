@@ -155,6 +155,9 @@ están tomadas para no volver a discutirlas.
 
 ### P2 — mantenimiento
 
+- [ ] **Pegar las etiquetas `og:` en los tres productos.** Las imágenes ya están generadas y
+      publicadas en `public/og/`; falta el `<meta>` en cada aplicación. Instrucciones exactas
+      por stack en [`OG-PRODUCTOS.md`](OG-PRODUCTOS.md).
 - [ ] **Enriquecer el chatbot** cuando avance. Hoy está descrito de forma deliberadamente
       conservadora porque es reciente: dice qué es y con qué está hecho, sin prometer
       alcance.
@@ -218,6 +221,7 @@ Ficheros que no cambian no justifican una dependencia de build.
 | `src/data/casos.ts` | Notas de ingeniería: el trabajo por su parte difícil |
 | `src/data/estudios.ts` | Los case studies, con sus decisiones y descartes |
 | `src/data/metodo.ts` | Los cinco pasos de «cómo trabajo» |
+| `docs/OG-PRODUCTOS.md` | Las etiquetas `og:` que faltan en los productos |
 | `src/data/trabajo.ts` | Lo que está en producción, con su stack y su enlace vivo |
 | `src/data/trayectoria.ts` | El puesto y los sistemas del sector salud |
 | `src/data/cifras.ts` | Las cuatro cifras de la banda |
