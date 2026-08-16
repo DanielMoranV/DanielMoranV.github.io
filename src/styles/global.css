@@ -1,0 +1,72 @@
+@import 'tailwindcss';
+
+/*
+  Paleta deliberadamente distinta de la de djasoft.net.pe: aquella es calida y
+  de marca, esta es neutra y de herramienta. Si alguien abre los dos sitios
+  seguidos tiene que notar que son dos cosas, no dos idiomas de una.
+
+  Se define entera en claro y se redefine en oscuro, para que ningun color
+  exista solo dentro de una media query.
+*/
+@theme {
+  --color-tinta: #16181d;
+  --color-tinta-suave: #5b6270;
+  --color-lienzo: #ffffff;
+  --color-lienzo-hondo: #f7f8fa;
+  --color-linea: #e4e7ec;
+  --color-enlace: #1c6feb;
+}
+
+:root {
+  --fondo: var(--color-lienzo);
+  --fondo-hondo: var(--color-lienzo-hondo);
+  --texto: var(--color-tinta);
+  --texto-suave: var(--color-tinta-suave);
+  --borde: var(--color-linea);
+  --enlace: var(--color-enlace);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --fondo: #0f1115;
+    --fondo-hondo: #14171d;
+    --texto: #e8eaed;
+    --texto-suave: #9aa2b1;
+    --borde: #262a33;
+    --enlace: #6ea8ff;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Que el ancla no quede pegada bajo la barra fija. */
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--fondo);
+  color: var(--texto);
+  font-family: ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-wrap: pretty;
+}
+
+h1, h2, h3 {
+  text-wrap: balance;
+  letter-spacing: -0.02em;
+}
+
+/* Foco visible de verdad: se navega con teclado. */
+:focus-visible {
+  outline: 2px solid var(--enlace);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

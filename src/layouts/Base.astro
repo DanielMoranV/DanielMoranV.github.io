@@ -1,0 +1,73 @@
+---
+import '../styles/global.css';
+import Nav from '../components/Nav.astro';
+import { t, MARCA_URL, type Idioma } from '../i18n/ui';
+
+interface Props {
+  idioma: Idioma;
+}
+
+const { idioma } = Astro.props;
+const s = t[idioma];
+
+const canonica = new URL(idioma === 'en' ? '/' : '/es/', Astro.site);
+---
+
+<!doctype html>
+<html lang={s.htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{s.titulo}</title>
+    <meta name="description" content={s.descripcion} />
+    <link rel="canonical" href={canonica} />
+
+    <link rel="alternate" hreflang="en" href={new URL('/', Astro.site)} />
+    <link rel="alternate" hreflang="es" href={new URL('/es/', Astro.site)} />
+    <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site)} />
+
+    <meta property="og:type" content="profile" />
+    <meta property="og:title" content={s.titulo} />
+    <meta property="og:description" content={s.descripcion} />
+    <meta property="og:url" content={canonica} />
+    <meta property="og:locale" content={idioma === 'en' ? 'en_US' : 'es_PE'} />
+    <meta name="twitter:card" content="summary" />
+
+    <meta name="author" content="Daniel Morán Vílchez" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)" />
+  </head>
+
+  <body>
+    <a
+      href="#contenido"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:px-4 focus:py-2"
+      style="background: var(--enlace); color: var(--fondo);"
+    >
+      {idioma === 'en' ? 'Skip to content' : 'Saltar al contenido'}
+    </a>
+
+    <Nav idioma={idioma} />
+    <main id="contenido"><slot /></main>
+
+    <footer style="border-color: var(--borde);" class="border-t">
+      <div
+        class="mx-auto flex max-w-3xl flex-col gap-3 px-6 py-10 text-sm sm:flex-row sm:items-center sm:justify-between"
+        style="color: var(--texto-suave);"
+      >
+        <p>© {new Date().getFullYear()} {s.pieDerechos}</p>
+        <nav class="flex flex-wrap gap-x-5 gap-y-2">
+          <a class="hover:underline" href={MARCA_URL} target="_blank" rel="noopener noreferrer">
+            {s.pieMarca}
+          </a>
+          <a
+            class="hover:underline"
+            href="https://github.com/DanielMoranV"
+            target="_blank"
+            rel="noopener noreferrer">GitHub</a
+          >
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>

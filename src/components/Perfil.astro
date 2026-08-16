@@ -1,0 +1,188 @@
+---
+import { casos } from '../data/casos';
+import { trabajos } from '../data/trabajo';
+import { piezas } from '../data/opensource';
+import { t, stack, type Idioma } from '../i18n/ui';
+
+interface Props {
+  idioma: Idioma;
+}
+const { idioma } = Astro.props;
+const s = t[idioma];
+---
+
+<!-- Hero -->
+<section class="mx-auto max-w-3xl px-6 pb-14 pt-20 sm:pt-24">
+  <h1 class="text-3xl font-bold leading-[1.15] sm:text-4xl">{s.heroTitulo}</h1>
+  <p class="mt-6 leading-relaxed" style="color: var(--texto-suave);">{s.heroEntrada}</p>
+</section>
+
+<!-- Notas de ingenieria -->
+<section id="notas" class="scroll-mt-20 border-t" style="border-color: var(--borde);">
+  <div class="mx-auto max-w-3xl px-6 py-14">
+    <h2 class="text-xl font-bold sm:text-2xl">{s.notasTitulo}</h2>
+    <p class="mt-3 text-sm" style="color: var(--texto-suave);">{s.notasEntrada}</p>
+
+    <div class="mt-10 space-y-12">
+      {
+        casos.map((caso) => (
+          <article>
+            <p
+              class="text-[0.7rem] font-semibold uppercase tracking-[0.09em]"
+              style="color: var(--texto-suave);"
+            >
+              {caso.sello[idioma]}
+            </p>
+            <h3 class="mt-1 text-lg font-semibold">{caso.titulo[idioma]}</h3>
+            <p class="mt-3 leading-relaxed" style="color: var(--texto-suave);">
+              {caso.cuerpo[idioma]}
+            </p>
+            {caso.prueba && (
+              <p class="mt-3 text-sm">
+                <span style="color: var(--texto-suave);">{s.pruebaEtiqueta}: </span>
+                <a
+                  href={caso.prueba.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="font-mono hover:underline"
+                  style="color: var(--enlace);"
+                >
+                  {caso.prueba.texto}
+                </a>
+              </p>
+            )}
+          </article>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<!-- En produccion -->
+<section
+  id="trabajo"
+  class="scroll-mt-20 border-t"
+  style="border-color: var(--borde); background: var(--fondo-hondo);"
+>
+  <div class="mx-auto max-w-3xl px-6 py-14">
+    <h2 class="text-xl font-bold sm:text-2xl">{s.trabajoTitulo}</h2>
+    <p class="mt-3 text-sm" style="color: var(--texto-suave);">{s.trabajoEntrada}</p>
+
+    <ul class="mt-8">
+      {
+        trabajos.map((w) => (
+          <li class="border-t last:border-b" style="border-color: var(--borde);">
+            <a
+              href={w.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="flex flex-col gap-1 py-4 hover:opacity-80"
+            >
+              <span class="flex flex-wrap items-baseline gap-x-3">
+                <span class="font-semibold">{w.nombre}</span>
+                <span class="text-[0.7rem]" style="color: var(--texto-suave);">
+                  {w.modelo === 'propio' ? s.modeloPropio : s.modeloCliente}
+                </span>
+              </span>
+              <span class="text-sm" style="color: var(--texto-suave);">
+                {w.que[idioma]}
+              </span>
+              <span class="font-mono text-[0.7rem]" style="color: var(--texto-suave);">
+                {w.stack.join(' · ')}
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<!-- Codigo abierto -->
+<section id="codigo" class="scroll-mt-20 border-t" style="border-color: var(--borde);">
+  <div class="mx-auto max-w-3xl px-6 py-14">
+    <h2 class="text-xl font-bold sm:text-2xl">{s.codigoTitulo}</h2>
+    <p class="mt-3 text-sm" style="color: var(--texto-suave);">{s.codigoEntrada}</p>
+
+    <ul class="mt-8 space-y-6">
+      {
+        piezas.map((pieza) => (
+          <li>
+            <div class="flex flex-wrap items-baseline justify-between gap-2">
+              <a
+                href={pieza.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="font-mono text-sm font-semibold hover:underline"
+                style="color: var(--enlace);"
+              >
+                {pieza.nombre}
+              </a>
+              <span class="text-[0.7rem]" style="color: var(--texto-suave);">
+                {pieza.sello}
+              </span>
+            </div>
+            <p class="mt-1.5 text-sm leading-relaxed" style="color: var(--texto-suave);">
+              {pieza.que[idioma]}
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
+
+<!-- Stack -->
+<section
+  class="border-t"
+  style="border-color: var(--borde); background: var(--fondo-hondo);"
+>
+  <div class="mx-auto max-w-3xl px-6 py-14">
+    <h2 class="text-xl font-bold sm:text-2xl">{s.stackTitulo}</h2>
+    <p class="mt-3 text-sm" style="color: var(--texto-suave);">{s.stackEntrada}</p>
+
+    <dl class="mt-8 space-y-4">
+      {
+        stack.map((g) => (
+          <div class="grid gap-1 sm:grid-cols-[9rem_1fr]">
+            <dt class="text-sm font-semibold">{g.grupo[idioma]}</dt>
+            <dd class="font-mono text-sm" style="color: var(--texto-suave);">
+              {g.items.join(' · ')}
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </div>
+</section>
+
+<!-- Contacto -->
+<section id="contacto" class="scroll-mt-20 border-t" style="border-color: var(--borde);">
+  <div class="mx-auto max-w-3xl px-6 py-16">
+    <h2 class="text-xl font-bold sm:text-2xl">{s.contactoTitulo}</h2>
+    <p class="mt-3 max-w-xl leading-relaxed" style="color: var(--texto-suave);">
+      {s.contactoEntrada}
+    </p>
+
+    <div class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
+      <a href="mailto:skaan.dmv@gmail.com" class="font-medium hover:underline" style="color: var(--enlace);">
+        skaan.dmv@gmail.com
+      </a>
+      <a
+        href="https://linkedin.com/in/danielmoranv"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:underline"
+        style="color: var(--texto-suave);">LinkedIn</a
+      >
+      <a
+        href="https://github.com/DanielMoranV"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="hover:underline"
+        style="color: var(--texto-suave);">GitHub</a
+      >
+      <span style="color: var(--texto-suave);">Piura, Perú</span>
+    </div>
+  </div>
+</section>

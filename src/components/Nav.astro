@@ -1,0 +1,46 @@
+---
+import { t, type Idioma } from '../i18n/ui';
+
+interface Props {
+  idioma: Idioma;
+}
+const { idioma } = Astro.props;
+const s = t[idioma];
+const raiz = idioma === 'en' ? '/' : '/es/';
+const otra = idioma === 'en' ? '/es/' : '/';
+
+const enlaces = [
+  { href: '#notas', texto: s.navNotas },
+  { href: '#trabajo', texto: s.navTrabajo },
+  { href: '#codigo', texto: s.navCodigo },
+];
+---
+
+<header
+  class="sticky top-0 z-40 border-b backdrop-blur"
+  style="border-color: var(--borde); background: color-mix(in srgb, var(--fondo) 88%, transparent);"
+>
+  <nav class="mx-auto flex max-w-3xl items-center justify-between gap-4 px-6 py-3">
+    <a href={raiz} class="font-semibold tracking-tight">Daniel Morán Vílchez</a>
+
+    <div class="flex items-center gap-x-5 text-sm">
+      {
+        enlaces.map((e) => (
+          <a href={e.href} class="hidden hover:underline sm:inline" style="color: var(--texto-suave);">
+            {e.texto}
+          </a>
+        ))
+      }
+      <a
+        href={otra}
+        class="rounded border px-2 py-0.5 text-xs font-medium"
+        style="border-color: var(--borde); color: var(--texto-suave);"
+      >
+        {s.otroIdioma}
+      </a>
+      <a href="#contacto" class="text-sm font-medium hover:underline" style="color: var(--enlace);">
+        {s.navContacto}
+      </a>
+    </div>
+  </nav>
+</header>
