@@ -33,8 +33,11 @@ export const casos: Caso[] = [
         'it parses the table header, appends and edits records at their byte offsets, and ' +
         'takes byte-range locks, so it holds only the bytes of the record it is touching. The ' +
         'legacy application keeps reading and writing the same file at the same time and ' +
-        'never notices. Over 500,000 historical records reached reporting, web systems and ' +
-        'analytics without closing for a single day.',
+        'never notices. The engine is not a script someone remembers to run: it sits behind a ' +
+        'FastAPI service where a migration is a job launched by date range and followed by its ' +
+        'id, next to a scheduler that can be started and stopped while the system is up, and ' +
+        'endpoints that serve the aggregates once the data has landed. Over 500,000 historical ' +
+        'records reached reporting, web systems and analytics without closing for a single day.',
       es:
         'FoxPro sigue sosteniendo operaciones reales, y la aplicación está abierta en cada ' +
         'escritorio desde las ocho de la mañana. Mover ese histórico a cualquier sitio suele ' +
@@ -42,8 +45,13 @@ export const casos: Caso[] = [
         'Python sin dependencias: interpreta la cabecera de la tabla, inserta y edita ' +
         'registros en su desplazamiento de bytes, y bloquea por rangos, de modo que solo ' +
         'retiene los bytes del registro que está tocando. La aplicación de siempre sigue ' +
-        'leyendo y escribiendo el mismo fichero a la vez, y no se entera. Más de 500.000 ' +
-        'registros históricos llegaron a reportes, web y análisis sin cerrar un solo día.',
+        'leyendo y escribiendo el mismo fichero a la vez, y no se entera. El motor no es un ' +
+        'script que alguien se acuerda de lanzar: vive detrás de un servicio FastAPI donde una ' +
+        'migración es un trabajo que se dispara por rango de fechas y se sigue por su ' +
+        'identificador, junto a un planificador que se arranca y se para con el sistema en ' +
+        'marcha, y endpoints que sirven los agregados una vez que el dato ha aterrizado. Más ' +
+        'de 500.000 registros históricos llegaron a reportes, web y análisis sin cerrar un ' +
+        'solo día.',
     },
     prueba: { texto: 'py-foxpro-engine', url: 'https://github.com/DanielMoranV/py-foxpro-engine' },
   },
