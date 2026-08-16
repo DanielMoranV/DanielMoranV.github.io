@@ -14,11 +14,11 @@ export const GITHUB = 'https://github.com/DanielMoranV';
 export const LINKEDIN = 'https://linkedin.com/in/danielmoranv';
 
 /**
- * El CV no se pinta hasta que exista el fichero: un enlace que devuelve 404 es
- * justo el fallo que este sitio vino a corregir. Para encenderlo, deja
- * public/cv.pdf y pon true.
+ * El CV se genera con scripts/gen-cv.py, uno por idioma, y NO lleva telefono:
+ * el fichero se sirve desde una URL publica y fija. El correo si va, que ya
+ * estaba publico en el perfil.
  */
-export const HAY_CV = false;
+export const HAY_CV = true;
 
 /** Retrato real, cuadrado. Se convirtio de profile.jfif a webp: 11 KB. */
 export const FOTO = '/foto.webp';
@@ -60,6 +60,7 @@ export const t = {
     heroCorreo: 'Email',
     heroGithub: 'GitHub',
     heroCv: 'CV.pdf ↓',
+    cvUrl: '/cv.pdf',
     fotoAlt: 'Daniel Morán Vílchez',
 
     notasTitulo: 'Engineering notes',
@@ -160,6 +161,7 @@ export const t = {
     heroCorreo: 'Correo',
     heroGithub: 'GitHub',
     heroCv: 'CV.pdf ↓',
+    cvUrl: '/cv-es.pdf',
     fotoAlt: 'Daniel Morán Vílchez',
 
     notasTitulo: 'Notas de ingeniería',

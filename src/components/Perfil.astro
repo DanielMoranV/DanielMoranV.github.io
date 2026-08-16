@@ -43,7 +43,7 @@ const caso = (slug: string) =>
     <h1>{s.heroTitulo}</h1>
     <p class="entrada">{s.heroEntrada}</p>
     <div class="acciones">
-      {HAY_CV && <a class="vinculo" href="/cv.pdf">{s.heroCv}</a>}
+      {HAY_CV && <a class="vinculo" href={s.cvUrl}>{s.heroCv}</a>}
       <a class="vinculo" href={`mailto:${CORREO}`}>{s.heroCorreo}</a>
       <a class="vinculo" href={GITHUB} target="_blank" rel="noopener noreferrer">
         {s.heroGithub}
@@ -381,7 +381,7 @@ const caso = (slug: string) =>
   </p>
 
   <div class="flex flex-wrap items-baseline gap-x-6 gap-y-3">
-    {HAY_CV && <a class="vinculo" href="/cv.pdf">{s.heroCv}</a>}
+    {HAY_CV && <a class="vinculo" href={s.cvUrl}>{s.heroCv}</a>}
     <a class="vinculo" href={`mailto:${CORREO}`}>{CORREO}</a>
     <a class="vinculo" href={LINKEDIN} target="_blank" rel="noopener noreferrer">LinkedIn</a>
     <a class="vinculo" href={GITHUB} target="_blank" rel="noopener noreferrer">GitHub</a>

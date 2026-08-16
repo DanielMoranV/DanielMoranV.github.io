@@ -103,6 +103,19 @@ están tomadas para no volver a discutirlas.
 > logotipos borrosos en la mayoría de pantallas actuales. Una métrica al 100 no es motivo
 > para empeorar lo que se ve.
 
+### CV en PDF
+
+- **Uno por idioma**, generados con `scripts/gen-cv.py`: se compone un HTML con las tres
+  fuentes del sitio incrustadas y se imprime con Chrome. Sin LaTeX, sin Word y sin
+  dependencias. El PDF que descarga un reclutador y la página que acaba de leer son
+  reconociblemente lo mismo.
+- Dos páginas: perfil, cifras, experiencia con logros, los ocho productos, los case studies
+  con su URL, código abierto, stack, formación e idiomas.
+- **Sin teléfono, a propósito.** El repositorio es público y el fichero se sirve desde una
+  URL fija: un número ahí queda indexable y fácil de raspar. Para una copia con teléfono
+  destinada a enviarse en una candidatura, el script lo dice en su cabecera — y esa copia se
+  guarda fuera del repositorio.
+
 ### Cómo trabajo
 
 - **Cinco pasos**, ninguno de ellos Scrum ni Kanban. El hilo común es la restricción que
@@ -130,9 +143,6 @@ están tomadas para no volver a discutirlas.
 
 ### P0 — cierran huecos que un reclutador nota
 
-- [ ] **CV en PDF.** Dejar `public/cv.pdf` y poner `HAY_CV = true` en `src/i18n/ui.ts`. El
-      enlace ya está maquetado en el hero y en contacto; no se pinta hasta que exista el
-      fichero, porque un enlace muerto es el fallo que este sitio vino a corregir.
 - [ ] **Testimonios.** Dos o tres citas de clientes que pagaron, con atribución en mono, sin
       comillas decorativas ni foto. Pesan más que cualquier cosa que uno escriba sobre sí
       mismo, y hay que pedirlas mientras el trabajo está reciente.
