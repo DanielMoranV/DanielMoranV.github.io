@@ -2,6 +2,7 @@
 import { casos } from '../data/casos';
 import { cifras } from '../data/cifras';
 import { trabajos } from '../data/trabajo';
+import { puesto, sistemas } from '../data/trayectoria';
 import { piezas } from '../data/opensource';
 import { t, stack, CORREO, GITHUB, LINKEDIN, HAY_CV, FOTO, type Idioma } from '../i18n/ui';
 
@@ -188,10 +189,69 @@ const separador = 'padding-bottom:1.5rem;border-bottom:1px solid var(--borde)';
   </div>
 </section>
 
-<!-- 04 · Codigo abierto -->
-<section id="codigo" class="pagina seccion scroll-mt-20">
+<!-- 04 · Trayectoria -->
+<section id="trayectoria" class="pagina seccion scroll-mt-20">
   <div class="titular">
     <span class="sello sello-acento">04</span>
+    <h2>{s.trayectoriaTitulo}</h2>
+    <span class="regla"></span>
+    <span class="sello etiqueta">{s.trayectoriaEtiqueta}</span>
+  </div>
+
+  <!--
+    El puesto. La clinica SI se nombra, por decision expresa; lo que no sale
+    de aqui es todo lo demas: siglas internas, dominios, repositorios y
+    codigo. Se cuenta la ingenieria, no se ensena el sistema.
+  -->
+  <div class="puesto">
+    {
+      puesto.logo && (
+        <img class="logotipo grande" src={puesto.logo} alt="" width="192" height="192" loading="lazy" />
+      )
+    }
+    <div>
+      <p class="sello num" style="margin:0 0 0.25rem">{puesto.periodo}</p>
+      <h3 style="margin:0 0 0.125rem;font-size:var(--text-t3)">{puesto.cargo[idioma]}</h3>
+      <p class="sello" style="margin:0">{puesto.organizacion} · {puesto.lugar}</p>
+    </div>
+  </div>
+
+  <p style="margin:1.25rem 0 1.75rem;max-width:var(--container-prosa);line-height:1.68;color:var(--texto-suave)">
+    {puesto.que[idioma]}
+  </p>
+
+  <p class="sello" style="margin:0 0 0.875rem">{s.sistemasEtiqueta}</p>
+  <div class="celdas">
+    {
+      sistemas.map((sis) => (
+        <div>
+          <div class="con-logo" style="justify-content:space-between">
+            <span style="font-family:var(--font-serif);font-size:1.25rem;line-height:1.2">
+              {sis.nombre[idioma]}
+            </span>
+            <span class={`sello${sis.estado === 'curso' ? ' sello-acento' : ''}`}>
+              {sis.estado === 'curso' ? s.estadoCurso : s.estadoServicio}
+            </span>
+          </div>
+          <span style="font-size:0.8125rem;line-height:1.6;color:var(--texto-suave)">
+            {sis.que[idioma]}
+          </span>
+          <span class="sello">{sis.stack.join(' · ')}</span>
+          {sis.prueba && (
+            <a class="vinculo" href={sis.prueba.url} target="_blank" rel="noopener noreferrer">
+              {sis.prueba.texto} ↗
+            </a>
+          )}
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<!-- 05 · Codigo abierto -->
+<section id="codigo" class="pagina seccion scroll-mt-20">
+  <div class="titular">
+    <span class="sello sello-acento">05</span>
     <h2>{s.codigoTitulo}</h2>
     <span class="regla"></span>
     <span class="sello etiqueta">{s.codigoEtiqueta}</span>
@@ -218,10 +278,10 @@ const separador = 'padding-bottom:1.5rem;border-bottom:1px solid var(--borde)';
   </div>
 </section>
 
-<!-- 05 · Stack -->
+<!-- 06 · Stack -->
 <section class="pagina seccion">
   <div class="titular">
-    <span class="sello sello-acento">05</span>
+    <span class="sello sello-acento">06</span>
     <h2>{s.stackTitulo}</h2>
     <span class="regla"></span>
     <span class="sello etiqueta">{s.stackEtiqueta}</span>
@@ -241,10 +301,10 @@ const separador = 'padding-bottom:1.5rem;border-bottom:1px solid var(--borde)';
   </dl>
 </section>
 
-<!-- 06 · Contacto -->
+<!-- 07 · Contacto -->
 <section id="contacto" class="pagina seccion scroll-mt-20" style="padding-bottom:3rem">
   <div class="titular">
-    <span class="sello sello-acento">06</span>
+    <span class="sello sello-acento">07</span>
     <h2>{s.contactoTitulo}</h2>
     <span class="regla"></span>
     <span class="sello etiqueta">{s.contactoEtiqueta}</span>

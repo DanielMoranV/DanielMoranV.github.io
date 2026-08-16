@@ -37,6 +37,7 @@ export const t = {
 
     navTrabajo: 'Work',
     navNotas: 'Notes',
+    navTrayectoria: 'Track record',
     navCodigo: 'Code',
     navContacto: 'Contact',
 
@@ -67,6 +68,12 @@ export const t = {
     trabajoEtiqueta: 'Eight systems',
     trabajoPropio: 'Own product · subscription',
     trabajoCliente: 'Client work · commissioned',
+
+    trayectoriaTitulo: 'Track record',
+    trayectoriaEtiqueta: 'Healthcare · since 2022',
+    sistemasEtiqueta: 'Flagship systems',
+    estadoServicio: 'In service',
+    estadoCurso: 'In progress',
 
     codigoTitulo: 'Open source',
     codigoEtiqueta: 'Published in full',
@@ -104,6 +111,7 @@ export const t = {
 
     navTrabajo: 'Trabajo',
     navNotas: 'Notas',
+    navTrayectoria: 'Trayectoria',
     navCodigo: 'Código',
     navContacto: 'Contacto',
 
@@ -134,6 +142,12 @@ export const t = {
     trabajoEtiqueta: 'Ocho sistemas',
     trabajoPropio: 'Producto propio · suscripción',
     trabajoCliente: 'Por encargo · cliente',
+
+    trayectoriaTitulo: 'Trayectoria',
+    trayectoriaEtiqueta: 'Salud · desde 2022',
+    sistemasEtiqueta: 'Sistemas bandera',
+    estadoServicio: 'En servicio',
+    estadoCurso: 'En curso',
 
     codigoTitulo: 'Código abierto',
     codigoEtiqueta: 'Publicado entero',
