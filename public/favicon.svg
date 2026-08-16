@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" role="img" aria-label="Daniel Moran Vilchez">
+  <!--
+    La D va dibujada como trazado, no como <text>: un favicon con texto depende
+    de que el sistema del visitante tenga la fuente, y a 16 px eso se nota.
+    Fondo solido en el azul de enlace del sitio, para que se lea igual sobre
+    pestanas claras y oscuras.
+  -->
+  <rect width="32" height="32" rx="7" fill="#1c6feb"/>
+  <path fill="#fff" fill-rule="evenodd" d="M9 7h7a9 9 0 0 1 0 18H9V7Zm4 4v10h3a5 5 0 0 0 0-10h-3Z"/>
+</svg>

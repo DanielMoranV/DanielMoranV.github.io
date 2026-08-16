@@ -20,17 +20,30 @@ const enlaces = [
   class="sticky top-0 z-40 border-b backdrop-blur"
   style="border-color: var(--borde); background: color-mix(in srgb, var(--fondo) 88%, transparent);"
 >
-  <nav class="mx-auto flex max-w-3xl items-center justify-between gap-4 px-6 py-3">
-    <a href={raiz} class="font-semibold tracking-tight">Daniel Morán Vílchez</a>
+  <!--
+    Dos filas en movil, una en escritorio, con `order` y sin duplicar el marcado
+    ni encender JavaScript por un menu de tres enlaces.
 
-    <div class="flex items-center gap-x-5 text-sm">
+    Antes los enlaces de seccion eran `hidden sm:inline`, asi que en el telefono
+    solo se veian el nombre, el idioma y Contacto — y el telefono es justo donde
+    se abre un enlace que llega por LinkedIn.
+  -->
+  <nav class="mx-auto flex max-w-3xl flex-wrap items-center gap-x-5 gap-y-2 px-6 py-3">
+    <a href={raiz} class="order-1 mr-auto font-semibold tracking-tight">Daniel Morán Vílchez</a>
+
+    <div
+      class="order-3 flex w-full flex-wrap gap-x-4 gap-y-1 text-xs sm:order-2 sm:w-auto sm:gap-x-5 sm:text-sm"
+    >
       {
         enlaces.map((e) => (
-          <a href={e.href} class="hidden hover:underline sm:inline" style="color: var(--texto-suave);">
+          <a href={e.href} class="hover:underline" style="color: var(--texto-suave);">
             {e.texto}
           </a>
         ))
       }
+    </div>
+
+    <div class="order-2 flex items-center gap-x-4 text-sm sm:order-3 sm:gap-x-5">
       <a
         href={otra}
         class="rounded border px-2 py-0.5 text-xs font-medium"
@@ -38,7 +51,7 @@ const enlaces = [
       >
         {s.otroIdioma}
       </a>
-      <a href="#contacto" class="text-sm font-medium hover:underline" style="color: var(--enlace);">
+      <a href="#contacto" class="font-medium hover:underline" style="color: var(--enlace);">
         {s.navContacto}
       </a>
     </div>

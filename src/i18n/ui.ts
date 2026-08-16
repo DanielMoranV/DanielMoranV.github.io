@@ -14,6 +14,9 @@ export const t = {
       'Full stack developer and data engineer in Piura, Peru. Go, Laravel, TypeScript and ' +
       'the DBF engine that writes to FoxPro tables while the legacy app stays open.',
     otroIdioma: 'Español',
+    tarjetaAlt:
+      'Daniel Morán Vílchez — Full Stack Developer & Data Engineer. Go, Laravel, Python, ' +
+      'TypeScript, PostgreSQL.',
 
     navTrabajo: 'Work',
     navNotas: 'Engineering notes',
@@ -63,6 +66,9 @@ export const t = {
       'Desarrollador full stack e ingeniero de datos en Piura, Perú. Go, Laravel, TypeScript ' +
       'y el motor DBF que escribe en tablas FoxPro con la aplicación de siempre abierta.',
     otroIdioma: 'English',
+    tarjetaAlt:
+      'Daniel Morán Vílchez — Desarrollador full stack e ingeniero de datos. Go, Laravel, ' +
+      'Python, TypeScript, PostgreSQL.',
 
     navTrabajo: 'Trabajo',
     navNotas: 'Notas de ingeniería',
@@ -109,7 +115,7 @@ export const t = {
 
 /** Agrupado por lo que se usa, no por popularidad. */
 export const stack = [
-  { grupo: { en: 'Backend', es: 'Backend' }, items: ['Go · Gin · sqlx', 'PHP · Laravel', 'TypeScript · NestJS', 'Python'] },
+  { grupo: { en: 'Backend', es: 'Backend' }, items: ['Go · Gin · sqlx', 'PHP · Laravel', 'TypeScript · NestJS', 'Python · FastAPI'] },
   { grupo: { en: 'Frontend', es: 'Frontend' }, items: ['React 19', 'Vue 3', 'Livewire', 'Astro', 'Tailwind'] },
   { grupo: { en: 'Data', es: 'Datos' }, items: ['PostgreSQL · PL/pgSQL', 'Firestore', 'FoxPro · DBF', 'ETL'] },
   { grupo: { en: 'Mobile', es: 'Móvil' }, items: ['Flutter'] },

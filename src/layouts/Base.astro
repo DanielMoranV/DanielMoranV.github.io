@@ -11,6 +11,39 @@ const { idioma } = Astro.props;
 const s = t[idioma];
 
 const canonica = new URL(idioma === 'en' ? '/' : '/es/', Astro.site);
+
+/**
+ * Tarjeta de enlace. Una por idioma, generada a mano y commiteada en public/:
+ * un PNG que no cambia no justifica una dependencia de build.
+ *
+ * Sin esto, compartir el sitio en LinkedIn o WhatsApp mostraba un rectangulo
+ * gris — que es literalmente la primera impresion de quien recibe el enlace.
+ */
+const tarjeta = new URL(idioma === 'en' ? '/og.png' : '/og-es.png', Astro.site);
+
+/**
+ * Datos estructurados. Su unico trabajo es que buscar el nombre devuelva este
+ * sitio y no un homonimo. Todo lo de aqui esta tambien visible en la pagina:
+ * marcar lo que no se muestra es justo lo que Google penaliza.
+ */
+const persona = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Daniel Morán Vílchez',
+  url: canonica.href,
+  image: tarjeta.href,
+  jobTitle: idioma === 'en' ? 'Full Stack Developer & Data Engineer' : 'Desarrollador full stack e ingeniero de datos',
+  description: s.descripcion,
+  email: 'mailto:skaan.dmv@gmail.com',
+  address: { '@type': 'PostalAddress', addressLocality: 'Piura', addressCountry: 'PE' },
+  knowsLanguage: ['es', 'en'],
+  sameAs: ['https://github.com/DanielMoranV', 'https://linkedin.com/in/danielmoranv', MARCA_URL],
+  knowsAbout: [
+    'Go', 'Laravel', 'PHP', 'Python', 'FastAPI', 'TypeScript', 'NestJS', 'Vue.js', 'React',
+    'PostgreSQL', 'FoxPro', 'DBF', 'ETL', 'Legacy system modernization', 'Multi-tenant architecture',
+    'SUNAT electronic invoicing', 'Docker', 'Flutter',
+  ],
+};
 ---
 
 <!doctype html>
@@ -26,16 +59,27 @@ const canonica = new URL(idioma === 'en' ? '/' : '/es/', Astro.site);
     <link rel="alternate" hreflang="es" href={new URL('/es/', Astro.site)} />
     <link rel="alternate" hreflang="x-default" href={new URL('/', Astro.site)} />
 
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
     <meta property="og:type" content="profile" />
+    <meta property="og:site_name" content="Daniel Morán Vílchez" />
     <meta property="og:title" content={s.titulo} />
     <meta property="og:description" content={s.descripcion} />
     <meta property="og:url" content={canonica} />
     <meta property="og:locale" content={idioma === 'en' ? 'en_US' : 'es_PE'} />
-    <meta name="twitter:card" content="summary" />
+    <meta property="og:image" content={tarjeta} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={s.tarjetaAlt} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content={tarjeta} />
 
     <meta name="author" content="Daniel Morán Vílchez" />
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#0f1115" media="(prefers-color-scheme: dark)" />
+
+    <script type="application/ld+json" set:html={JSON.stringify(persona)} is:inline />
   </head>
 
   <body>
