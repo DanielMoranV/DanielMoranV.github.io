@@ -46,7 +46,7 @@ export const t = {
     temaOscuro: 'Dark',
     temaSistema: 'System',
 
-    heroMeta: 'Piura, Peru · full stack + data · 2016—',
+    heroMeta: 'Piura, Peru · full stack + data · 2022—',
     heroTitulo: 'I build the software companies run on.',
     heroEntrada:
       'Full stack developer and data engineer in Piura, Peru. Eight products in production — ' +
@@ -70,7 +70,8 @@ export const t = {
     trabajoCliente: 'Client work · commissioned',
 
     trayectoriaTitulo: 'Track record',
-    trayectoriaEtiqueta: 'Healthcare · since 2022',
+    trayectoriaEtiqueta: 'Healthcare',
+    anios: 'years',
     sistemasEtiqueta: 'Flagship systems',
     estadoServicio: 'In service',
     estadoCurso: 'In progress',
@@ -120,7 +121,7 @@ export const t = {
     temaOscuro: 'Oscuro',
     temaSistema: 'Sistema',
 
-    heroMeta: 'Piura, Perú · full stack + datos · 2016—',
+    heroMeta: 'Piura, Perú · full stack + datos · 2022—',
     heroTitulo: 'Construyo el software sobre el que funcionan las empresas.',
     heroEntrada:
       'Desarrollador full stack e ingeniero de datos en Piura, Perú. Ocho productos en ' +
@@ -144,7 +145,8 @@ export const t = {
     trabajoCliente: 'Por encargo · cliente',
 
     trayectoriaTitulo: 'Trayectoria',
-    trayectoriaEtiqueta: 'Salud · desde 2022',
+    trayectoriaEtiqueta: 'Salud',
+    anios: 'años',
     sistemasEtiqueta: 'Sistemas bandera',
     estadoServicio: 'En servicio',
     estadoCurso: 'En curso',

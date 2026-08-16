@@ -2,7 +2,7 @@
 import { casos } from '../data/casos';
 import { cifras } from '../data/cifras';
 import { trabajos } from '../data/trabajo';
-import { puesto, sistemas } from '../data/trayectoria';
+import { ANIOS, puesto, sistemas } from '../data/trayectoria';
 import { piezas } from '../data/opensource';
 import { t, stack, CORREO, GITHUB, LINKEDIN, HAY_CV, FOTO, type Idioma } from '../i18n/ui';
 
@@ -195,7 +195,7 @@ const separador = 'padding-bottom:1.5rem;border-bottom:1px solid var(--borde)';
     <span class="sello sello-acento">04</span>
     <h2>{s.trayectoriaTitulo}</h2>
     <span class="regla"></span>
-    <span class="sello etiqueta">{s.trayectoriaEtiqueta}</span>
+    <span class="sello etiqueta">{s.trayectoriaEtiqueta} · {ANIOS}+ {s.anios}</span>
   </div>
 
   <!--

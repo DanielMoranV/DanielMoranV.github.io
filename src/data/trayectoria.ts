@@ -15,6 +15,22 @@
  * mas de la mitad de la semana, y el sitio estuvo sin una linea al respecto.
  */
 
+/**
+ * Noviembre de 2022: cuando la programacion pasa a ser el trabajo, no una
+ * parte de el. Antes hubo seis anos de soporte tecnico, redes y logistica, y
+ * contarlos como experiencia de desarrollo seria inflar la cifra — un
+ * entrevistador lo desmonta en una pregunta.
+ *
+ * Los anos se calculan en cada compilacion, no se escriben a mano: un
+ * portafolio que dice «3+ anos» tres anos despues envejece solo, y es
+ * exactamente el tipo de dato que nadie se acuerda de actualizar.
+ */
+export const INICIO = new Date('2022-11-01T00:00:00Z');
+
+export const ANIOS = Math.floor(
+  (Date.now() - INICIO.getTime()) / (365.2425 * 24 * 60 * 60 * 1000)
+);
+
 export interface Puesto {
   periodo: string;
   cargo: { en: string; es: string };
