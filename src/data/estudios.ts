@@ -82,14 +82,16 @@ export const estudios: Estudio[] = [
     problema: {
       en:
         'Every normal route — ODBC, exporting by hand, a third-party Windows tool — needs ' +
-        'nobody to be using the table. That means closing the business for a weekend, ' +
-        'repeating it every time the data needs refreshing, and still not solving the ' +
-        'continuous flow the reporting actually needs.',
+        'nobody to be using the table. Some of them write in a way FoxPro no longer ' +
+        'recognises afterwards. And a weekend export would not solve the actual need ' +
+        'anyway: admissions has to resolve a patient by their ID document while every ' +
+        'cash desk is writing to that same file.',
       es:
         'Todas las vías normales —ODBC, exportar a mano, un ejecutable de Windows de ' +
-        'terceros— exigen que nadie esté usando la tabla. Eso significa cerrar el negocio un ' +
-        'fin de semana, repetirlo cada vez que haya que refrescar, y aun así no resuelve el ' +
-        'flujo continuo que los reportes necesitan de verdad.',
+        'terceros— exigen que nadie esté usando la tabla, y algunas escriben de forma que ' +
+        'FoxPro deja de reconocerla después. Y una exportación de fin de semana tampoco ' +
+        'resolvería la necesidad real: admisión tiene que resolver un paciente por su ' +
+        'documento mientras cada caja está escribiendo en ese mismo fichero.',
     },
     restricciones: [
       {
@@ -163,6 +165,44 @@ export const estudios: Estudio[] = [
           es:
             'FoxPro lleva sus propios contadores. Insertar sin reservarlos rompe la ' +
             'integridad referencial con el sistema viejo, en silencio y días después.',
+        },
+      },
+      {
+        titulo: {
+          en: 'Write a whole record in one pass',
+          es: 'Escribir el registro entero de una pasada',
+        },
+        cuerpo: {
+          en:
+            'A record is serialised complete in memory and written in a single operation, ' +
+            'never field by field. There is no instant in which a concurrent reader can see ' +
+            'a row that is half old and half new. Deleting marks the row, as FoxPro does; it ' +
+            'never compacts, because moving records would invalidate every index and every ' +
+            'record number another process is holding in memory.',
+          es:
+            'Un registro se serializa entero en memoria y se escribe en una sola operación, ' +
+            'nunca campo por campo. No existe un instante en el que un lector concurrente vea ' +
+            'una fila mitad vieja y mitad nueva. Borrar marca la fila, como hace FoxPro, y no ' +
+            'compacta nunca: desplazar registros invalidaría todo índice y todo número de ' +
+            'registro que otro proceso tenga en memoria.',
+        },
+      },
+      {
+        titulo: {
+          en: 'Do not trust the header',
+          es: 'No fiarse de la cabecera',
+        },
+        cuerpo: {
+          en:
+            'A table FoxPro did not close cleanly declares one record count and contains ' +
+            'another. The engine reports both — the declared one and the one measured from ' +
+            'the file size — and flags whether they agree. That flag is what makes the ' +
+            'migration decision below possible in the first place.',
+          es:
+            'Una tabla que FoxPro no cerró bien declara un número de registros y contiene ' +
+            'otro. El motor informa de los dos —el declarado y el medido por el tamaño del ' +
+            'fichero— y avisa de si coinciden. Ese aviso es lo que hace posible la decisión ' +
+            'de migración de aquí abajo.',
         },
       },
       {

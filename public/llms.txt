@@ -11,12 +11,13 @@ Contact: skaan.dmv@gmail.com · github.com/DanielMoranV · linkedin.com/in/danie
 
 ## Signature work
 
-- **DBF engine for FoxPro.** Python, no dependencies. Reads and *writes* .dbf
-  tables at byte level with byte-range locking, so records are inserted while
-  the 1990s application stays open on every desk. Exposed as a FastAPI service
-  with date-range migration jobs and a live scheduler. Over 500,000 historical
-  records reached PostgreSQL with zero days of downtime. Published under MIT as
-  `py-foxpro-engine`.
+- **DBF engine for FoxPro.** Python, no dependencies, speaking FoxPro's own
+  byte-range locking protocol: it reads and *writes* .dbf tables while the 1990s
+  application stays open on every desk, and writes each record in a single pass
+  so no concurrent reader ever sees half a row. Exposed as a FastAPI service
+  that both migrates by date range and answers live queries without migrating
+  anything. Over 500,000 historical records reached PostgreSQL with zero days of
+  downtime. Published under MIT as `py-foxpro-engine`.
 - **AI inside products, not beside them.** An ERP agent with 29 read-only
   tools, each gated by the asking user's own RBAC permission and re-validated
   at execution; and a public sales chatbot built the opposite way, with no

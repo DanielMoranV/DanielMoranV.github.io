@@ -18,12 +18,15 @@ export const piezas: Pieza[] = [
     sello: 'Python · MIT',
     que: {
       en:
-        'Reads and writes FoxPro (.dbf) tables at the byte level with byte-range locking — ' +
-        'appends records while the 1990s application is still open on every desk. No dependencies.',
+        'Reads and writes FoxPro (.dbf) tables natively, speaking FoxPro’s own byte-range ' +
+        'locking protocol: it appends and edits while the 1990s application is open on every ' +
+        'desk. No dependencies, no ODBC, no Windows binaries. Its README states its limits ' +
+        'up front.',
       es:
-        'Lee y escribe tablas FoxPro (.dbf) a nivel de byte, con bloqueo por rangos: inserta ' +
-        'registros mientras la aplicación de los noventa sigue abierta en cada escritorio. ' +
-        'Sin dependencias.',
+        'Lee y escribe tablas FoxPro (.dbf) de forma nativa, hablando el mismo protocolo de ' +
+        'bloqueo por rangos que usa FoxPro: inserta y edita mientras la aplicación de los ' +
+        'noventa sigue abierta en cada escritorio. Sin dependencias, sin ODBC y sin ' +
+        'ejecutables de Windows. Su README dice sus límites por delante.',
     },
   },
   {

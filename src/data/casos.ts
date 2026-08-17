@@ -49,25 +49,27 @@ export const casos: Caso[] = [
         'FoxPro still runs real operations, and the application sits open on every desk from ' +
           'eight in the morning. Moving that history anywhere normally means closing the ' +
           'business for a weekend.',
-        'Instead I wrote a DBF engine in Python with no dependencies: it parses the table ' +
-          'header, appends and edits records at their byte offsets, and takes byte-range ' +
-          'locks, so it holds only the bytes of the record it is touching. The legacy ' +
-          'application keeps reading and writing the same file at the same time and never ' +
-          'notices. On top of it runs a FastAPI service: a migration is launched by date ' +
-          'range and followed by its id, next to a scheduler that starts and stops while the ' +
-          'system is up.',
+        'Instead I wrote a DBF engine in Python with no dependencies that speaks FoxPro’s own ' +
+          'locking protocol: it takes the exact byte range of the row it is touching, never ' +
+          'the file, and writes each record in a single pass so no concurrent reader ever ' +
+          'sees half a row. The legacy application keeps working and never notices. On top ' +
+          'of it runs a FastAPI service that does two different things: it migrates by date ' +
+          'range as a followable job, and it answers live queries without migrating ' +
+          'anything — which is how reception resolves a patient while every cash desk is ' +
+          'writing to that same file.',
       ],
       es: [
         'FoxPro sigue sosteniendo operaciones reales, y la aplicación está abierta en cada ' +
           'escritorio desde las ocho de la mañana. Mover ese histórico a cualquier sitio ' +
           'suele significar cerrar el negocio un fin de semana.',
-        'En vez de eso escribí un motor DBF en Python sin dependencias: interpreta la ' +
-          'cabecera de la tabla, inserta y edita registros en su desplazamiento de bytes, y ' +
-          'bloquea por rangos, de modo que solo retiene los bytes del registro que está ' +
-          'tocando. La aplicación de siempre sigue leyendo y escribiendo el mismo fichero a ' +
-          'la vez, y no se entera. Encima corre un servicio FastAPI: la migración se dispara ' +
-          'por rango de fechas y se sigue por su identificador, junto a un planificador que ' +
-          'se arranca y se para con el sistema en marcha.',
+        'En vez de eso escribí un motor DBF en Python sin dependencias que habla el mismo ' +
+          'protocolo de bloqueo que FoxPro: toma el rango de bytes exacto de la fila que ' +
+          'toca, nunca el fichero, y escribe cada registro de una sola pasada, así que ' +
+          'ningún lector concurrente ve media fila. La aplicación de siempre sigue ' +
+          'trabajando y no se entera. Encima corre un servicio FastAPI que hace dos cosas ' +
+          'distintas: migra por rango de fechas como un trabajo que se puede seguir, y ' +
+          'responde consultas en vivo sin migrar nada — que es como recepción resuelve un ' +
+          'paciente mientras cada caja escribe en ese mismo fichero.',
       ],
     },
     ficha: [
