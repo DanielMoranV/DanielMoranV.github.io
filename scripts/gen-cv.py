@@ -52,25 +52,25 @@ def fuente_b64(nombre):
 # --------------------------------------------------------------- contenido
 
 PRODUCTOS = [
-    ("AlmaZen", "propio", "ERP multiempresa: inventario, compras, ventas, POS, facturación SUNAT y agente de IA",
+    ("AlmaZen", "2025", "propio", "ERP multiempresa: inventario, compras, ventas, POS, facturación SUNAT y agente de IA",
      "ERP: inventory, purchasing, sales, POS, SUNAT e-invoicing, AI agent",
      "Laravel · Livewire · PostgreSQL · Gemini", "almazenapp.djasoft.net.pe"),
-    ("Mozaico", "propio", "Gestión de restaurantes con salón y cocina sincronizados por WebSockets",
+    ("Mozaico", "2026", "propio", "Gestión de restaurantes con salón y cocina sincronizados por WebSockets",
      "Restaurant management, floor and kitchen synced over WebSockets",
      "Go · Gin · sqlx · React 19 · PostgreSQL", "mozaicopro.djasoft.net.pe"),
-    ("EasyPay", "propio", "Personal, asistencia, horarios y cálculo de planillas",
+    ("EasyPay", "2026", "propio", "Personal, asistencia, horarios y cálculo de planillas",
      "Staff, attendance, scheduling and payroll runs",
      "TypeScript · NestJS", "easypay.djasoft.net.pe"),
-    ("Master Color", "cliente", "Comercio electrónico, gestión de pedidos y app de soporte en campo",
+    ("Master Color", "2025", "cliente", "Comercio electrónico, gestión de pedidos y app de soporte en campo",
      "E-commerce, order management and a field-support app",
      "Laravel · Vue 3 · Flutter · AWS S3", "mastercolor.net.pe"),
-    ("Otto Tonsmann", "cliente", "Caja, comprobantes y padrón de alumnos con acceso por roles y auditoría",
+    ("Otto Tonsmann", "2026", "cliente", "Caja, comprobantes y padrón de alumnos con acceso por roles y auditoría",
      "Cash desk, receipts and student registry with RBAC and audit trail",
      "Vue 3 · Firebase", "otto-tonsmann.web.app"),
-    ("CONERI", "cliente", "Catálogo con carrito de cotización y panel de administración",
+    ("CONERI", "2024", "cliente", "Catálogo con carrito de cotización y panel de administración",
      "Catalog with a quote cart and an admin panel",
      "Firebase · Cloud Functions · Cloudflare Pages", "coneri.pe"),
-    ("SURGIMED", "cliente", "Sitio institucional con despliegue continuo desde el repositorio",
+    ("SURGIMED", "2024", "cliente", "Sitio institucional con despliegue continuo desde el repositorio",
      "Corporate site with continuous deployment from the repository",
      "Firebase Hosting · GitHub Actions", "surgimed-pe.web.app"),
 ]
@@ -197,7 +197,7 @@ T = {
             "(2016). Redes LAN/WLAN/WAN, mantenimiento de equipos y capacitación a usuarios."
         ),
         "prod_t": "Productos en producción",
-        "prod_e": "Todos con URL viva. Los cuatro primeros son producto propio de suscripción; los cuatro siguientes, encargo pagado.",
+        "prod_e": "Todos con URL viva y con su año de inicio. Los tres primeros son producto propio de suscripción; los cuatro siguientes, encargo pagado.",
         "casos_t": "Casos de estudio",
         "casos_e": "Escritos con la decisión y la alternativa descartada, no solo con el resultado:",
         "os_t": "Código abierto",
@@ -242,7 +242,7 @@ T = {
             "(2016). LAN/WLAN/WAN networks, hardware maintenance and user training."
         ),
         "prod_t": "Products in production",
-        "prod_e": "All with a live URL. The first four are my own subscription products; the next four were commissioned and paid for.",
+        "prod_e": "All with a live URL and their start year. The first three are my own subscription products; the next four were commissioned and paid for.",
         "casos_t": "Case studies",
         "casos_e": "Written with the decision and the discarded alternative, not just the outcome:",
         "os_t": "Open source",
@@ -284,10 +284,10 @@ def html(idioma):
     )
     productos = "".join(
         f'<tr><td class="p-n">{nombre}'
-        f'<span class="p-m">{s["propio"] if modelo == "propio" else s["cliente"]}</span></td>'
+        f'<span class="p-m">{anio} · {s["propio"] if modelo == "propio" else s["cliente"]}</span></td>'
         f'<td>{d_es if es else d_en}</td>'
         f'<td class="p-s">{stack}</td><td class="p-u">{url}</td></tr>'
-        for nombre, modelo, d_es, d_en, stack, url in PRODUCTOS
+        for nombre, anio, modelo, d_es, d_en, stack, url in PRODUCTOS
     )
     segmento = "es/casos" if es else "case-studies"
     casos = "".join(

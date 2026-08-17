@@ -170,16 +170,19 @@ const caso = (slug: string) =>
     {
       propios.map((w) => (
         <div>
-          <div class="con-logo">
-            <img class="logotipo" src={w.logo} alt="" width="96" height="96" loading="lazy" />
-            <a
-              href={w.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              style="font-family:var(--font-serif);font-size:1.25rem;line-height:1.2;color:var(--enlace);text-decoration:none"
-            >
-              {w.nombre} ↗
-            </a>
+          <div class="con-logo" style="justify-content:space-between">
+            <span class="con-logo">
+              <img class="logotipo" src={w.logo} alt="" width="96" height="96" loading="lazy" />
+              <a
+                href={w.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style="font-family:var(--font-serif);font-size:1.25rem;line-height:1.2;color:var(--enlace);text-decoration:none"
+              >
+                {w.nombre} ↗
+              </a>
+            </span>
+            <span class="sello num">{w.desde}</span>
           </div>
           <span style="font-size:0.8125rem;line-height:1.55">{w.que[idioma]}</span>
           <span class="sello">{w.stack.join(' · ')}</span>
@@ -195,14 +198,17 @@ const caso = (slug: string) =>
         <div class="fila">
           <div class="con-logo">
             <img class="logotipo" src={w.logo} alt="" width="96" height="96" loading="lazy" />
-            <a
-              href={w.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              style="font-weight:600;font-size:0.844rem;color:var(--enlace);text-decoration:none"
-            >
-              {w.nombre} ↗
-            </a>
+            <span class="flex flex-col">
+              <a
+                href={w.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                style="font-weight:600;font-size:0.844rem;color:var(--enlace);text-decoration:none"
+              >
+                {w.nombre} ↗
+              </a>
+              <span class="sello num">{w.desde}</span>
+            </span>
           </div>
           <span style="font-size:0.8125rem;line-height:1.55;color:var(--texto-suave)">
             {w.que[idioma]}

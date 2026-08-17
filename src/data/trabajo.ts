@@ -23,6 +23,13 @@ export interface Trabajo {
    */
   logo: string;
   /**
+   * Ano de inicio. SOLO el ano, a proposito: el mes es precision que no
+   * puedo sostener en todos —algunos proyectos empezaron antes de que
+   * existiera su repositorio— y en una lista de siete productos anade
+   * ruido sin cambiar la lectura. Lo que importa es la curva.
+   */
+  desde: string;
+  /**
    * Fuera del listado publicado mientras se define su situacion. No se
    * borra la entrada: se apaga, para que cuando vuelva no haya que
    * reconstruirla ni reinventar el dato.
@@ -33,6 +40,7 @@ export interface Trabajo {
 const catalogo: Trabajo[] = [
   {
     nombre: 'AlmaZen',
+    desde: '2025',
     logo: '/projects/almazen.webp',
     url: 'https://almazenapp.djasoft.net.pe/',
     modelo: 'propio',
@@ -44,6 +52,7 @@ const catalogo: Trabajo[] = [
   },
   {
     nombre: 'Mozaico',
+    desde: '2026',
     logo: '/projects/mozaicopro.webp',
     url: 'https://mozaicopro.djasoft.net.pe/',
     modelo: 'propio',
@@ -55,6 +64,7 @@ const catalogo: Trabajo[] = [
   },
   {
     nombre: 'EasyPay',
+    desde: '2026',
     logo: '/projects/easypay.webp',
     url: 'https://easypay.djasoft.net.pe/',
     modelo: 'propio',
@@ -66,6 +76,7 @@ const catalogo: Trabajo[] = [
   },
   {
     nombre: 'Agenda EH',
+    desde: '2026',
     oculto: true,
     logo: '/projects/agenda-eh.svg',
     url: 'https://agenda-eh.web.app/',
@@ -78,6 +89,7 @@ const catalogo: Trabajo[] = [
   },
   {
     nombre: 'Master Color',
+    desde: '2025',
     logo: '/projects/master-color.webp',
     url: 'https://www.mastercolor.net.pe/',
     modelo: 'cliente',
@@ -89,6 +101,7 @@ const catalogo: Trabajo[] = [
   },
   {
     nombre: 'Otto Tonsmann',
+    desde: '2026',
     logo: '/projects/otto-tonsmann.webp',
     url: 'https://otto-tonsmann.web.app/',
     modelo: 'cliente',
@@ -100,6 +113,7 @@ const catalogo: Trabajo[] = [
   },
   {
     nombre: 'CONERI',
+    desde: '2024',
     logo: '/projects/coneri.webp',
     url: 'https://coneri.pe/',
     modelo: 'cliente',
@@ -111,6 +125,7 @@ const catalogo: Trabajo[] = [
   },
   {
     nombre: 'SURGIMED',
+    desde: '2024',
     logo: '/projects/surgimed.webp',
     url: 'https://surgimed-pe.web.app/',
     modelo: 'cliente',
