@@ -104,7 +104,7 @@ export const t = {
       'engineering and none of the business rules, published in full.',
 
     metodoTitulo: 'How I work',
-    metodoEtiqueta: 'Five steps',
+    metodoEtiqueta: 'Six steps',
     metodoEntrada:
       'Not Scrum or Kanban — everyone writes that. This is what the work actually looks like ' +
       'when the systems you touch cannot be switched off.',
@@ -205,7 +205,7 @@ export const t = {
       'ingeniería y ninguna regla de negocio, publicadas enteras.',
 
     metodoTitulo: 'Cómo trabajo',
-    metodoEtiqueta: 'Cinco pasos',
+    metodoEtiqueta: 'Seis pasos',
     metodoEntrada:
       'No Scrum ni Kanban — eso lo escribe todo el mundo. Esto es a lo que se parece el ' +
       'trabajo de verdad cuando los sistemas que tocas no se pueden apagar.',

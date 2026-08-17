@@ -84,12 +84,23 @@ export const sistemas: Sistema[] = [
         'A motor of my own that reads and writes the 1990s FoxPro tables at byte level with ' +
         'byte-range locking, and a FastAPI service that fires migrations by date range, ' +
         'follows them by id and serves the aggregates. Over 500,000 historical records ' +
-        'reached PostgreSQL without closing the operation for a single day.',
+        'reached PostgreSQL without closing the operation for a single day. It is not a ' +
+        'one-off migration: it is the data layer the area runs on. Another developer on ' +
+        'the team consumes its endpoints from the legacy system to build his own ' +
+        'dashboards, the integration runs both ways — an admission recorded in the old ' +
+        'system shows up in the intranet, and the other way round — and the digital ' +
+        'clinical record being built now will be fed from here.',
       es:
         'Un motor propio que lee y escribe las tablas FoxPro de los noventa a nivel de byte, ' +
         'con bloqueo por rangos, y un servicio en FastAPI que dispara migraciones por rango ' +
         'de fechas, las sigue por su identificador y sirve los agregados. Más de 500.000 ' +
-        'registros históricos llegaron a PostgreSQL sin cerrar la operación un solo día.',
+        'registros históricos llegaron a PostgreSQL sin cerrar la operación un solo día. ' +
+        'No es una migración de una vez: es la capa de datos sobre la que funciona el ' +
+        'área. Otro desarrollador del equipo consume sus endpoints desde el sistema ' +
+        'heredado para construir sus propios tableros, la integración va en los dos ' +
+        'sentidos —un ingreso registrado en el sistema antiguo aparece en la intranet, y ' +
+        'al revés— y la historia clínica digital que se construye ahora se alimentará de ' +
+        'aquí.',
     },
     stack: ['Python', 'FastAPI', 'PostgreSQL', 'FoxPro · DBF', 'Alembic'],
     prueba: { texto: 'py-foxpro-engine', url: 'https://github.com/DanielMoranV/py-foxpro-engine' },

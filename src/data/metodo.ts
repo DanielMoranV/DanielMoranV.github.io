@@ -1,5 +1,5 @@
 /**
- * Como trabajo. Cinco pasos.
+ * Como trabajo. Seis pasos.
  *
  * REGLA DE ESCRITURA: nada de Scrum, Kanban ni «metodologias agiles». Eso lo
  * pone todo el mundo y no significa nada; ademas es facil de desmontar en una
@@ -8,7 +8,8 @@
  * publicos, asi que se puede comprobar.
  *
  * El hilo comun es la restriccion que define este trabajo: los sistemas sobre
- * los que se opera NO SE PUEDEN APAGAR. De ahi salen los cinco.
+ * los que se opera NO SE PUEDEN APAGAR, y que no son solo suyos: parte de
+ * lo que escribe lo consume el sistema de otra persona. De ahi salen los seis.
  */
 
 export interface Paso {
@@ -88,6 +89,24 @@ export const pasos: Paso[] = [
         'verificado contra el original, porque un respaldo sin verificar es una creencia, no ' +
         'un respaldo. Contener va también antes que embellecer: si algo está expuesto, se ' +
         'cierra primero y se documenta después. Tapar un problema no es arreglarlo.',
+    },
+  },
+  {
+    titulo: {
+      en: 'Do not break what someone else depends on',
+      es: 'No romper lo que otro depende',
+    },
+    cuerpo: {
+      en:
+        'Part of what I write is consumed by a colleague’s system. An endpoint already in ' +
+        'production is a contract: you extend it, you do not reshape it — and when it has to ' +
+        'change, you say so before and you check after. It costs an extra conversation on ' +
+        'day one and it saves the phone call on day two.',
+      es:
+        'Parte de lo que escribo lo consume el sistema de un compañero. Un endpoint que ya ' +
+        'está en producción es un contrato: se amplía, no se le cambia la forma — y cuando ' +
+        'hay que cambiarlo, se avisa antes y se comprueba después. Cuesta una conversación ' +
+        'de más el primer día y ahorra la llamada del segundo.',
     },
   },
   {
