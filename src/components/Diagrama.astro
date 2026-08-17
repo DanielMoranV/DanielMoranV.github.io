@@ -68,6 +68,21 @@ const flujos = {
 };
 
 const pasos = flujos[tipo][idioma];
+
+/**
+ * La cadena de arriba se lee en un sentido, y en el motor DBF el trafico va
+ * en los dos. En vez de complicar el componente con flechas dobles —que a
+ * 390 px no se entienden— el camino de vuelta se dice en una linea.
+ */
+const notas = {
+  dbf: {
+    en: 'And back: the legacy system calls these endpoints to build reports it could not produce on its own.',
+    es: 'Y de vuelta: el sistema heredado llama a estos endpoints para construir reportes que no podía producir solo.',
+  },
+  ia: { en: '', es: '' },
+  'tiempo-real': { en: '', es: '' },
+};
+const nota = notas[tipo][idioma];
 ---
 
 <figure class="diagrama" role="group" aria-label={s.diagramaAlt}>
@@ -89,4 +104,5 @@ const pasos = flujos[tipo][idioma];
       ))
     }
   </ol>
+  {nota && <p class="vuelta sello">↩ {nota}</p>}
 </figure>

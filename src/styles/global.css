@@ -730,6 +730,14 @@ a {
   gap: 0.125rem;
 }
 
+.diagrama .vuelta {
+  margin: 0.875rem 0 0;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--borde);
+  color: var(--enlace);
+  text-transform: none;
+}
+
 .diagrama .nombre {
   font-family: var(--font-mono);
   font-size: var(--text-meta);

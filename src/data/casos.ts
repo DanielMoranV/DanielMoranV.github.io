@@ -82,6 +82,13 @@ export const casos: Caso[] = [
         valor: { en: 'FastAPI · jobs by date', es: 'FastAPI · jobs por fecha' },
       },
       {
+        etiqueta: { en: 'Integration', es: 'Integración' },
+        valor: {
+          en: 'bidirectional, both systems live',
+          es: 'bidireccional, los dos sistemas vivos',
+        },
+      },
+      {
         etiqueta: { en: 'Result', es: 'Resultado' },
         valor: {
           en: '500,000+ records, 0 days closed',

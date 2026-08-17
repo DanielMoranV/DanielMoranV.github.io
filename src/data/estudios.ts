@@ -289,6 +289,20 @@ export const estudios: Estudio[] = [
       },
       {
         en:
+          'The traffic goes both ways, and that is the part I did not expect. My service ' +
+          'reads from the legacy system — and the legacy system now calls my endpoints back, ' +
+          'because a colleague uses them to build reports his own stack could not produce. ' +
+          'An admission recorded on one side shows up on the other without anyone retyping ' +
+          'it.',
+        es:
+          'El tráfico va en los dos sentidos, y esa es la parte que no esperaba. Mi servicio ' +
+          'lee del sistema heredado — y el sistema heredado llama ahora a mis endpoints, ' +
+          'porque un compañero los usa para construir reportes que su propio stack no podía ' +
+          'producir. Un ingreso registrado de un lado aparece del otro sin que nadie lo ' +
+          'vuelva a teclear.',
+      },
+      {
+        en:
           'The day-to-day proof: admissions pulls the day’s schedule from a tablet, ' +
           'reception resolves a patient’s whole history from their ID document in real time ' +
           '— insured, private or inpatient, and whether they have an appointment — and ' +
