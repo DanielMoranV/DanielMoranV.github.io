@@ -53,8 +53,8 @@ export const t = {
     heroMeta: 'Piura, Peru · full stack + data · 2022—',
     heroTitulo: 'I build the software companies run on.',
     heroEntrada:
-      'Full stack developer and data engineer in Piura, Peru. Eight products in production — ' +
-      'ERPs, payroll, e-commerce, electronic invoicing — four of them mine and sold by ' +
+      'Full stack developer and data engineer in Piura, Peru. Seven products in production — ' +
+      'ERPs, payroll, e-commerce, electronic invoicing — three of them mine and sold by ' +
       'subscription, four built for clients who paid for them. Everything below has a live ' +
       'URL or a public repository.',
     heroCorreo: 'Email',
@@ -86,7 +86,7 @@ export const t = {
     ahora: 'Now',
 
     trabajoTitulo: 'In production',
-    trabajoEtiqueta: 'Eight systems',
+    trabajoEtiqueta: 'Seven systems',
     trabajoPropio: 'Own product · subscription',
     trabajoCliente: 'Client work · commissioned',
 
@@ -154,8 +154,8 @@ export const t = {
     heroMeta: 'Piura, Perú · full stack + datos · 2022—',
     heroTitulo: 'Construyo el software sobre el que funcionan las empresas.',
     heroEntrada:
-      'Desarrollador full stack e ingeniero de datos en Piura, Perú. Ocho productos en ' +
-      'producción —ERPs, planillas, comercio electrónico, facturación electrónica—, cuatro ' +
+      'Desarrollador full stack e ingeniero de datos en Piura, Perú. Siete productos en ' +
+      'producción —ERPs, planillas, comercio electrónico, facturación electrónica—, tres ' +
       'míos y vendidos por suscripción, cuatro construidos para clientes que pagaron por ' +
       'ellos. Todo lo de abajo tiene URL viva o repositorio público.',
     heroCorreo: 'Correo',
@@ -187,7 +187,7 @@ export const t = {
     ahora: 'Ahora',
 
     trabajoTitulo: 'En producción',
-    trabajoEtiqueta: 'Ocho sistemas',
+    trabajoEtiqueta: 'Siete sistemas',
     trabajoPropio: 'Producto propio · suscripción',
     trabajoCliente: 'Por encargo · cliente',
 

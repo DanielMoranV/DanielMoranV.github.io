@@ -11,6 +11,8 @@
  * producto propio.
  */
 
+import { trabajos } from './trabajo';
+
 export interface Cifra {
   valor: { en: string; es: string };
   que: { en: string; es: string };
@@ -25,7 +27,9 @@ export const cifras: Cifra[] = [
     },
   },
   {
-    valor: { en: '8', es: '8' },
+    // Se cuenta, no se escribe: apagar un producto en trabajo.ts tiene que
+    // mover esta cifra sola. Escrita a mano, se queda vieja en silencio.
+    valor: { en: String(trabajos.length), es: String(trabajos.length) },
     que: {
       en: 'products in production with a live URL',
       es: 'productos en producción con URL viva',

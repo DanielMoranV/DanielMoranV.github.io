@@ -61,9 +61,6 @@ PRODUCTOS = [
     ("EasyPay", "propio", "Personal, asistencia, horarios y cálculo de planillas",
      "Staff, attendance, scheduling and payroll runs",
      "TypeScript · NestJS", "easypay.djasoft.net.pe"),
-    ("Agenda EH", "propio", "Matriz de Eisenhower con sincronización bidireccional con Google Calendar",
-     "Eisenhower matrix with two-way Google Calendar sync",
-     "Vue 3 · Firestore · OAuth 2.0", "agenda-eh.web.app"),
     ("Master Color", "cliente", "Comercio electrónico, gestión de pedidos y app de soporte en campo",
      "E-commerce, order management and a field-support app",
      "Laravel · Vue 3 · Flutter · AWS S3", "mastercolor.net.pe"),
@@ -184,7 +181,7 @@ T = {
         "perfil_t": "Perfil",
         "perfil": (
             "Construyo software de gestión que las empresas usan todos los días, y me especializo en la parte "
-            "incómoda: <b>modernizar sistemas que no se pueden apagar</b>. Ocho productos en producción, cuatro "
+            "incómoda: <b>modernizar sistemas que no se pueden apagar</b>. Siete productos en producción, tres "
             "míos vendidos por suscripción y cuatro construidos para clientes que pagaron por ellos. Antes de "
             "programar a tiempo completo pasé seis años en soporte técnico e infraestructura, que es la razón por "
             "la que sé cómo se rompen los sistemas en producción: los sostuve antes de construirlos."
@@ -229,7 +226,7 @@ T = {
         "perfil_t": "Profile",
         "perfil": (
             "I build the business software companies run on every day, and I specialise in the uncomfortable "
-            "part: <b>modernising systems that cannot be switched off</b>. Eight products in production, four of "
+            "part: <b>modernising systems that cannot be switched off</b>. Seven products in production, three of "
             "them mine and sold by subscription, four built for clients who paid for them. Before programming "
             "full time I spent six years in technical support and infrastructure, which is why I know how "
             "production systems break: I kept them running before I started building them."
@@ -266,9 +263,9 @@ T = {
 }
 
 CIFRAS = {
-    "es": [("500.000+", "registros migrados<br>sin parar la operación"), ("8", "productos<br>en producción"),
+    "es": [("500.000+", "registros migrados<br>sin parar la operación"), ("7", "productos<br>en producción"),
            ("50+", "usuarios diarios en<br>sistemas que mantengo"), ("20+", "módulos de negocio<br>en servicio")],
-    "en": [("500,000+", "records migrated with<br>no downtime"), ("8", "products<br>in production"),
+    "en": [("500,000+", "records migrated with<br>no downtime"), ("7", "products<br>in production"),
            ("50+", "daily users on systems<br>I maintain"), ("20+", "business modules<br>in service")],
 }
 

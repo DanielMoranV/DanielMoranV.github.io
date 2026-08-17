@@ -22,9 +22,15 @@ export interface Trabajo {
    * en una celda propia es lo que evita que se coman la direccion visual.
    */
   logo: string;
+  /**
+   * Fuera del listado publicado mientras se define su situacion. No se
+   * borra la entrada: se apaga, para que cuando vuelva no haya que
+   * reconstruirla ni reinventar el dato.
+   */
+  oculto?: boolean;
 }
 
-export const trabajos: Trabajo[] = [
+const catalogo: Trabajo[] = [
   {
     nombre: 'AlmaZen',
     logo: '/projects/almazen.webp',
@@ -60,6 +66,7 @@ export const trabajos: Trabajo[] = [
   },
   {
     nombre: 'Agenda EH',
+    oculto: true,
     logo: '/projects/agenda-eh.svg',
     url: 'https://agenda-eh.web.app/',
     modelo: 'propio',
@@ -114,3 +121,11 @@ export const trabajos: Trabajo[] = [
     },
   },
 ];
+
+/**
+ * Lo que se publica. `oculto` no es un borrado: un producto apagado sigue
+ * aqui con su ficha entera, y encenderlo es quitar una linea.
+ */
+export const trabajos = catalogo.filter((w) => !w.oculto);
+export const PROPIOS = trabajos.filter((w) => w.modelo === 'propio').length;
+export const CLIENTES = trabajos.filter((w) => w.modelo === 'cliente').length;

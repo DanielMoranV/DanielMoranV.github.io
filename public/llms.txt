@@ -1,8 +1,8 @@
 # Daniel Morán Vílchez
 
 > Full stack developer and data engineer in Piura, Peru. Specialised in
-> modernising legacy systems that cannot be switched off. Eight products in
-> production; four sold by subscription, four built for paying clients.
+> modernising legacy systems that cannot be switched off. Seven products in
+> production; three sold by subscription, four built for paying clients.
 > Programming full time since November 2022; six prior years in technical
 > support and infrastructure.
 

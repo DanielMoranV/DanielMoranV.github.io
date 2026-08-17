@@ -183,7 +183,7 @@ PORTADAS = [
         "Sistemas heredados · datos · Piura, Perú · remoto",
         "Modernizo sistemas que no se pueden apagar.",
         "Go · Laravel · Python/FastAPI · PostgreSQL · Docker",
-        "8 productos en producción  ·  danielmoranv.github.io",
+        "7 productos en producción  ·  danielmoranv.github.io",
         50,
     ),
     (
@@ -197,7 +197,7 @@ PORTADAS = [
     (
         "c-producto",
         "ERP multiempresa · facturación SUNAT · IA en producto",
-        "Ocho productos en producción. Cuatro son míos.",
+        "Siete productos en producción. Tres son míos.",
         "Go · Laravel · TypeScript · React 19 · PostgreSQL",
         "Vendidos por suscripción y por encargo  ·  danielmoranv.github.io",
         50,
