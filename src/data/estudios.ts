@@ -64,9 +64,9 @@ export const estudios: Estudio[] = [
       en: 'Getting 500,000+ records out of a 1990s system without closing the business for a single day.',
       es: 'Sacar más de 500.000 registros de un sistema de los noventa sin cerrar la operación un solo día.',
     },
-    periodo: '2023 —',
+    periodo: '2024 —',
     rol: { en: 'Design and implementation', es: 'Diseño e implementación' },
-    stack: ['Python', 'FastAPI', 'PostgreSQL', 'FoxPro · DBF', 'Alembic', 'Docker'],
+    stack: ['Python', 'FastAPI', 'PostgreSQL', 'FoxPro · DBF', 'Alembic', 'Docker', 'Linux'],
     contexto: {
       en:
         'FoxPro still runs the daily operation of a private clinic, and the application sits ' +
@@ -166,6 +166,29 @@ export const estudios: Estudio[] = [
         },
       },
       {
+        titulo: {
+          en: 'Migrate by data quality, not by volume',
+          es: 'Migrar por calidad del dato, no por volumen',
+        },
+        cuerpo: {
+          en:
+            'The lab results table alone holds over two million rows going back to 2019. ' +
+            'Only 2025 and 2026 were migrated: everything older is inconsistent, and it now ' +
+            'comes across on demand, by id, when someone actually needs it. Moving it all ' +
+            'would have been easy to announce and would have poisoned the reporting.',
+          es:
+            'Solo la tabla de resultados de laboratorio guarda más de dos millones de ' +
+            'registros desde 2019. Se migraron únicamente 2025 y 2026: lo anterior es ' +
+            'inconsistente, y ahora se trae bajo demanda y por identificador, cuando alguien ' +
+            'lo necesita de verdad. Migrarlo todo habría quedado bien de anunciar y habría ' +
+            'envenenado los reportes.',
+        },
+        descartado: {
+          en: 'A full historical backfill, which is the default answer and the wrong one here.',
+          es: 'La carga histórica completa, que es la respuesta por defecto y aquí la equivocada.',
+        },
+      },
+      {
         titulo: { en: 'Ship it as a service, not a script', es: 'Entregarlo como servicio, no como script' },
         cuerpo: {
           en:
@@ -209,6 +232,30 @@ export const estudios: Estudio[] = [
       {
         en: 'The engine published as a standalone, dependency-free package.',
         es: 'El motor publicado como paquete independiente y sin dependencias.',
+      },
+      {
+        en:
+          'The day-to-day proof: admissions pulls the day’s schedule from a tablet, ' +
+          'reception resolves a patient’s whole history from their ID document in real time ' +
+          '— insured, private or inpatient, and whether they have an appointment — and ' +
+          'management reads live reports from a phone. All of it while every cash desk is ' +
+          'still working inside the 1990s application.',
+        es:
+          'La prueba está en el día a día: admisión consulta la agenda del día desde una ' +
+          'tableta, recepción resuelve el historial completo de un paciente por su documento ' +
+          'en tiempo real —si es de seguro, particular u hospitalizado, y si tiene turno con ' +
+          'algún médico— y gerencia lee reportes en vivo desde el móvil. Todo mientras cada ' +
+          'caja sigue trabajando dentro de la aplicación de los noventa.',
+      },
+      {
+        en:
+          'The published engine carries tests for the writer and the introspector — the part ' +
+          'that would hurt if it were wrong. The private pipeline that orchestrates it does ' +
+          'not: it has health checks, not a suite. Saying both is the honest version.',
+        es:
+          'El motor publicado lleva tests del escritor y del introspector, que es la parte ' +
+          'que dolería si estuviera mal. El pipeline privado que lo orquesta no: tiene ' +
+          'comprobaciones de salud, no una batería. Decir las dos cosas es la versión honesta.',
       },
       {
         en:

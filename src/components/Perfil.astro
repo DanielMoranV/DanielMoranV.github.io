@@ -2,7 +2,7 @@
 import { casos } from '../data/casos';
 import { cifras } from '../data/cifras';
 import { trabajos } from '../data/trabajo';
-import { ANIOS, puesto, sistemas } from '../data/trayectoria';
+import { ANIOS, puesto, sistemas, tramos } from '../data/trayectoria';
 import { piezas } from '../data/opensource';
 import { pasos, REGISTRO_URL } from '../data/metodo';
 import {
@@ -241,9 +241,28 @@ const caso = (slug: string) =>
     </div>
   </div>
 
-  <p style="margin:1.25rem 0 1.75rem;max-width:var(--container-prosa);line-height:1.68;color:var(--texto-suave)">
+  <p style="margin:1.25rem 0 1.5rem;max-width:var(--container-prosa);line-height:1.68;color:var(--texto-suave)">
     {puesto.que[idioma]}
   </p>
+
+  <!--
+    El arco dentro del mismo empleo. Sin esto, el sitio presentaba el estado
+    actual como si fuera el punto de partida — y el punto de partida es lo que
+    explica por que el software encaja.
+  -->
+  <div class="arco">
+    {
+      tramos.map((t) => (
+        <div class="tramo">
+          <p class="sello num">{t.periodo}</p>
+          <div>
+            <h3>{t.titulo[idioma]}</h3>
+            <p>{t.que[idioma]}</p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
 
   <p class="sello" style="margin:0 0 0.875rem">{s.sistemasEtiqueta}</p>
   <div class="celdas">

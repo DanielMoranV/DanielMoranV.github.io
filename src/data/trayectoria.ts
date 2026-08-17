@@ -75,6 +75,74 @@ export const puesto: Puesto = {
   },
 };
 
+/**
+ * El arco dentro del mismo empleo. El sitio contaba el estado ACTUAL como si
+ * fuera el punto de partida, y el punto de partida es justo lo que explica
+ * por que el software encaja: se aprendio el negocio haciendolo, no leyendo
+ * un requerimiento.
+ *
+ * Y tiene un efecto secundario que conviene entender: el contrato dice
+ * «Soporte TI». Contar el arco convierte esa confirmacion de RR. HH. de
+ * contradiccion en primera linea de la propia historia.
+ *
+ * Fechas verificadas contra la creacion de los repositorios, no estimadas.
+ */
+export interface Tramo {
+  periodo: string;
+  titulo: { en: string; es: string };
+  que: { en: string; es: string };
+}
+
+export const tramos: Tramo[] = [
+  {
+    periodo: '2022 — 2024',
+    titulo: { en: 'IT support', es: 'Soporte TI' },
+    que: {
+      en:
+        'Hardware and software support, and the insurance collections and refunds desk. I ' +
+        'learned the system from the business side rather than from a requirements ' +
+        'document, which is where every improvement I later proposed came from. First ' +
+        'applications on my own initiative: a ticketing app and a medical appointments app.',
+      es:
+        'Soporte de hardware y software, y la mesa de cobranza de seguros y devoluciones. ' +
+        'Aprendí el sistema desde el lado del negocio y no desde un documento de ' +
+        'requisitos, que es de donde salieron todas las mejoras que propuse después. ' +
+        'Primeras aplicaciones por iniciativa propia: una de tickets y una de citas médicas.',
+    },
+  },
+  {
+    periodo: '2024 —',
+    titulo: { en: 'The job changes', es: 'El encargo cambia' },
+    que: {
+      en:
+        'I proposed the medical insurance system and it was approved. Built decoupled from ' +
+        'the legacy system, with a rudimentary migrator — a DBF viewer and Python on ' +
+        'Windows — good enough for one-off loads but not for daily operation.',
+      es:
+        'Propuse el sistema de gestión de seguros médicos y se aprobó. Construido ' +
+        'desacoplado del sistema heredado, con un migrador rudimentario —un visor de DBF y ' +
+        'Python sobre Windows— que servía para cargas puntuales pero no para el día a día.',
+    },
+  },
+  {
+    periodo: '2025 —',
+    titulo: { en: 'The data layer', es: 'La capa de datos' },
+    que: {
+      en:
+        'A Linux server of my own next to the Windows Server the 1990s systems run on, with ' +
+        'a shared folder across operating systems on the same LAN and two network uplinks ' +
+        'from different providers for redundancy. On top of it, the DBF engine, the service ' +
+        'that exposes it, and the endpoints another developer on the team now consumes.',
+      es:
+        'Un servidor Linux propio junto al Windows Server donde corren los sistemas de los ' +
+        'noventa, con una carpeta compartida entre sistemas operativos en la misma red y dos ' +
+        'salidas de red de proveedores distintos por redundancia. Encima, el motor DBF, el ' +
+        'servicio que lo expone, y los endpoints que hoy consume otro desarrollador del ' +
+        'equipo.',
+    },
+  },
+];
+
 export const sistemas: Sistema[] = [
   {
     nombre: { en: 'Data platform and migration', es: 'Plataforma de datos y migración' },
