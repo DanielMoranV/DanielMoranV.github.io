@@ -70,14 +70,14 @@ export const estudios: Estudio[] = [
     contexto: {
       en:
         'FoxPro still runs the daily operation of a private clinic, and the application sits ' +
-        'open on every desk from eight in the morning. The history is needed in reporting, ' +
-        'web systems and analytics, but it lives in .dbf files the application holds open all ' +
-        'day.',
+        'open on every desk from eight in the morning. There had never been a migration: ' +
+        'the data lived on the local network, tied to the application that wrote it, and ' +
+        'the only way anything got out was an Excel report someone exported by hand.',
       es:
         'FoxPro sostiene la operación diaria de una clínica privada, y la aplicación está ' +
-        'abierta en cada escritorio desde las ocho de la mañana. El histórico hace falta en ' +
-        'reportes, web y análisis, pero vive en ficheros .dbf que la aplicación tiene ' +
-        'abiertos todo el día.',
+        'abierta en cada escritorio desde las ocho de la mañana. Nunca había habido una ' +
+        'migración: los datos vivían en la red local, atados a la aplicación que los ' +
+        'escribía, y lo único que salía de ahí era un reporte en Excel exportado a mano.',
     },
     problema: {
       en:
@@ -268,6 +268,20 @@ export const estudios: Estudio[] = [
       {
         en: 'Around 2,000 records a day through the automated pipeline.',
         es: 'Alrededor de 2.000 registros diarios por el pipeline automatizado.',
+      },
+      {
+        en:
+          'The point was never the downtime avoided: it is that the data stopped being ' +
+          'local. Once it was reachable from anything, things that could not even be ' +
+          'proposed before became ordinary — dashboards that refresh themselves, one ' +
+          'device reacting to what happened on another, and analysis over history rather ' +
+          'than over last month’s spreadsheet.',
+        es:
+          'Lo importante nunca fue la parada que se evitó: es que el dato dejó de ser ' +
+          'local. En cuanto se pudo alcanzar desde cualquier sitio, cosas que antes no se ' +
+          'podían ni plantear pasaron a ser normales — tableros que se actualizan solos, ' +
+          'un dispositivo reaccionando a lo que ocurrió en otro, y análisis sobre el ' +
+          'histórico en vez de sobre la hoja de cálculo del mes pasado.',
       },
       {
         en: 'The engine published as a standalone, dependency-free package.',

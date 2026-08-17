@@ -91,14 +91,22 @@ export const casos: Caso[] = [
     ],
     contraste: {
       antes: {
-        en: 'Close the business for a weekend, export by hand, hope the result lines up.',
-        es: 'Cerrar la operación un fin de semana, exportar a mano y rezar por el resultado.',
+        en:
+          'The data never left the building. It lived on the local network, tied to the ' +
+          'application that wrote it, and the only way out was an Excel report.',
+        es:
+          'Los datos no salían de la clínica. Vivían en la red local, atados a la aplicación ' +
+          'que los escribía, y la única salida era un reporte en Excel.',
       },
       ahora: {
-        en: 'Concurrent byte-level writes with the app still open; the history reaches ' +
-          'reporting, web systems and analytics.',
-        es: 'Escritura concurrente byte a byte con la aplicación abierta; el histórico llega ' +
-          'a reportes, web y análisis.',
+        en:
+          'The same data is multiplatform: dashboards that refresh themselves, a patient ' +
+          'resolved from a tablet at the desk, devices that talk to each other, and analysis ' +
+          'nobody could even propose before.',
+        es:
+          'Los mismos datos son multiplataforma: tableros que se actualizan solos, un ' +
+          'paciente resuelto desde una tableta en el mostrador, dispositivos que se comunican ' +
+          'entre sí, y análisis que antes no se podía ni plantear.',
       },
     },
     prueba: { texto: 'py-foxpro-engine', url: 'https://github.com/DanielMoranV/py-foxpro-engine' },
