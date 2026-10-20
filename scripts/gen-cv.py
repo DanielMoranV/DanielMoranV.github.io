@@ -136,6 +136,12 @@ CASOS = [
 ]
 
 OPEN_SOURCE = [
+    ("angel-cli", "Python · MIT",
+     "Gestión de estado estructurado para flujos con IA. Tareas en Markdown+YAML, validación por Git SHA diff y servidor MCP nativo con 7 herramientas.",
+     "Structured state management for AI workflows. Tasks in Markdown+YAML, validation via Git SHA diff, native MCP server with 7 tools."),
+    ("agente-csr", "Python · MIT",
+     "Agente analítico para gerencia hospitalaria. Solo lectura forzada en PostgreSQL y DBF, workspace aislado, reportes Excel/Word/PDF. Ley 29733 y Ley 26842.",
+     "AI analytics agent for hospital management. Enforced read-only on PostgreSQL and DBF, isolated workspace, Excel/Word/PDF reports. Peruvian health-data law compliant."),
     ("py-foxpro-engine", "Python · MIT",
      "Lee y escribe tablas FoxPro (.dbf) a nivel de byte, con bloqueo por rangos. Sin dependencias.",
      "Reads and writes FoxPro (.dbf) tables at byte level with byte-range locking. No dependencies."),
@@ -145,9 +151,6 @@ OPEN_SOURCE = [
     ("nomenclador", "Python · MIT",
      "Renombra facturas PDF en masa, con OCR de reserva y la nomenclatura de cada aseguradora.",
      "Bulk-renames PDF invoices, with OCR fallback and each insurer's naming scheme."),
-    ("almazen-api · almazen_frontend", "Laravel · Vue 3",
-     "La versión desacoplada de AlmaZen, publicada entera. PolyForm Noncommercial.",
-     "The decoupled version of AlmaZen, published in full. PolyForm Noncommercial."),
 ]
 
 # (etiqueta_es, etiqueta_en, valor_es, valor_en). Casi todo son nombres de
