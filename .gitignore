@@ -17,3 +17,9 @@ pnpm-debug.log*
 
 # macOS
 .DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+scripts/_cv_tmp/
