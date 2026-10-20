@@ -30,6 +30,26 @@ export const piezas: Pieza[] = [
     },
   },
   {
+    nombre: 'agente-csr',
+    url: 'https://github.com/DanielMoranV/AGENTE-CSR',
+    sello: 'Python · MIT',
+    que: {
+      en:
+        'AI analytics agent for hospital management reporting. Enforces strict read-only ' +
+        'access to PostgreSQL (session-level `default_transaction_read_only`) and FoxPro DBF ' +
+        'files, writes only inside an isolated workspace, and generates Excel, Word and PDF ' +
+        'executive reports. Built to Peruvian health data-privacy law (Ley 29733 / Ley 26842). ' +
+        '24 automated tests covering path-traversal, formula injection and permission matrix.',
+      es:
+        'Agente analítico de IA para reportes de gerencia hospitalaria. Impone solo lectura ' +
+        'estricta sobre PostgreSQL (`default_transaction_read_only` a nivel de sesión) y ' +
+        'archivos DBF de FoxPro, escribe únicamente dentro de un workspace aislado y genera ' +
+        'reportes ejecutivos en Excel, Word y PDF. Construido conforme a la Ley N.º 29733 y ' +
+        'la reserva de Historia Clínica (Ley N.º 26842). 24 pruebas automatizadas: ' +
+        'path-traversal, inyección de fórmulas y matriz de permisos.',
+    },
+  },
+  {
     nombre: 'py-foxpro-engine',
     url: 'https://github.com/DanielMoranV/py-foxpro-engine',
     sello: 'Python · MIT',
