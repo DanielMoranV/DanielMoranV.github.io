@@ -13,6 +13,23 @@ export interface Pieza {
 
 export const piezas: Pieza[] = [
   {
+    nombre: 'angel-cli',
+    url: 'https://github.com/DanielMoranV/angel-cli',
+    sello: 'Python · MIT',
+    que: {
+      en:
+        'Structured state management for AI-assisted workflows. Tracks tasks as typed ' +
+        'Markdown files with YAML frontmatter, validates "memories" against git history ' +
+        'via SHA diff, and exposes 7 native MCP tools so assistants like Cursor or ' +
+        'Antigravity can manage tasks without leaving their interface.',
+      es:
+        'Gestión de estado estructurado para flujos de trabajo con IA. Registra tareas ' +
+        'como ficheros Markdown tipados con frontmatter YAML, valida "memorias" contra ' +
+        'el historial de git por SHA diff, y expone 7 herramientas MCP nativas para ' +
+        'que asistentes como Cursor o Antigravity gestionen tareas sin salir de su entorno.',
+    },
+  },
+  {
     nombre: 'py-foxpro-engine',
     url: 'https://github.com/DanielMoranV/py-foxpro-engine',
     sello: 'Python · MIT',
